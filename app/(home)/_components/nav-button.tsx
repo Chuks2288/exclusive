@@ -17,18 +17,18 @@ export const NavButton = ({
     const router = useRouter();
 
     return (
-        <Button
+        <button
             key={label}
-            size="sm"
-            variant="outline"
+            // size="sm"
+            // variant="outline"
             className={cn(
-                "w-full lg:w-auto justify-between font-normal bg-transparent border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none transition",
-                isActive && "underline",
+                "w-full text-sm lg:w-auto justify-between font-normal bg-transparent border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none transition",
+                isActive && "underline-custom",
             )}
             onClick={() => router.push(href)}
         >
             {label}
-        </Button>
+        </button>
     )
 }
 

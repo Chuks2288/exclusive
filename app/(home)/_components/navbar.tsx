@@ -6,12 +6,18 @@ import { UserActions } from "./user-actions";
 
 export const Navbar = () => {
     return (
-        <div className="flex flex-row items-center justify-between py-6 border-2 gap-x-6">
-            <Logo />
-            <NavItems />
-            <div className="flex items-center gap-x-6">
-                <SearchInput />
-                <UserActions />
+        <div className="border-b-2">
+            <div className="w-full px-3">
+                <div className="max-w-[1170px] mx-auto">
+                    <div className="flex flex-row items-center justify-between py-6 gap-x-6">
+                        <Logo />
+                        <NavItems />
+                        <div className="flex items-center gap-x-6">
+                            <SearchInput />
+                            <UserActions />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

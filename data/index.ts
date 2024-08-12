@@ -69,3 +69,93 @@ export const userProfileRoutes = [
         path: "/reviews",
     },
 ] as userProfileRoutesProps[];
+
+
+export const searchWordItems = [
+    {
+        category: "Woman’s Fashion",
+        subCategories: [
+            "Dresses",
+            "Tops",
+            "Shoes",
+            "Accessories"
+        ]
+    },
+    {
+        category: "Men’s Fashion",
+        subCategories: [
+            "Shirts",
+            "Pants",
+            "Shoes",
+            "Watches"
+        ]
+    },
+    {
+        category: "Electronics",
+        relatedWords: [
+            "Mobile Phones",
+            "Laptops",
+            "Cameras",
+            "Audio & Headphones"
+        ]
+    },
+    {
+        category: "Home & Lifestyle",
+        relatedWords: [
+            "Furniture",
+            "Decor",
+            "Kitchenware",
+            "Bedding"
+        ]
+    },
+    {
+        category: "Medicine",
+        relatedWords: [
+            "Prescription Drugs",
+            "Over-the-Counter",
+            "Supplements",
+            "Medical Equipment"
+        ]
+    },
+    {
+        category: "Sports & Outdoor",
+        relatedWords: [
+            "Fitness Equipment",
+            "Outdoor Gear",
+            "Sportswear",
+            "Camping"
+        ]
+    },
+    {
+        category: "Baby’s & Toys",
+        relatedWords: [
+            "Toys",
+            "Clothing",
+            "Nursery",
+            "Baby Gear"
+        ]
+    },
+    {
+        category: "Groceries & Pets",
+        relatedWords: [
+            "Pet Food",
+            "Pet Accessories",
+            "Groceries",
+            "Organic Products"
+        ]
+    },
+    {
+        category: "Health & Beauty",
+        relatedWords: [
+            "Skincare",
+            "Haircare",
+            "Makeup",
+            "Personal Care"
+        ]
+    }
+] as any;
+
+
+
+
+

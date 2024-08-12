@@ -1,10 +1,17 @@
+import { HeroCard } from "./_components/hero-card";
+import { SidebarWordSearch } from "./_components/sidebar-word-search";
 
 const HomePage = () => {
     return (
-        <div className="">
-            Hello world
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4 ">
+            <div className="md:col-span-1 md:grid hidden pt-4">
+                <SidebarWordSearch />
+            </div>
+            <div className="md:col-span-3 pt-4 lg:pl-4 pl-0">
+                <HeroCard />
+            </div>
         </div>
-    )
+    );
 }
 
-export default HomePage
+export default HomePage;

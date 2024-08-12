@@ -8,12 +8,14 @@ const HomeLayout = ({
     children
 }: Props) => {
     return (
-        <div className="w-full px-3">
-            <div className="max-w-[1170px] mx-auto">
-                <Navbar />
-                {children}
+        <>
+            <Navbar />
+            <div className="w-full px-3">
+                <main className="max-w-[1170px] mx-auto">
+                    {children}
+                </main>
             </div>
-        </div>
+        </>
     )
 }
 

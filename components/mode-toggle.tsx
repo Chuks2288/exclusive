@@ -18,7 +18,7 @@ export function ModeToggle() {
     return (
         <div className="flex items-center space-x-2">
             <Switch id="theme-toggle" checked={theme === "dark"} onCheckedChange={handleToggle} />
-            <Label htmlFor="theme-toggle">Toggle Theme</Label>
+            {/* <Label htmlFor="theme-toggle">Toggle Theme</Label> */}
         </div>
     );
 }

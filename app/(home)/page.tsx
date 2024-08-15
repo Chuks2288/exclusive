@@ -1,16 +1,25 @@
-import { HeroCard } from "./_components/hero-card";
-import { SidebarWordSearch } from "./_components/sidebar-word-search";
+import { Separator } from "@/components/ui/separator";
+import { FlashSales } from "./_components/flash-sales";
+import { Hero } from "./_components/hero";
+import { CategoryProducts } from "./_components/category-product";
+import { ProductBanner } from "./_components/product-banner";
+import { Products } from "./_components/products";
+import { BestSellingProducts } from "./_components/best-selling-products";
+import { NewArrivalProducts } from "./_components/new-arrival-products";
+
 
 const HomePage = () => {
     return (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4 ">
-            <div className="md:col-span-1 md:grid hidden pt-4">
-                <SidebarWordSearch />
-            </div>
-            <div className="md:col-span-3 pt-4 lg:pl-4 pl-0">
-                <HeroCard />
-            </div>
-        </div>
+        <main className="">
+            <Hero />
+            <FlashSales />
+            <Separator className="my-4" />
+            <CategoryProducts />
+            <BestSellingProducts />
+            <ProductBanner />
+            <Products />
+            <NewArrivalProducts />
+        </main>
     );
 }
 

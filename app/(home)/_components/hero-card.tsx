@@ -46,7 +46,7 @@ const heroItems = [
         shop: "Shop Now",
         icon: ArrowRight,
     },
-] as hero1IpnmsProps[];
+] as heroItemsProps[];
 
 export const HeroCard = () => {
     return (

@@ -47,7 +47,7 @@ export const UserActions = () => {
                     align="start"
                     sideOffset={-25}
                     alignOffset={35}
-                    className="flex flex-col items-start justify-start gap-y-2 py-1 bg-[#2f4f4f] text-white rounded-md"
+                    className="flex flex-col items-start justify-start gap-y-2 py-1 bg-[#2f4f4f] text-white rounded-md z-50"
                 >
                     {userProfileRoutes.map((route) => (
                         <PopoverClose asChild key={route.label}>

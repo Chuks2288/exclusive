@@ -1,4 +1,4 @@
-import { CircleX, Heart, Radio, ShoppingBag, ShoppingCart, Star, User } from "lucide-react";
+import { Camera, CircleX, Gamepad, Headphones, Heart, LucideIcon, Phone, Radio, ScreenShare, ShoppingBag, ShoppingCart, Star, User, Watch } from "lucide-react";
 
 interface navItemProps {
     label: string,
@@ -13,6 +13,12 @@ interface userProfileRoutesProps {
     icon: any,
     label: string,
     path: string,
+}
+
+interface categoryQueryItemsProps {
+    category: string;
+    imageIcon: LucideIcon;
+    relatedWords?: string[];
 }
 
 export const routes = [
@@ -155,7 +161,97 @@ export const searchWordItems = [
     }
 ] as any;
 
-
-
-
-
+export const categoryQueryItems = [
+    {
+        category: "Phones",
+        // imageIcon: "/home/category/cell-phone.svg",
+        imageIcon: Phone,
+        relatedWords: [
+            "Smartphones",
+            "Mobile Phones",
+            "Feature Phones",
+            "Accessories"
+        ]
+    },
+    {
+        category: "Computers",
+        // imageIcon: "/home/category/computer.svg",
+        imageIcon: ScreenShare,
+        relatedWords: [
+            "Laptops",
+            "Desktops",
+            "Monitors",
+            "Computer Accessories",
+            "Keyboards",
+            "Mice"
+        ]
+    },
+    {
+        category: "Smartwatches",
+        // imageIcon: "/home/category/smart-watch.svg",
+        imageIcon: Watch,
+        relatedWords: [
+            "Fitness Trackers",
+            "Wearables",
+            "Watch Bands",
+            "Chargers"
+        ]
+    },
+    {
+        category: "Cameras",
+        imageIcon: Camera,
+        relatedWords: [
+            "Digital Cameras",
+            "DSLR Cameras",
+            "Action Cameras",
+            "Camera Lenses",
+            "Tripods"
+        ]
+    },
+    {
+        category: "Headphones",
+        // imageIcon: "/home/category/headphone.svg",
+        imageIcon: Headphones,
+        relatedWords: [
+            "Over-Ear Headphones",
+            "In-Ear Headphones",
+            "Wireless Headphones",
+            "Noise-Cancelling Headphones",
+            "Headphone Accessories"
+        ]
+    },
+    {
+        category: "Cameras",
+        imageIcon: Camera,
+        relatedWords: [
+            "Digital Cameras",
+            "DSLR Cameras",
+            "Action Cameras",
+            "Camera Lenses",
+            "Tripods"
+        ]
+    },
+    {
+        category: "Gaming Pads",
+        // imageIcon: "/home/category/gamepad.svg",
+        imageIcon: Gamepad,
+        relatedWords: [
+            "Game Controllers",
+            "Gamepads",
+            "Joystick",
+            "Arcade Sticks",
+            "Gaming Accessories"
+        ]
+    },
+    {
+        category: "Cameras",
+        imageIcon: Camera,
+        relatedWords: [
+            "Digital Cameras",
+            "DSLR Cameras",
+            "Action Cameras",
+            "Camera Lenses",
+            "Tripods"
+        ]
+    },
+] as categoryQueryItemsProps[];

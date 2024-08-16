@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { flashSalesProducts } from '@/constants';
 import { ProductsCard } from './products-card';
+import { ourProducts } from '@/constants';
 
 export const BestSellingItems = () => {
     const [showAll, setShowAll] = useState(false);
 
     // Slice the products array to show only the first 5 items initially
-    const displayedProducts = showAll ? flashSalesProducts : flashSalesProducts.slice(0, 5);
+    const displayedProducts = showAll ? ourProducts.slice(8, 20) : ourProducts.slice(8, 14);
 
     return (
         <div className="relative w-full">

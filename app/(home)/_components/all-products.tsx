@@ -7,14 +7,15 @@ import 'swiper/css/grid';  // Make sure the Grid CSS is imported
 import { Grid, Navigation } from 'swiper/modules';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { flashSalesProducts } from '@/constants';
 import { ProductsCard } from './products-card';
+
+import { ourProducts } from '@/constants';
 
 export const AllProducts = () => {
     const [showAll, setShowAll] = useState(false);
 
     // Slice the products array to show only the first 15 items
-    const displayedProducts = showAll ? flashSalesProducts : flashSalesProducts.slice(0, 12);
+    const displayedProducts = showAll ? ourProducts : ourProducts.slice(0, 12);
 
     return (
         <div className="relative w-full">
@@ -58,7 +59,10 @@ export const AllProducts = () => {
                         className="mySwiper"
                     >
                         {displayedProducts.map((product) => (
-                            <SwiperSlide key={product.id} className="h-full flex items-center justify-center">
+                            <SwiperSlide
+                                key={product.id}
+                                className="h-full flex items-center justify-center"
+                            >
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
@@ -84,7 +88,7 @@ export const AllProducts = () => {
                     </div>
 
                     {/* View More Products Button */}
-                    {flashSalesProducts.length > 12 && (
+                    {ourProducts.length > 12 && (
                         <div className="flex justify-center mt-4">
                             <Button
                                 size="sm"
@@ -99,7 +103,7 @@ export const AllProducts = () => {
             ) : (
                 <>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                        {flashSalesProducts.map((product) => (
+                        {ourProducts.map((product) => (
                             <div
                                 key={product.id}
                                 className="h-full max-w-[350px] flex flex-col items-center justify-center"

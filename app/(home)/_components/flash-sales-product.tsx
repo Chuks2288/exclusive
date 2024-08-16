@@ -102,7 +102,7 @@ export const FlashSalesProduct = () => {
                                 key={product.id}
                                 className="h-full max-w-[350px] flex flex-col items-center justify-center"
                             >
-                                <ProductCard
+                                <ProductsCard
                                     id={product.id}
                                     image={product.images}
                                     discount={product.discount.amount}

@@ -1,3 +1,4 @@
+import { UpArrow } from "@/components/up-arrow"
 import { Footer } from "./_components/footer"
 import { Navbar } from "./_components/navbar"
 
@@ -17,6 +18,7 @@ const HomeLayout = ({
                 </main>
             </div>
             <Footer />
+            <UpArrow />
         </>
     )
 }

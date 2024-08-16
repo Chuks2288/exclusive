@@ -1,4 +1,27 @@
-import { Camera, CircleX, Gamepad, Headphones, Heart, LucideIcon, Phone, Radio, ScreenShare, ShoppingBag, ShoppingCart, Star, User, Watch } from "lucide-react";
+import {
+    Camera,
+    CircleX,
+    Gamepad,
+    Headphones,
+    Heart,
+    Headset,
+    LucideIcon,
+    ShieldCheck,
+    Truck,
+    Phone,
+    ScreenShare,
+    ShoppingBag,
+    ShoppingCart,
+    Star,
+    User,
+    Watch,
+    ChevronRight,
+    Mail,
+    MapPin
+} from "lucide-react";
+
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
 
 interface navItemProps {
     label: string,
@@ -19,6 +42,13 @@ interface categoryQueryItemsProps {
     category: string;
     imageIcon: LucideIcon;
     relatedWords?: string[];
+}
+
+interface FeaturesProps {
+    id: number;
+    icon: LucideIcon;
+    title: string;
+    description: string;
 }
 
 export const routes = [
@@ -255,3 +285,92 @@ export const categoryQueryItems = [
         ]
     },
 ] as categoryQueryItemsProps[];
+
+
+
+export const features = [
+    {
+        id: 1,
+        icon: Truck,
+        title: "FREE AND FAST DELIVERY",
+        description: "Free delivery for all orders over $140",
+    },
+    {
+        id: 2,
+        icon: Headset,
+        title: "24/7 CUSTOMER SERVICE",
+        description: "Friendly 24/7 customer support",
+    },
+    {
+        id: 3,
+        icon: ShieldCheck,
+        title: "MONEY BACK GUARANTEE",
+        description: "We return money within 30 days",
+    },
+] as FeaturesProps[];
+
+
+export const footerData = [
+    {
+        title: "Exclusive",
+        content: [
+            { type: "text", text: "Subscribe" },
+            { type: "text", text: "Get 10% off your first order" },
+            {
+                type: "form",
+                placeholder: "Enter your email",
+                buttonIcon: ChevronRight,
+            },
+        ],
+    },
+    {
+        title: "Support",
+        content: [
+            { type: "iconText", icon: MapPin, text: "111 Bijoy sarani, Dhaka, DH 1515, Bangladesh." },
+            { type: "iconText", icon: Mail, text: "exclusive@gmail.com" },
+            { type: "iconText", icon: Phone, text: "+88015-88888-9999" },
+        ],
+    },
+    {
+        title: "Account",
+        content: [
+            { type: "link", text: "My Account", href: "#" },
+            { type: "link", text: "Login / Register", href: "#" },
+            { type: "link", text: "Cart", href: "#" },
+            { type: "link", text: "Wishlist", href: "#" },
+            { type: "link", text: "Shop", href: "#" },
+        ],
+    },
+    {
+        title: "Quick Link",
+        content: [
+            { type: "link", text: "Privacy Policy", href: "#" },
+            { type: "link", text: "Terms Of Use", href: "#" },
+            { type: "link", text: "FAQ", href: "#" },
+            { type: "link", text: "Contact", href: "#" },
+        ],
+    },
+    {
+        title: "Download App",
+        content: [
+            { type: "text", text: "Save $3 with App New User Only" },
+            {
+                type: "image",
+                images: [
+                    // { src: "/qrcode.png", alt: "Google Play Store" },
+                    { src: "/appstore.png", alt: "Google Play Store" },
+                    { src: "/google-play.png", alt: "Apple App Store" },
+                ],
+            },
+            {
+                type: "socialIcons",
+                icons: [
+                    { icon: FaFacebookF, href: "#" },
+                    { icon: FaTwitter, href: "#" },
+                    { icon: FaInstagram, href: "#" },
+                    { icon: FaLinkedinIn, href: "#" },
+                ],
+            },
+        ],
+    },
+];

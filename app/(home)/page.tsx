@@ -6,6 +6,8 @@ import { ProductBanner } from "./_components/product-banner";
 import { Products } from "./_components/products";
 import { BestSellingProducts } from "./_components/best-selling-products";
 import { NewArrivalProducts } from "./_components/new-arrival-products";
+import { ServiceHighlights } from "./_components/service-highlights";
+import { Footer } from "./_components/footer";
 
 
 const HomePage = () => {
@@ -19,6 +21,7 @@ const HomePage = () => {
             <ProductBanner />
             <Products />
             <NewArrivalProducts />
+            <ServiceHighlights />
         </main>
     );
 }

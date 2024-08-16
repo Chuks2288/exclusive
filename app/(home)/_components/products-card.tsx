@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Eye, Heart } from "lucide-react";
 
@@ -6,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Rating, Star } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
+import { useRouter } from "next/navigation";
 
 type Props = {
     id: string;
@@ -18,7 +21,8 @@ type Props = {
     reviews: number;
     isNew?: boolean;
 }
-export const ProductCard = ({
+export const ProductsCard = ({
+    id,
     image,
     discount,
     name,
@@ -29,9 +33,15 @@ export const ProductCard = ({
     isNew,
 }: Props) => {
 
+    // const discountPercentage = Math.round((discount / initialPrice) * 100);
+    const router = useRouter();
+
     return (
         <div>
-            <div className="relative cursor-pointer overflow-hidden group">
+            <div
+                onClick={() => router.push(`/product/${id}`)}
+                className="relative cursor-pointer overflow-hidden group"
+            >
                 <div className="relative bg-gray-200 rounded-sm w-full h-[200px] flex justify-center items-center p-4">
                     {discount > 0 && (
                         <span className="absolute top-2 left-2 flex justify-center items-center text-white w-10 h-5 bg-red-500 rounded-sm text-[10px]">

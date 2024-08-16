@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { flashSalesProducts } from '@/constants';
-import { ProductCard } from './product-card';
+import { ProductsCard } from './products-card';
 
 export const BestSellingItems = () => {
     const [showAll, setShowAll] = useState(false);
@@ -19,7 +19,7 @@ export const BestSellingItems = () => {
                         key={product.id}
                         className="h-full max-w-[350px] flex flex-col items-center justify-center"
                     >
-                        <ProductCard
+                        <ProductsCard
                             id={product.id}
                             image={product.images}
                             discount={product.discount.amount}

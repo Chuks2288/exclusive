@@ -8,7 +8,7 @@ import { Grid, Navigation } from 'swiper/modules';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { flashSalesProducts } from '@/constants';
-import { ProductCard } from './product-card';
+import { ProductsCard } from './products-card';
 
 export const AllProducts = () => {
     const [showAll, setShowAll] = useState(false);
@@ -59,7 +59,7 @@ export const AllProducts = () => {
                     >
                         {displayedProducts.map((product) => (
                             <SwiperSlide key={product.id} className="h-full flex items-center justify-center">
-                                <ProductCard
+                                <ProductsCard
                                     id={product.id}
                                     image={product.images}
                                     discount={product.discount.amount}
@@ -104,7 +104,7 @@ export const AllProducts = () => {
                                 key={product.id}
                                 className="h-full max-w-[350px] flex flex-col items-center justify-center"
                             >
-                                <ProductCard
+                                <ProductsCard
                                     id={product.id}
                                     image={product.images}
                                     discount={product.discount.amount}

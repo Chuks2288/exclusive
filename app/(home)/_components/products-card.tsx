@@ -93,18 +93,17 @@ export const ProductsCard = ({
                     )}
                 </div>
                 <div className="flex items-center gap-x-2">
-                    <Rating
-                        value={rating}
-                        readOnly
-                        itemStyles={{
-                            itemShapes: Star,
-                            activeFillColor: "#FFAD33",
-                            inactiveFillColor: "#D3D3D3",
-                        }}
-                        style={{
-                            fontSize: "2px",
-                        }}
-                    />
+                    <div className="max-w-[90px]">
+                        <Rating
+                            value={rating}
+                            readOnly
+                            itemStyles={{
+                                itemShapes: Star,
+                                activeFillColor: "#FFAD33",
+                                inactiveFillColor: "#D3D3D3",
+                            }}
+                        />
+                    </div>
                     <span className="text-gray-500 text-xs">{`(${reviews} reviews)`}</span>
                 </div>
             </div>

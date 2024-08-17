@@ -1,11 +1,10 @@
 "use client";
-
 import { flashSalesProducts, ourProducts } from "@/constants";
-import Image from "next/image";
 import { useParams } from "next/navigation";
 import { ProductImage } from "./_components/product-image";
 import { ProductDetails } from "./_components/product-details";
 import { ProductHeadLink } from "./_components/product-head-link";
+import { ProductAdditionalDetails } from "./_components/product-additional-details";
 
 const ProductIdPage = () => {
     const products = [...flashSalesProducts, ...ourProducts];
@@ -13,37 +12,54 @@ const ProductIdPage = () => {
 
     const product = products.find((product) => product.id === productId);
 
+    if (!product) {
+        return <div>Product not found</div>;
+    }
+
     return (
         <div className="py-10">
             <ProductHeadLink
-                category={product?.category as string}
-                brand={product?.brand as string}
-                name={product?.name as string}
+                category={product.category}
+                brand={product.brand}
+                name={product.name}
             />
             <div className="flex lg:flex-row flex-col items-start justify-start gap-4">
-                <div className="border-2 flex-[2] p-4 justif-center items-center">
+                <div className="flex-[2] p-4 justify-center items-center">
                     <ProductImage
-                        images={product?.images as string[]}
+                        images={product.images}
                     />
                 </div>
-                <div className="border-2 flex-[1.4] p-4 h-full">
+                <div className="flex-[1.4] p-4 h-full">
                     <ProductDetails
-                        name={product?.name as string}
-                        rating={product?.rating.average as number}
-                        review={product?.rating.reviews as number}
-                        availability={product?.availability as string}
-                        price={product?.price as number}
-                        description={product?.description as string}
-                        color={product?.specifications.color as string}
-                        size={product?.specifications.sizes_available as string[]}
-                        returnable={product?.return_policy?.returnable === true}
-                        returnPeriod={product?.return_policy.return_period as string}
-                        returnCondition={product?.return_policy.conditions as string}
+                        name={product.name}
+                        rating={product.rating.average}
+                        reviews={product.rating.reviews}
+                        availability={product.availability}
+                        price={product.price}
+                        initialPrice={product.initialPrice}
+                        description={product.description}
+                        color={product.specifications.color}
+                        size={product.specifications.sizes_available as string[]}
+                        returnable={product.return_policy?.returnable}
+                        returnPeriod={product.return_policy.return_period}
+                        returnCondition={product.return_policy.conditions}
                     />
                 </div>
             </div>
+            <div className="mt-6">
+                <ProductAdditionalDetails
+                    id={product.id}
+                    features={product.features}
+                    specifications={product.specifications as any}
+                    discount={product.discount}
+                    relatedProducts={product.related_products}
+                    reviews={product.reviews}
+                    shipping={product.shipping}
+                    warranty={product.warranty}
+                />
+            </div>
         </div>
     );
-}
+};
 
 export default ProductIdPage;

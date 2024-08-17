@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  ipAddress     String?
+  loginDate     DateTime?
+  loginDevice   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Account       Account[]
+  ProductReview ProductReview[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Product {
+  id              String           @id @default(cuid())
+  name            String
+  description     String
+  price           Float
+  initialPrice    Float
+  currency        String
+  brand           String
+  category        String
+  subcategory     String
+  availability    String
+  stockQuantity   Int
+  images          Image[]
+  ratingId        String?          @unique
+  rating          Rating?          @relation(fields: [ratingId], references: [id], onDelete: Cascade)
+  features        Feature[]
+  specificationId String?          @unique
+  specifications  Specification?   @relation(fields: [specificationId], references: [id], onDelete: Cascade)
+  discount        Discount?
+  relatedProducts RelatedProduct[]
+  reviews         ProductReview[]
+  shippingId      String?          @unique
+  shipping        Shipping?        @relation(fields: [shippingId], references: [id], onDelete: Cascade)
+  returnPolicyId  String?          @unique
+  returnPolicy    ReturnPolicy?    @relation(fields: [returnPolicyId], references: [id], onDelete: Cascade)
+  warranty        Warranty?        @relation(fields: [warrantyId], references: [id])
+  isNew           Boolean
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  warrantyId String?
+
+  @@unique([warrantyId])
+}
+
+model Image {
+  id        String  @id @default(cuid())
+  url       String
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Rating {
+  id      String   @id @default(cuid())
+  average Float
+  reviews Int
+  product Product? // No `fields` or `onDelete`
+}
+
+model Feature {
+  id        String  @id @default(cuid())
+  feature   String
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Specification {
+  id           String   @id @default(cuid())
+  weight       String
+  dimensions   String
+  color        String
+  material     String
+  connectivity String
+  product      Product? // No `fields` or `onDelete`
+}
+
+model Discount {
+  id         String   @id @default(cuid())
+  amount     Int
+  type       String
+  validUntil DateTime
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId])
+}
+
+model RelatedProduct {
+  id               String  @id @default(cuid())
+  relatedProductId String
+  productId        String
+  product          Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductReview {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  rating    Int
+  comment   String
+  date      DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Shipping {
+  id           String   @id @default(cuid())
+  weight       String
+  dimensions   String
+  cost         Float
+  deliveryTime String
+  product      Product? // No `fields` or `onDelete`
+}
+
+model ReturnPolicy {
+  id           String   @id @default(cuid())
+  returnable   Boolean
+  returnPeriod String
+  conditions   String
+  product      Product? // No `fields` or `onDelete`
+}
+
+model Warranty {
+  id       String   @id @default(cuid())
+  duration String
+  coverage String
+  product  Product? // No `fields` or `onDelete`
+}

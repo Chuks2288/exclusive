@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Rating, Star } from "@smastrom/react-rating";
 import { Heart, Minus, Plus, RefreshCcw, Truck } from "lucide-react";
+import { useReturnModal } from "@/features/products/hooks/use-return-modal";
 
 type Props = {
     name: string;
@@ -33,6 +34,7 @@ export const ProductDetails = ({
     returnPeriod,
     returnCondition,
 }: Props) => {
+    const { onOpen } = useReturnModal();
     const [quantity, setQuantity] = useState(1);
 
     const increaseQuantity = () => {
@@ -158,7 +160,10 @@ export const ProductDetails = ({
                                     <p className="">
                                         Free {returnPeriod || "30 days"} Returns.
                                     </p>
-                                    <span className="underline cursor-pointer">
+                                    <span
+                                        onClick={onOpen}
+                                        className="underline cursor-pointer"
+                                    >
                                         Details
                                     </span>
                                 </div>

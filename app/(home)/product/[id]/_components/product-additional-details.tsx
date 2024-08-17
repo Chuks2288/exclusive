@@ -80,7 +80,6 @@ export const ProductAdditionalDetails = ({
                     <p className="text-sm">Cost: ${shipping.cost}</p>
                     <p className="text-sm">Delivery Time: {shipping.delivery_time}</p>
                 </div>
-
                 {warranty && (
                     <div className="">
                         <h2 className="font-bold text-md mb-4">Warranty</h2>
@@ -92,13 +91,13 @@ export const ProductAdditionalDetails = ({
             <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
                 <div className="bg-gray-100">
                     <h2 className="font-bold rounded-sm text-white p-1 text-md mb-4 text-gradient bg-gradient-to-r from-red-500 to-pink-500">Reviews</h2>
-                    <div className="space-y-6">
+                    <div className="space-y-3">
                         {reviews.map((review, index) => (
-                            <div key={index} className="p-4 rounded-lg shadow bg-gray-100 dark:bg-gray-700">
+                            <div key={index} className="p-4 rounded-sm bg-gray-100 dark:bg-gray-700">
                                 <p className="font-semibold text-md">{review.user}</p>
-                                <p className="text-sm text-yellow-600 dark:text-yellow-400">Rating: {review.rating} / 5</p>
-                                <p className="italic">"{review.comment}"</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">Date: {new Date(review.date).toLocaleDateString()}</p>
+                                <p className="text-xs text-yellow-600 dark:text-yellow-400">Rating: {review.rating} / 5</p>
+                                <p className="italic text-xs">"{review.comment}"</p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400">{new Date(review.date).toLocaleDateString()}</p>
                             </div>
                         ))}
                     </div>
@@ -148,9 +147,7 @@ export const ProductAdditionalDetails = ({
                 </div>
                 <div className="">
                     {relatedProducts.map((product, index) => (
-                        <RelatedProducts
-                            id={product.id}
-                        />
+                        <RelatedProducts />
                     ))}
                 </div>
             </div>

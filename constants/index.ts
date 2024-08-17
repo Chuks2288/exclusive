@@ -23,7 +23,8 @@ type Product = {
         dimensions: string,
         color: string,
         material: string,
-        maximum_weight_capacity: string
+        maximum_weight_capacity: string,
+        sizes_available?: string[],
     },
     discount: {
         amount: number;
@@ -69,6 +70,9 @@ export const flashSalesProducts = [
         availability: "In Stock",
         stock_quantity: 100,
         "images": [
+            "/home/flash-sales/game-pad.svg",
+            "/home/flash-sales/game-pad.svg",
+            "/home/flash-sales/game-pad.svg",
             "/home/flash-sales/game-pad.svg",
         ],
         "rating": {
@@ -143,6 +147,9 @@ export const flashSalesProducts = [
         stock_quantity: 75,
         images: [
             "/home/flash-sales/gaming-keyboard.svg",
+            "/home/flash-sales/gaming-keyboard.svg",
+            "/home/flash-sales/gaming-keyboard.svg",
+            "/home/flash-sales/gaming-keyboard.svg",
         ],
         rating: {
             average: 4.8,
@@ -216,6 +223,9 @@ export const flashSalesProducts = [
         stock_quantity: 30,
         images: [
             "/home/flash-sales/gaming-monitor.svg",
+            "/home/flash-sales/gaming-monitor.svg",
+            "/home/flash-sales/gaming-monitor.svg",
+            "/home/flash-sales/gaming-monitor.svg",
         ],
         rating: {
             average: 4.8,
@@ -287,6 +297,9 @@ export const flashSalesProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
             "/home/flash-sales/gaming-chair.svg",
         ],
         rating: {
@@ -360,6 +373,9 @@ export const flashSalesProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
             "/home/flash-sales/gaming-chair.svg",
         ],
         rating: {

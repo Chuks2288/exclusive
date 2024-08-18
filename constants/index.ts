@@ -888,7 +888,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 200,
         "images": [
-            "/home/category/dog-food.png"
+            "/home/category/dog-food.png",
+            "/home/category/dog-food.png",
+            "/home/category/dog-food.png",
+            "/home/category/dog-food.png",
         ],
         "rating": {
             "average": 4.8,
@@ -949,6 +952,82 @@ export const ourProducts = [
         "isNew": false
     },
     {
+        id: "67898",
+        name: "PlayStation 5 Gamepad",
+        description: "The PlayStation 5 Standard Edition offers cutting-edge gaming performance with ultra-high-speed SSD, ray tracing, and 4K gaming.",
+        price: 499.99,
+        initialPrice: 499.99,
+        currency: "USD",
+        brand: "Sony",
+        category: "Electronics",
+        subcategory: "Gaming Consoles",
+        availability: "In Stock",
+        stock_quantity: 30,
+        images: [
+            "/home/category/ps5-pad.png",
+            "/home/category/ps5-pad.png",
+            "/home/category/ps5-pad.png",
+            "/home/category/ps5-pad.png",
+        ],
+        rating: {
+            average: 4.9,
+            reviews: 250
+        },
+        features: [
+            "Ultra-High-Speed SSD",
+            "Ray Tracing",
+            "4K Gaming",
+            "Backward Compatibility",
+            "DualSense Wireless Controller"
+        ],
+        specifications: {
+            weight: "4.5kg",
+            dimensions: "390 x 104 x 260 mm",
+            color: "White/Black",
+            storage: "825GB SSD",
+            connectivity: "HDMI 2.1, USB Type-A, USB Type-C"
+        },
+        discount: {
+            amount: 10,
+            type: "percentage",
+            valid_until: "2024-08-31T23:59:59Z"
+        },
+        related_products: [
+            "11257", // ID of a related product, e.g., PlayStation 5 Digital Edition
+            "11258"  // ID of another related product, e.g., PS5 DualSense Controller
+        ],
+        reviews: [
+            {
+                user: "GamerPro",
+                rating: 5,
+                comment: "An exceptional gaming experience with fast load times and stunning graphics.",
+                date: "2024-08-05T14:00:00Z"
+            },
+            {
+                user: "TechEnthusiast",
+                rating: 4.8,
+                comment: "Fantastic performance but a bit large for some entertainment setups.",
+                date: "2024-08-07T11:30:00Z"
+            }
+        ],
+        shipping: {
+            weight: "5kg",
+            dimensions: "400 x 120 x 270 mm",
+            cost: 19.99,
+            delivery_time: "3-5 business days"
+        },
+        return_policy: {
+            returnable: true,
+            return_period: "30 days",
+            conditions: "Product must be in original packaging and unused"
+        },
+        warranty: {
+            duration: "1 year",
+            coverage: "Manufacturer's warranty"
+        },
+        isNew: true
+    },
+    {
         "id": "67812",
         "name": "Canon EOS Rebel T7",
         "description": "A versatile and easy-to-use DSLR camera with a 24.1MP sensor, built-in Wi-Fi, and Full HD video recording. Ideal for photography enthusiasts.",
@@ -961,7 +1040,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 50,
         "images": [
-            "/home/category/canon-camera.png"
+            "/home/category/canon-camera.png",
+            "/home/category/canon-camera.png",
+            "/home/category/canon-camera.png",
+            "/home/category/canon-camera.png",
         ],
         "rating": {
             "average": 4.6,
@@ -1034,7 +1116,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 30,
         "images": [
-            "/home/category/asus-gaming-laptop.png"
+            "/home/category/asus-gaming-laptop.png",
+            "/home/category/asus-gaming-laptop.png",
+            "/home/category/asus-gaming-laptop.png",
+            "/home/category/asus-gaming-laptop.png",
         ],
         "rating": {
             "average": 4.8,
@@ -1107,7 +1192,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 150,
         "images": [
-            "/home/category/curology-product-set.png"
+            "/home/category/curology-product-set.png",
+            "/home/category/curology-product-set.png",
+            "/home/category/curology-product-set.png",
+            "/home/category/curology-product-set.png",
         ],
         "rating": {
             "average": 4.7,
@@ -1180,7 +1268,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 75,
         "images": [
-            "/home/category/kids-electric-car.png"
+            "/home/category/kids-electric-car.png",
+            "/home/category/kids-electric-car.png",
+            "/home/category/kids-electric-car.png",
+            "/home/category/kids-electric-car.png",
         ],
         "rating": {
             "average": 4.9,
@@ -1253,7 +1344,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 150,
         "images": [
-            "/home/category/soccer-cleats.png"
+            "/home/category/soccer-cleats.png",
+            "/home/category/soccer-cleats.png",
+            "/home/category/soccer-cleats.png",
+            "/home/category/soccer-cleats.png",
         ],
         "rating": {
             "average": 4.8,
@@ -1325,7 +1419,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 200,
         "images": [
-            "/home/category/usb-game-pad.png"
+            "/home/category/usb-game-pad.png",
+            "/home/category/usb-game-pad.png",
+            "/home/category/usb-game-pad.png",
+            "/home/category/usb-game-pad.png",
         ],
         "rating": {
             "average": 4.7,
@@ -1398,7 +1495,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 120,
         "images": [
-            "/home/category/satin-jacket.png"
+            "/home/category/satin-jacket.png",
+            "/home/category/satin-jacket.png",
+            "/home/category/satin-jacket.png",
+            "/home/category/satin-jacket.png",
         ],
         "rating": {
             "average": 4.6,
@@ -1471,7 +1571,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 50,
         "images": [
-            "/home/category/north-coat.png"
+            "/home/category/north-coat.png",
+            "/home/category/north-coat.png",
+            "/home/category/north-coat.png",
+            "/home/category/north-coat.png",
         ],
         "rating": {
             "average": 4.9,
@@ -1544,7 +1647,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 30,
         "images": [
-            "/home/category/gucci-bag.png"
+            "/home/category/gucci-bag.png",
+            "/home/category/gucci-bag.png",
+            "/home/category/gucci-bag.png",
+            "/home/category/gucci-bag.png",
         ],
         "rating": {
             "average": 4.8,
@@ -1616,7 +1722,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 100,
         "images": [
-            "/home/category/cpu-cooler.png"
+            "/home/category/cpu-cooler.png",
+            "/home/category/cpu-cooler.png",
+            "/home/category/cpu-cooler.png",
+            "/home/category/cpu-cooler.png",
         ],
         "rating": {
             "average": 4.7,
@@ -1689,7 +1798,10 @@ export const ourProducts = [
         "availability": "In Stock",
         "stock_quantity": 80,
         "images": [
-            "/home/category/bookshelf.png"
+            "/home/category/bookshelf.png",
+            "/home/category/bookshelf.png",
+            "/home/category/bookshelf.png",
+            "/home/category/bookshelf.png",
         ],
         "rating": {
             "average": 4.5,
@@ -1766,6 +1878,9 @@ export const ourProducts = [
         stock_quantity: 75,
         images: [
             "/home/flash-sales/gaming-keyboard.svg",
+            "/home/flash-sales/gaming-keyboard.svg",
+            "/home/flash-sales/gaming-keyboard.svg",
+            "/home/flash-sales/gaming-keyboard.svg",
         ],
         rating: {
             average: 4.8,
@@ -1839,6 +1954,9 @@ export const ourProducts = [
         stock_quantity: 30,
         images: [
             "/home/flash-sales/gaming-monitor.svg",
+            "/home/flash-sales/gaming-monitor.svg",
+            "/home/flash-sales/gaming-monitor.svg",
+            "/home/flash-sales/gaming-monitor.svg",
         ],
         rating: {
             average: 4.8,
@@ -1910,6 +2028,9 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
             "/home/flash-sales/gaming-chair.svg",
         ],
         rating: {
@@ -1984,6 +2105,9 @@ export const ourProducts = [
         stock_quantity: 40,
         images: [
             "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
         ],
         rating: {
             average: 4.6,
@@ -2055,6 +2179,9 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
+            "/home/flash-sales/gaming-chair.svg",
             "/home/flash-sales/gaming-chair.svg",
         ],
         rating: {
@@ -2128,7 +2255,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 30,
         images: [
-            "/home/flash-sales/iphone-14-pro-max.png",
+            "/home/category/iphone-14-promax.png",
+            "/home/category/iphone-14-promax.png",
+            "/home/category/iphone-14-promax.png",
+            "/home/category/iphone-14-promax.png",
         ],
         rating: {
             average: 4.8,
@@ -2201,7 +2331,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 25,
         images: [
-            "/home/flash-sales/iphone-13-pro-max.png",
+            "/home/category/iphone-13-promax.png",
+            "/home/category/iphone-13-promax.png",
+            "/home/category/iphone-13-promax.png",
+            "/home/category/iphone-13-promax.png",
         ],
         rating: {
             average: 4.7,
@@ -2274,7 +2407,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 20,
         images: [
-            "/home/flash-sales/iphone-12-pro-max.png",
+            "/home/category/iphone-12-promax.png",
+            "/home/category/iphone-12-promax.png",
+            "/home/category/iphone-12-promax.png",
+            "/home/category/iphone-12-promax.png",
         ],
         rating: {
             average: 4.6,
@@ -2348,7 +2484,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 50,
         images: [
-            "/home/flash-sales/jbl-charge-5.png",
+            "/home/category/jbl-charge-5.png",
+            "/home/category/jbl-charge-5.png",
+            "/home/category/jbl-charge-5.png",
+            "/home/category/jbl-charge-5.png",
         ],
         rating: {
             average: 4.7,
@@ -2421,7 +2560,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 60,
         images: [
-            "/home/flash-sales/jbl-flip-6.png",
+            "/home/category/jbl-flip-6.png",
+            "/home/category/jbl-flip-6.png",
+            "/home/category/jbl-flip-6.png",
+            "/home/category/jbl-flip-6.png",
         ],
         rating: {
             average: 4.6,
@@ -2437,7 +2579,7 @@ export const ourProducts = [
         specifications: {
             weight: "550g",
             dimensions: "178 x 72 x 71 mm",
-            color: "Blue",
+            color: "white",
             material: "Rubber, Fabric",
             maximum_output: "20W"
         },
@@ -2494,7 +2636,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
-            "/home/flash-sales/jbl-pulse-4.png",
+            "/home/category/jbl-pulse-4.png",
+            "/home/category/jbl-pulse-4.png",
+            "/home/category/jbl-pulse-4.png",
+            "/home/category/jbl-pulse-4.png",
         ],
         rating: {
             average: 4.8,
@@ -2567,7 +2712,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 35,
         images: [
-            "/home/flash-sales/jbl-xtreme-3.png",
+            "/home/category/jbl-xtreme-3.png",
+            "/home/category/jbl-xtreme-3.png",
+            "/home/category/jbl-xtreme-3.png",
+            "/home/category/jbl-xtreme-3.png",
         ],
         rating: {
             average: 4.9,
@@ -2641,7 +2789,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 30,
         images: [
-            "/home/flash-sales/ps5-standard.png",
+            "/home/category/ps5-standard.png",
+            "/home/category/ps5-standard.png",
+            "/home/category/ps5-standard.png",
+            "/home/category/ps5-standard.png",
         ],
         rating: {
             average: 4.9,
@@ -2714,7 +2865,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
-            "/home/flash-sales/ps5-digital.png",
+            "/home/category/ps5-digital.png",
+            "/home/category/ps5-digital.png",
+            "/home/category/ps5-digital.png",
+            "/home/category/ps5-digital.png",
         ],
         rating: {
             average: 4.8,
@@ -2730,7 +2884,159 @@ export const ourProducts = [
         specifications: {
             weight: "3.9kg",
             dimensions: "390 x 92 x 260 mm",
-            color: "White/Black",
+            color: "blue",
+            storage: "825GB SSD",
+            connectivity: "HDMI 2.1, USB Type-A, USB Type-C"
+        },
+        discount: {
+            amount: 15,
+            type: "percentage",
+            valid_until: "2024-08-31T23:59:59Z"
+        },
+        related_products: [
+            "11256", // ID of a related product, e.g., PlayStation 5 Standard Edition
+            "11258"  // ID of another related product, e.g., PS5 DualSense Controller
+        ],
+        reviews: [
+            {
+                user: "DigitalGamer",
+                rating: 5,
+                comment: "Great for digital downloads and a sleeker design.",
+                date: "2024-08-06T16:00:00Z"
+            },
+            {
+                user: "TechSavvy",
+                rating: 4.7,
+                comment: "Excellent performance, though I miss having a disc drive.",
+                date: "2024-08-08T13:20:00Z"
+            }
+        ],
+        shipping: {
+            weight: "4kg",
+            dimensions: "400 x 100 x 270 mm",
+            cost: 17.99,
+            delivery_time: "4-6 business days"
+        },
+        return_policy: {
+            returnable: true,
+            return_period: "30 days",
+            conditions: "Product must be in original packaging and unused"
+        },
+        warranty: {
+            duration: "1 year",
+            coverage: "Manufacturer's warranty"
+        },
+        isNew: false
+    },
+    {
+        id: "678899",
+        name: "PlayStation 5 Digital Edition 2",
+        description: "The PlayStation 5 Digital Edition provides the same high-performance gaming as the Standard Edition but without a disc drive, allowing for a more streamlined design and digital-only games.",
+        price: 399.99,
+        initialPrice: 399.99,
+        currency: "USD",
+        brand: "Sony",
+        category: "Electronics",
+        subcategory: "Gaming Consoles",
+        availability: "In Stock",
+        stock_quantity: 40,
+        images: [
+            "/home/category/ps5-digital2.png",
+            "/home/category/ps5-digital2.png",
+            "/home/category/ps5-digital2.png",
+            "/home/category/ps5-digital2.png",
+        ],
+        rating: {
+            average: 4.8,
+            reviews: 180
+        },
+        features: [
+            "Ultra-High-Speed SSD",
+            "Ray Tracing",
+            "4K Gaming",
+            "Digital-Only Gaming",
+            "DualSense Wireless Controller"
+        ],
+        specifications: {
+            weight: "3.9kg",
+            dimensions: "390 x 92 x 260 mm",
+            color: "blue",
+            storage: "825GB SSD",
+            connectivity: "HDMI 2.1, USB Type-A, USB Type-C"
+        },
+        discount: {
+            amount: 15,
+            type: "percentage",
+            valid_until: "2024-08-31T23:59:59Z"
+        },
+        related_products: [
+            "11256", // ID of a related product, e.g., PlayStation 5 Standard Edition
+            "11258"  // ID of another related product, e.g., PS5 DualSense Controller
+        ],
+        reviews: [
+            {
+                user: "DigitalGamer",
+                rating: 5,
+                comment: "Great for digital downloads and a sleeker design.",
+                date: "2024-08-06T16:00:00Z"
+            },
+            {
+                user: "TechSavvy",
+                rating: 4.7,
+                comment: "Excellent performance, though I miss having a disc drive.",
+                date: "2024-08-08T13:20:00Z"
+            }
+        ],
+        shipping: {
+            weight: "4kg",
+            dimensions: "400 x 100 x 270 mm",
+            cost: 17.99,
+            delivery_time: "4-6 business days"
+        },
+        return_policy: {
+            returnable: true,
+            return_period: "30 days",
+            conditions: "Product must be in original packaging and unused"
+        },
+        warranty: {
+            duration: "1 year",
+            coverage: "Manufacturer's warranty"
+        },
+        isNew: false
+    },
+    {
+        id: "6783009",
+        name: "PlayStation 5 Digital Edition 2",
+        description: "The PlayStation 5 Digital Edition provides the same high-performance gaming as the Standard Edition but without a disc drive, allowing for a more streamlined design and digital-only games.",
+        price: 399.99,
+        initialPrice: 399.99,
+        currency: "USD",
+        brand: "Sony",
+        category: "Electronics",
+        subcategory: "Gaming Consoles",
+        availability: "In Stock",
+        stock_quantity: 40,
+        images: [
+            "/home/category/ps5-digital3.png",
+            "/home/category/ps5-digital3.png",
+            "/home/category/ps5-digital3.png",
+            "/home/category/ps5-digital3.png",
+        ],
+        rating: {
+            average: 4.8,
+            reviews: 180
+        },
+        features: [
+            "Ultra-High-Speed SSD",
+            "Ray Tracing",
+            "4K Gaming",
+            "Digital-Only Gaming",
+            "DualSense Wireless Controller"
+        ],
+        specifications: {
+            weight: "3.9kg",
+            dimensions: "390 x 92 x 260 mm",
+            color: "blue",
             storage: "825GB SSD",
             connectivity: "HDMI 2.1, USB Type-A, USB Type-C"
         },
@@ -2788,7 +3094,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 50,
         images: [
-            "/home/flash-sales/casual-summer-dress.jpg",
+            "/home/category/casual-summer-dress.png",
+            "/home/category/casual-summer-dress.png",
+            "/home/category/casual-summer-dress.png",
+            "/home/category/casual-summer-dress.png",
         ],
         rating: {
             average: 4.7,
@@ -2860,7 +3169,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 20,
         images: [
-            "/home/flash-sales/evening-gown.jpg",
+            "/home/category/evening-gown.png",
+            "/home/category/evening-gown.png",
+            "/home/category/evening-gown.png",
+            "/home/category/evening-gown.png",
         ],
         rating: {
             average: 4.9,
@@ -2932,7 +3244,8 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 70,
         images: [
-            "/home/flash-sales/high-waisted-jeans.jpg",
+            "/home/category/high-waisted-jeans.png",
+            "/home/category/high-waisted-jeans.png",
         ],
         rating: {
             average: 4.6,
@@ -3005,7 +3318,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 100,
         images: [
-            "/home/flash-sales/portable-bluetooth-speaker.jpg",
+            "/home/category/portable-bluetooth-speaker.png",
+            "/home/category/portable-bluetooth-speaker.png",
+            "/home/category/portable-bluetooth-speaker.png",
+            "/home/category/portable-bluetooth-speaker.png",
         ],
         rating: {
             average: 4.8,
@@ -3077,7 +3393,9 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 30,
         images: [
-            "/home/flash-sales/home-theater-speaker-system.jpg",
+            "/home/category/home-theater-speaker-system.png",
+            "/home/category/home-theater-speaker-system.png",
+            "/home/category/home-theater-speaker-system.png",
         ],
         rating: {
             average: 4.9,
@@ -3149,7 +3467,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 75,
         images: [
-            "/home/flash-sales/smart-wifi-speaker.jpg",
+            "/home/category/smart-wifi-speaker.png",
+            "/home/category/smart-wifi-speaker.png",
+            "/home/category/smart-wifi-speaker.png",
+            "/home/category/smart-wifi-speaker.png",
         ],
         rating: {
             average: 4.7,
@@ -3222,7 +3543,7 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 50,
         images: [
-            "/home/flash-sales/floral-eau-de-parfum.jpg",
+            "/home/category/floral-eau-de-parfum.png",
         ],
         rating: {
             average: 4.7,
@@ -3293,7 +3614,9 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
-            "/home/flash-sales/woody-eau-de-toilette.jpg",
+            "/home/category/woody-eau-de-toilette.png",
+            "/home/category/woody-eau-de-toilette.png",
+            "/home/category/woody-eau-de-toilette.png",
         ],
         rating: {
             average: 4.6,
@@ -3364,7 +3687,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 80,
         images: [
-            "/home/flash-sales/citrus-fresh-eau-de-cologne.jpg",
+            "/home/category/citrus-fresh-eau-de-cologne.png",
+            "/home/category/citrus-fresh-eau-de-cologne.png",
+            "/home/category/citrus-fresh-eau-de-cologne.png",
+            "/home/category/citrus-fresh-eau-de-cologne.png",
         ],
         rating: {
             average: 4.5,
@@ -3437,7 +3763,10 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
-            "/home/flash-sales/gaming-chair.svg",
+            "/home/category/gaming-chair.png",
+            "/home/category/gaming-chair.png",
+            "/home/category/gaming-chair.png",
+            "/home/category/gaming-chair.png",
         ],
         rating: {
             average: 4.6,
@@ -3499,7 +3828,7 @@ export const ourProducts = [
     },
     {
         id: "67851", // Updated ID
-        name: "Ergonomic Gaming Chair",
+        name: "Ergonomic Gaming Chair 2",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
         initialPrice: 499.40,
@@ -3510,7 +3839,7 @@ export const ourProducts = [
         availability: "In Stock",
         stock_quantity: 40,
         images: [
-            "/home/flash-sales/gaming-chair.svg",
+            "/home/category/gaming-chair2.png",
         ],
         rating: {
             average: 4.6,

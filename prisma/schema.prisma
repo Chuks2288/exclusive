@@ -9,7 +9,6 @@ datasource db {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
   email         String    @unique
   emailVerified DateTime?
   image         String?
@@ -17,6 +16,12 @@ model User {
   ipAddress     String?
   loginDate     DateTime?
   loginDevice   String?
+
+  // Personal and shipping details
+  firstName   String?
+  lastName    String?
+  phoneNumber String?
+  homeAddress Address? // Optional billing address if different from homeAddress
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -42,6 +47,22 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Address {
+  id         String @id @default(cuid())
+  street     String
+  city       String
+  state      String
+  postalCode String
+  country    String
+  userId     String
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId])
 }
 
 model Product {
@@ -134,7 +155,7 @@ model ProductReview {
   productId String
   rating    Int
   comment   String
-  date      DateTime
+  date      DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }

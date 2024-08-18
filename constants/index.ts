@@ -1753,7 +1753,7 @@ export const ourProducts = [
 
 
     {
-        id: "67892",
+        id: "67823",
         name: "Wireless Gaming Keyboard",
         description: "High-performance wireless mechanical keyboard with customizable RGB lighting, responsive switches, and durable build quality.",
         price: 129.99,
@@ -1826,7 +1826,7 @@ export const ourProducts = [
         isNew: true,
     },
     {
-        id: "98765", // Updated ID
+        id: "67824", // Updated ID
         name: "UltraWide Gaming Monitor",
         description: "34-inch UltraWide curved gaming monitor with 144Hz refresh rate, 1ms response time, and G-Sync support.",
         price: 399.99,
@@ -1898,7 +1898,7 @@ export const ourProducts = [
         },
     },
     {
-        id: "11223", // Updated ID
+        id: "67825", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -1971,7 +1971,7 @@ export const ourProducts = [
         isNew: true,
     },
     {
-        id: "11228", // Updated ID
+        id: "67826", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -2043,7 +2043,7 @@ export const ourProducts = [
         },
     },
     {
-        id: "11248", // Updated ID
+        id: "67827", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -2116,7 +2116,7 @@ export const ourProducts = [
     },
     // iphone 
     {
-        id: "11249",
+        id: "67828",
         name: "iPhone 14 Pro Max",
         description: "Latest iPhone with A16 Bionic chip, 6.7-inch Super Retina XDR display, and advanced triple-camera system.",
         price: 1099.99,
@@ -2189,7 +2189,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11250",
+        id: "67829",
         name: "iPhone 13 Pro Max",
         description: "Powerful iPhone with A15 Bionic chip, 6.7-inch Super Retina XDR display, and ProMotion technology.",
         price: 999.99,
@@ -2262,7 +2262,7 @@ export const ourProducts = [
         isNew: false
     },
     {
-        id: "11251",
+        id: "67830",
         name: "iPhone 12 Pro Max",
         description: "Previous generation iPhone with A14 Bionic chip, 6.7-inch Super Retina XDR display, and improved camera system.",
         price: 899.99,
@@ -2336,7 +2336,7 @@ export const ourProducts = [
     },
     // JBL SPEAKSERS
     {
-        id: "11252",
+        id: "67831",
         name: "JBL Charge 5",
         description: "Portable Bluetooth speaker with powerful sound, up to 20 hours of playtime, and waterproof design.",
         price: 149.99,
@@ -2409,7 +2409,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11253",
+        id: "67832",
         name: "JBL Flip 6",
         description: "Compact Bluetooth speaker with bold sound, up to 12 hours of playtime, and rugged design.",
         price: 129.99,
@@ -2482,7 +2482,7 @@ export const ourProducts = [
         isNew: false
     },
     {
-        id: "11254",
+        id: "67833",
         name: "JBL Pulse 4",
         description: "Bluetooth speaker with 360-degree light show and sound, up to 12 hours of playtime, and waterproof design.",
         price: 199.99,
@@ -2555,7 +2555,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11255",
+        id: "67836",
         name: "JBL Xtreme 3",
         description: "High-performance Bluetooth speaker with powerful bass, up to 15 hours of playtime, and rugged waterproof design.",
         price: 299.99,
@@ -2629,7 +2629,7 @@ export const ourProducts = [
     },
     // PLAYSTATION 5
     {
-        id: "11256",
+        id: "67838",
         name: "PlayStation 5 Standard Edition",
         description: "The PlayStation 5 Standard Edition offers cutting-edge gaming performance with ultra-high-speed SSD, ray tracing, and 4K gaming.",
         price: 499.99,
@@ -2702,7 +2702,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11257",
+        id: "67839",
         name: "PlayStation 5 Digital Edition",
         description: "The PlayStation 5 Digital Edition provides the same high-performance gaming as the Standard Edition but without a disc drive, allowing for a more streamlined design and digital-only games.",
         price: 399.99,
@@ -2776,7 +2776,7 @@ export const ourProducts = [
     },
     // WOMEN CLOTHINGS
     {
-        id: "11260",
+        id: "67840",
         name: "Casual Summer Dress",
         description: "A breezy and stylish casual summer dress perfect for warm weather. Features a relaxed fit and lightweight fabric.",
         price: 49.99,
@@ -2848,7 +2848,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11261",
+        id: "67841",
         name: "Elegant Evening Gown",
         description: "A luxurious evening gown designed for special occasions. Features a floor-length silhouette with intricate detailing.",
         price: 199.99,
@@ -2920,7 +2920,7 @@ export const ourProducts = [
         isNew: false
     },
     {
-        id: "11262",
+        id: "67842",
         name: "High-Waisted Jeans",
         description: "Classic high-waisted jeans with a slim fit and comfortable stretch. Perfect for everyday wear or dressing up.",
         price: 69.99,
@@ -2993,7 +2993,7 @@ export const ourProducts = [
     },
     // RANDOM SPEAKERS
     {
-        id: "11270",
+        id: "67843",
         name: "Portable Bluetooth Speaker",
         description: "A compact and waterproof Bluetooth speaker with impressive sound quality and long battery life. Perfect for outdoor adventures.",
         price: 59.99,
@@ -3065,7 +3065,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11271",
+        id: "67845",
         name: "Home Theater Speaker System",
         description: "A 5.1 channel home theater speaker system designed to deliver cinematic audio experiences. Includes subwoofer and surround speakers.",
         price: 499.99,
@@ -3137,7 +3137,7 @@ export const ourProducts = [
         isNew: false
     },
     {
-        id: "11272",
+        id: "67845",
         name: "Smart Wi-Fi Speaker",
         description: "A sleek smart speaker with built-in voice assistant and high-fidelity sound. Integrates seamlessly with smart home systems.",
         price: 129.99,
@@ -3210,7 +3210,7 @@ export const ourProducts = [
     },
     // PERFUME
     {
-        id: "11280",
+        id: "67846",
         name: "Floral Eau de Parfum",
         description: "A delicate and sophisticated floral fragrance with notes of jasmine, rose, and lily of the valley. Perfect for everyday wear.",
         price: 89.99,
@@ -3281,7 +3281,7 @@ export const ourProducts = [
         isNew: false
     },
     {
-        id: "11281",
+        id: "67848",
         name: "Woody Eau de Toilette",
         description: "An invigorating woody fragrance with notes of cedarwood, sandalwood, and vetiver. Ideal for an evening out or special occasions.",
         price: 74.99,
@@ -3352,7 +3352,7 @@ export const ourProducts = [
         isNew: true
     },
     {
-        id: "11282",
+        id: "67849",
         name: "Citrus Fresh Eau de Cologne",
         description: "A refreshing and zesty citrus cologne with notes of lemon, grapefruit, and mint. Perfect for a vibrant and energetic start to your day.",
         price: 39.99,
@@ -3425,7 +3425,7 @@ export const ourProducts = [
 
 
     {
-        id: "11248", // Updated ID
+        id: "67850", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -3498,7 +3498,7 @@ export const ourProducts = [
         isNew: false,
     },
     {
-        id: "11248", // Updated ID
+        id: "67851", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -3570,7 +3570,7 @@ export const ourProducts = [
         },
     },
     {
-        id: "11248", // Updated ID
+        id: "67853", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -3642,7 +3642,7 @@ export const ourProducts = [
         },
     },
     {
-        id: "11248", // Updated ID
+        id: "67855", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -3714,152 +3714,7 @@ export const ourProducts = [
         },
     },
     {
-        id: "11248", // Updated ID
-        name: "Ergonomic Gaming Chair",
-        description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
-        price: 229.99,
-        initialPrice: 499.40,
-        currency: "USD",
-        brand: "ChairMaster",
-        category: "Furniture",
-        subcategory: "Gaming Chairs",
-        availability: "In Stock",
-        stock_quantity: 40,
-        images: [
-            "/home/flash-sales/gaming-chair.svg",
-        ],
-        rating: {
-            average: 4.6,
-            reviews: 80
-        },
-        features: [
-            "Adjustable Lumbar Support",
-            "Reclining Feature (up to 180°)",
-            "360-Degree Swivel",
-            "Height Adjustable",
-            "Premium PU Leather"
-        ],
-        specifications: {
-            weight: "22kg",
-            dimensions: "70 x 70 x 130 cm",
-            color: "Black/Red",
-            material: "PU Leather, Steel Frame",
-            maximum_weight_capacity: "150kg"
-        },
-        discount: {
-            amount: 25,
-            type: "percentage",
-            valid_until: "2024-08-31T23:59:59Z"
-        },
-        related_products: [
-            "67890", // ID of a related product, e.g., gamepad
-            "54321"  // ID of another related product
-        ],
-        reviews: [
-            {
-                user: "GamerChick",
-                rating: 5,
-                comment: "Incredibly comfortable and perfect for long gaming sessions!",
-                date: "2024-08-01T16:20:00Z"
-            },
-            {
-                user: "OfficePro",
-                rating: 4,
-                comment: "Very ergonomic, but the assembly instructions could be clearer.",
-                date: "2024-08-03T11:45:00Z"
-            }
-        ],
-        shipping: {
-            weight: "24kg",
-            dimensions: "75 x 75 x 40 cm",
-            cost: 12.99,
-            delivery_time: "5-7 business days"
-        },
-        return_policy: {
-            returnable: true,
-            return_period: "30 days",
-            conditions: "Product must be in original packaging and unused"
-        },
-        warranty: {
-            duration: "2 years",
-            coverage: "Manufacturer's warranty"
-        },
-        isNew: true,
-    },
-    {
-        id: "11248", // Updated ID
-        name: "Ergonomic Gaming Chair",
-        description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
-        price: 229.99,
-        initialPrice: 499.40,
-        currency: "USD",
-        brand: "ChairMaster",
-        category: "Furniture",
-        subcategory: "Gaming Chairs",
-        availability: "In Stock",
-        stock_quantity: 40,
-        images: [
-            "/home/flash-sales/gaming-chair.svg",
-        ],
-        rating: {
-            average: 4.6,
-            reviews: 80
-        },
-        features: [
-            "Adjustable Lumbar Support",
-            "Reclining Feature (up to 180°)",
-            "360-Degree Swivel",
-            "Height Adjustable",
-            "Premium PU Leather"
-        ],
-        specifications: {
-            weight: "22kg",
-            dimensions: "70 x 70 x 130 cm",
-            color: "Black/Red",
-            material: "PU Leather, Steel Frame",
-            maximum_weight_capacity: "150kg"
-        },
-        discount: {
-            amount: 25,
-            type: "percentage",
-            valid_until: "2024-08-31T23:59:59Z"
-        },
-        related_products: [
-            "67890", // ID of a related product, e.g., gamepad
-            "54321"  // ID of another related product
-        ],
-        reviews: [
-            {
-                user: "GamerChick",
-                rating: 5,
-                comment: "Incredibly comfortable and perfect for long gaming sessions!",
-                date: "2024-08-01T16:20:00Z"
-            },
-            {
-                user: "OfficePro",
-                rating: 4,
-                comment: "Very ergonomic, but the assembly instructions could be clearer.",
-                date: "2024-08-03T11:45:00Z"
-            }
-        ],
-        shipping: {
-            weight: "24kg",
-            dimensions: "75 x 75 x 40 cm",
-            cost: 12.99,
-            delivery_time: "5-7 business days"
-        },
-        return_policy: {
-            returnable: true,
-            return_period: "30 days",
-            conditions: "Product must be in original packaging and unused"
-        },
-        warranty: {
-            duration: "2 years",
-            coverage: "Manufacturer's warranty"
-        },
-    },
-    {
-        id: "11248", // Updated ID
+        id: "67859", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -3932,7 +3787,79 @@ export const ourProducts = [
         isNew: true,
     },
     {
-        id: "11248", // Updated ID
+        id: "67860", // Updated ID
+        name: "Ergonomic Gaming Chair",
+        description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
+        price: 229.99,
+        initialPrice: 499.40,
+        currency: "USD",
+        brand: "ChairMaster",
+        category: "Furniture",
+        subcategory: "Gaming Chairs",
+        availability: "In Stock",
+        stock_quantity: 40,
+        images: [
+            "/home/flash-sales/gaming-chair.svg",
+        ],
+        rating: {
+            average: 4.6,
+            reviews: 80
+        },
+        features: [
+            "Adjustable Lumbar Support",
+            "Reclining Feature (up to 180°)",
+            "360-Degree Swivel",
+            "Height Adjustable",
+            "Premium PU Leather"
+        ],
+        specifications: {
+            weight: "22kg",
+            dimensions: "70 x 70 x 130 cm",
+            color: "Black/Red",
+            material: "PU Leather, Steel Frame",
+            maximum_weight_capacity: "150kg"
+        },
+        discount: {
+            amount: 25,
+            type: "percentage",
+            valid_until: "2024-08-31T23:59:59Z"
+        },
+        related_products: [
+            "67890", // ID of a related product, e.g., gamepad
+            "54321"  // ID of another related product
+        ],
+        reviews: [
+            {
+                user: "GamerChick",
+                rating: 5,
+                comment: "Incredibly comfortable and perfect for long gaming sessions!",
+                date: "2024-08-01T16:20:00Z"
+            },
+            {
+                user: "OfficePro",
+                rating: 4,
+                comment: "Very ergonomic, but the assembly instructions could be clearer.",
+                date: "2024-08-03T11:45:00Z"
+            }
+        ],
+        shipping: {
+            weight: "24kg",
+            dimensions: "75 x 75 x 40 cm",
+            cost: 12.99,
+            delivery_time: "5-7 business days"
+        },
+        return_policy: {
+            returnable: true,
+            return_period: "30 days",
+            conditions: "Product must be in original packaging and unused"
+        },
+        warranty: {
+            duration: "2 years",
+            coverage: "Manufacturer's warranty"
+        },
+    },
+    {
+        id: "67863", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,
@@ -4005,7 +3932,80 @@ export const ourProducts = [
         isNew: true,
     },
     {
-        id: "11248", // Updated ID
+        id: "67868", // Updated ID
+        name: "Ergonomic Gaming Chair",
+        description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
+        price: 229.99,
+        initialPrice: 499.40,
+        currency: "USD",
+        brand: "ChairMaster",
+        category: "Furniture",
+        subcategory: "Gaming Chairs",
+        availability: "In Stock",
+        stock_quantity: 40,
+        images: [
+            "/home/flash-sales/gaming-chair.svg",
+        ],
+        rating: {
+            average: 4.6,
+            reviews: 80
+        },
+        features: [
+            "Adjustable Lumbar Support",
+            "Reclining Feature (up to 180°)",
+            "360-Degree Swivel",
+            "Height Adjustable",
+            "Premium PU Leather"
+        ],
+        specifications: {
+            weight: "22kg",
+            dimensions: "70 x 70 x 130 cm",
+            color: "Black/Red",
+            material: "PU Leather, Steel Frame",
+            maximum_weight_capacity: "150kg"
+        },
+        discount: {
+            amount: 25,
+            type: "percentage",
+            valid_until: "2024-08-31T23:59:59Z"
+        },
+        related_products: [
+            "67890", // ID of a related product, e.g., gamepad
+            "54321"  // ID of another related product
+        ],
+        reviews: [
+            {
+                user: "GamerChick",
+                rating: 5,
+                comment: "Incredibly comfortable and perfect for long gaming sessions!",
+                date: "2024-08-01T16:20:00Z"
+            },
+            {
+                user: "OfficePro",
+                rating: 4,
+                comment: "Very ergonomic, but the assembly instructions could be clearer.",
+                date: "2024-08-03T11:45:00Z"
+            }
+        ],
+        shipping: {
+            weight: "24kg",
+            dimensions: "75 x 75 x 40 cm",
+            cost: 12.99,
+            delivery_time: "5-7 business days"
+        },
+        return_policy: {
+            returnable: true,
+            return_period: "30 days",
+            conditions: "Product must be in original packaging and unused"
+        },
+        warranty: {
+            duration: "2 years",
+            coverage: "Manufacturer's warranty"
+        },
+        isNew: true,
+    },
+    {
+        id: "67869", // Updated ID
         name: "Ergonomic Gaming Chair",
         description: "Adjustable ergonomic gaming chair with lumbar support, reclining feature, and premium PU leather upholstery.",
         price: 229.99,

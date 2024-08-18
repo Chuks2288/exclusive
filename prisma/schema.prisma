@@ -65,6 +65,19 @@ model Address {
   @@unique([userId])
 }
 
+model FlashSalesProduct {
+  id             String   @id @default(cuid())
+  productId      String
+  discountAmount Float
+  validUntil     DateTime
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId])
+}
+
 model Product {
   id              String           @id @default(cuid())
   name            String
@@ -93,9 +106,10 @@ model Product {
   warranty        Warranty?        @relation(fields: [warrantyId], references: [id])
   isNew           Boolean
 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  warrantyId String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  warrantyId        String?
+  FlashSalesProduct FlashSalesProduct?
 
   @@unique([warrantyId])
 }

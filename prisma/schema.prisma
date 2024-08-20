@@ -90,35 +90,28 @@ model Product {
   subcategory     String
   availability    String
   stockQuantity   Int
-  images          Image[]
+  images          String[]
   ratingId        String?          @unique
   rating          Rating?          @relation(fields: [ratingId], references: [id], onDelete: Cascade)
-  features        Feature[]
+  features        String[]
   specificationId String?          @unique
   specifications  Specification?   @relation(fields: [specificationId], references: [id], onDelete: Cascade)
   discount        Discount?
+  discountId      String?          @unique
   relatedProducts RelatedProduct[]
+  reviewsId       String?
   reviews         ProductReview[]
   shippingId      String?          @unique
   shipping        Shipping?        @relation(fields: [shippingId], references: [id], onDelete: Cascade)
   returnPolicyId  String?          @unique
   returnPolicy    ReturnPolicy?    @relation(fields: [returnPolicyId], references: [id], onDelete: Cascade)
-  warranty        Warranty?        @relation(fields: [warrantyId], references: [id])
-  isNew           Boolean
+  warrantyId      String?          @unique
+  warranty        Warranty?        @relation(fields: [warrantyId], references: [id], onDelete: Cascade)
+  isNew           Boolean          @default(false)
 
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
-  warrantyId        String?
   FlashSalesProduct FlashSalesProduct?
-
-  @@unique([warrantyId])
-}
-
-model Image {
-  id        String  @id @default(cuid())
-  url       String
-  productId String
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Rating {
@@ -128,20 +121,15 @@ model Rating {
   product Product? // No `fields` or `onDelete`
 }
 
-model Feature {
-  id        String  @id @default(cuid())
-  feature   String
-  productId String
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-}
-
 model Specification {
   id           String   @id @default(cuid())
   weight       String
   dimensions   String
-  color        String
-  material     String
-  connectivity String
+  color        String?
+  material     String?
+  connectivity String?
+  packaging    String?
+  storage      String?
   product      Product? // No `fields` or `onDelete`
 }
 

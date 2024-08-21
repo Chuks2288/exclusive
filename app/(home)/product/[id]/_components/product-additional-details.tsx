@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { RelatedProducts } from "./related-products";
+import { flashSalesProducts, ourProducts } from "@/constants";
+
 
 interface ProductAdditionalDetailsProps {
     id: string;
@@ -45,6 +47,7 @@ export const ProductAdditionalDetails = ({
     shipping,
     warranty,
 }: ProductAdditionalDetailsProps) => {
+    const products = [...ourProducts, ...flashSalesProducts];
     return (
         <div className="p-8 space-y-12 ">
             <div className="grid lg:grid-cols-4 grid-cols-2  gap-8">
@@ -147,9 +150,9 @@ export const ProductAdditionalDetails = ({
                     </p>
                 </div>
                 <div className="">
-                    {relatedProducts.map((product, index) => (
-                        <RelatedProducts />
-                    ))}
+                    <RelatedProducts
+                        products={products as any}
+                    />
                 </div>
             </div>
         </div>

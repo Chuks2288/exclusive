@@ -1,30 +1,34 @@
 import { config } from "dotenv";
-import { db } from "@/lib/db";  // Ensure db is correctly set up to interact with Prisma
-import { Discount, Product, ProductReview, Rating, ReturnPolicy, Shipping, Specification, Warranty } from "@prisma/client";  // Import Prisma Client's Product type
+import { db } from "@/lib/db";
+import { Discount, Product, ProductReview, Rating, ReturnPolicy, Shipping, Specification, Warranty } from "@prisma/client";
 
 config({ path: ".env.local" });
 
 type ProductWithoutTimestamps = Omit<Product, 'createdAt' | 'updatedAt'>;
 
-
-const SEED_SPECIFICATIONS = [
+const SEED_SPECIFICATIONS: Specification[] = [
     {
         id: "spec1",
         weight: "2kg",
         dimensions: "30 x 20 x 10 cm",
         color: "Brown",
         material: "Chicken, Vegetables, Vitamins",
-        packaging: "Resealable Bag"
+        packaging: "Resealable Bag",
+        connectivity: null, // or provide a value if applicable
+        storage: null // or provide a value if applicable
     },
     {
         id: "spec2",
         weight: "4.5kg",
         dimensions: "390 x 104 x 260 mm",
         color: "White/Black",
-        storage: "825GB SSD",
-        connectivity: "HDMI 2.1, USB Type-A, USB Type-C"
+        material: null, // or provide a value if applicable
+        packaging: null, // or provide a value if applicable
+        connectivity: "HDMI 2.1, USB Type-A, USB Type-C",
+        storage: "825GB SSD"
     }
-] as any;
+];
+
 
 const SEED_RATINGS: Rating[] = [
     {
@@ -39,27 +43,27 @@ const SEED_RATINGS: Rating[] = [
     }
 ];
 
-const SEED_DISCOUNT = [
+const SEED_DISCOUNT: Discount[] = [
     {
         id: "discountId1",
         amount: 10,
         type: "percentage",
         validUntil: new Date("2024-09-30T23:59:59Z"),
-        productId: "67811",  // Example productId
+        productId: "67811",
     },
     {
         id: "discountId2",
         amount: 10,
         type: "percentage",
         validUntil: new Date("2024-08-31T23:59:59Z"),
-        productId: "67898",  // Example productId
+        productId: "67898",
     }
 ];
 
 const SEED_PRODUCTREVIEWS: ProductReview[] = [
     {
         id: "review1",
-        userId: "user1",  // Ensure this user exists in your database
+        userId: "user1",
         productId: "67811",
         rating: 5,
         comment: "Excellent quality! My dog loves it.",
@@ -67,7 +71,7 @@ const SEED_PRODUCTREVIEWS: ProductReview[] = [
     },
     {
         id: "review2",
-        userId: "user2",  // Ensure this user exists in your database
+        userId: "user2",
         productId: "67898",
         rating: 4,
         comment: "Great console, but a bit expensive.",
@@ -107,7 +111,7 @@ const SEED_RETURNPOLICY: ReturnPolicy[] = [
     }
 ];
 
-const SEED_WARRANTIES = [
+const SEED_WARRANTIES: Warranty[] = [
     {
         id: "warranty1",
         duration: "2 years",
@@ -183,14 +187,13 @@ const SEED_PRODUCTS: Omit<Product, 'createdAt' | 'updatedAt'>[] = [
         ],
         specificationId: "spec2",
         discountId: "discountId2",
-        reviewsId: "review1",
+        reviewsId: "review2",
         shippingId: "shipping2",
         returnPolicyId: "policy2",
         warrantyId: "warranty2",
         isNew: true
     }
 ];
-
 
 // Generate Related Products Seed Data
 const generateRelatedProducts = (products: ProductWithoutTimestamps[]) => {
@@ -217,31 +220,29 @@ const generateRelatedProducts = (products: ProductWithoutTimestamps[]) => {
 
 const SEED_RELATEDPRODUCTS = generateRelatedProducts(SEED_PRODUCTS as ProductWithoutTimestamps[]);
 
-
 const main = async () => {
     try {
-        // Reset the products and rating tables
+        // Reset the database
         await db.rating.deleteMany();
         await db.specification.deleteMany();
-        await db.product.deleteMany();
         await db.discount.deleteMany();
         await db.relatedProduct.deleteMany();
         await db.productReview.deleteMany();
         await db.shipping.deleteMany();
-        await db.shipping.deleteMany();
         await db.returnPolicy.deleteMany();
         await db.warranty.deleteMany();
+        await db.product.deleteMany();
 
         // Seed data
+        await db.returnPolicy.createMany({ data: SEED_RETURNPOLICY });
+        await db.shipping.createMany({ data: SEED_SHIPPING });
         await db.rating.createMany({ data: SEED_RATINGS });
         await db.specification.createMany({ data: SEED_SPECIFICATIONS });
-        await db.product.createMany({ data: SEED_PRODUCTS });
         await db.discount.createMany({ data: SEED_DISCOUNT });
         await db.relatedProduct.createMany({ data: SEED_RELATEDPRODUCTS });
         await db.productReview.createMany({ data: SEED_PRODUCTREVIEWS });
-        await db.shipping.createMany({ data: SEED_SHIPPING });
-        await db.returnPolicy.createMany({ data: SEED_RETURNPOLICY });
         await db.warranty.createMany({ data: SEED_WARRANTIES });
+        await db.product.createMany({ data: SEED_PRODUCTS });
 
         console.log("Seed completed successfully");
     } catch (error) {

@@ -7,8 +7,7 @@ import { siteConfig } from "@/config";
 import { ModalProvider } from "@/providers/modal-provider";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react"; // Import SessionProvider
-
-import { QueryProvider } from "@/providers/query-provider";
+import QueryProvider from "@/providers/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 

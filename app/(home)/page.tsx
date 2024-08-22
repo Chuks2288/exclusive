@@ -1,3 +1,5 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator";
 import { FlashSales } from "./_components/flash-sales";
 import { Hero } from "./_components/hero";
@@ -7,10 +9,14 @@ import { Products } from "./_components/products";
 import { BestSellingProducts } from "./_components/best-selling-products";
 import { NewArrivalProducts } from "./_components/new-arrival-products";
 import { ServiceHighlights } from "./_components/service-highlights";
-import { Footer } from "./_components/footer";
-
+import { useGetProducts } from "@/features/products/api/use-get-products";
+import { ProductsCard } from "./_components/products-card";
 
 const HomePage = () => {
+    const productQuery = useGetProducts();
+    const products = productQuery.data ?? [];
+
+
     return (
         <main className="">
             <Hero />

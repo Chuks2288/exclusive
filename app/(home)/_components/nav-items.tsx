@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useMedia } from "react-use";
 import { Menu } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useCurrentUser } from "@/hooks/use-current-user"; // Import your custom hook
 
 import { routes } from "@/data";
 
@@ -12,11 +13,10 @@ import {
     Popover,
     PopoverTrigger,
     PopoverContent,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { MenuButton } from "./menu-button";
 import { ModeToggle } from "@/components/mode-toggle";
-
 
 export const NavItems = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +24,10 @@ export const NavItems = () => {
     const pathname = usePathname();
     const router = useRouter();
     const isMobile = useMedia("(max-width: 1024px)", false);
+    const user = useCurrentUser(); // Get the current user
+
+    // Filter out "Sign Up" if user exists
+    const filteredRoutes = user ? routes.filter(route => route.label !== "Sign Up") : routes;
 
     const onClick = (href: string) => {
         router.push(href);
@@ -44,7 +48,7 @@ export const NavItems = () => {
                 </PopoverTrigger>
                 <PopoverContent side="bottom" className="px-2">
                     <nav className="flex flex-col gap-y-2 pt-6">
-                        {routes.map((route) => (
+                        {filteredRoutes.map((route) => (
                             <MenuButton
                                 key={route.label}
                                 href={() => onClick(route.href)}
@@ -58,13 +62,13 @@ export const NavItems = () => {
                     </div>
                 </PopoverContent>
             </Popover>
-        )
+        );
     }
 
     return (
         <div className="">
             <div className="hidden md:flex items-center gap-x-8">
-                {routes.map((route) => (
+                {filteredRoutes.map((route) => (
                     <NavButton
                         key={route.label}
                         href={route.href}
@@ -75,5 +79,5 @@ export const NavItems = () => {
                 <ModeToggle />
             </div>
         </div>
-    )
-}
+    );
+};

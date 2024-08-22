@@ -1,3 +1,4 @@
+import { Footer } from "../(home)/_components/footer"
 import { Navbar } from "../(home)/_components/navbar"
 
 type Props = {
@@ -8,12 +9,13 @@ const AuthLayout = ({
     children
 }: Props) => {
     return (
-        <div className="w-full px-3">
-            <div className="max-w-[1170px] mx-auto">
+        <>
+            <div className="w-full px-3">
                 <Navbar />
                 {children}
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }
 

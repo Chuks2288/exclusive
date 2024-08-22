@@ -3,7 +3,12 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provder";
 import { siteConfig } from "@/config";
+
 import { ModalProvider } from "@/providers/modal-provider";
+import { Toaster } from "sonner";
+import { SessionProvider } from "next-auth/react"; // Import SessionProvider
+
+import { QueryProvider } from "@/providers/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,8 +40,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ModalProvider />
-          {children}
+          <SessionProvider>
+            <QueryProvider>
+              <Toaster />
+              <ModalProvider />
+              {children}
+            </QueryProvider>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

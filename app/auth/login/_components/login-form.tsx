@@ -123,17 +123,6 @@ export const LoginForm = () => {
                                 </Button>
                             </form>
                         </Form>
-                        <div className="flex items-center justify-center gap-x-3 text-sm pt-2 font-medium">
-                            <p className="text-gray-400">
-                                Don't have an account?
-                            </p>
-                            <span
-                                onClick={onClick}
-                                className="cursor-pointer"
-                            >
-                                Sign Up
-                            </span>
-                        </div>
                         <div className="flex flex-col w-full space-y-2">
                             <Button
                                 variant="outline"
@@ -145,6 +134,18 @@ export const LoginForm = () => {
                                 <p className="text-sm">Sign in with Google</p>
                             </Button>
                         </div>
+                        <div className="flex items-center justify-center gap-x-3 text-sm pt-2 font-medium">
+                            <p className="text-gray-400">
+                                Don't have an account?
+                            </p>
+                            <span
+                                onClick={onClick}
+                                className="cursor-pointer"
+                            >
+                                Sign Up
+                            </span>
+                        </div>
+
                     </div>
                 </div>
             </div>

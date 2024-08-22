@@ -34,20 +34,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <SessionProvider>
-            <QueryProvider>
+        <SessionProvider>
+          <QueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
               <Toaster />
               <ModalProvider />
               {children}
-            </QueryProvider>
-          </SessionProvider>
-        </ThemeProvider>
+            </ThemeProvider>
+          </QueryProvider>
+        </SessionProvider>
       </body>
     </html>
   );

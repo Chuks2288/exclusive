@@ -17,11 +17,11 @@ export const register = async (values: FormValues) => {
         return { error: "Invalid fields" }
     }
 
-    const { name, email, password } = validateFields.data;
+    const { firstName, lastName, email, password } = validateFields.data;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (!name || !email || !password) {
+    if (!firstName || !lastName || !email || !password) {
         return { error: "Fill out the field correctly" }
     }
 
@@ -33,7 +33,8 @@ export const register = async (values: FormValues) => {
 
     await db.user.create({
         data: {
-            name,
+            firstName,
+            lastName,
             email,
             password: hashedPassword
         }

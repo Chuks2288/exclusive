@@ -49,9 +49,3 @@ export const generatePasswordResetToken = async (email: string) => {
 
     return passwordResetToken;
 }
-
-
-
-
-
-// 

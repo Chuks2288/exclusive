@@ -185,3 +185,12 @@ model Warranty {
   coverage String
   product  Product? // No `fields` or `onDelete`
 }
+
+model PasswordResetToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}

@@ -89,7 +89,7 @@ export const RegistrationForm = () => {
                         Create Account
                     </h2>
                     <p className="text-sm">
-                        Welcome back! Please register in to continue
+                        Welcome back! Please register to continue
                     </p>
 
                     <div className="py-5 space-y-3">
@@ -136,17 +136,6 @@ export const RegistrationForm = () => {
                                 </Button>
                             </form>
                         </Form>
-                        <div className="flex items-center justify-center gap-x-3 text-sm pt-2 font-medium">
-                            <p className="text-gray-400">
-                                Don't have an account?
-                            </p>
-                            <span
-                                onClick={onClick}
-                                className="cursor-pointer"
-                            >
-                                Sign In
-                            </span>
-                        </div>
                         <div className="flex flex-col w-full space-y-2">
                             <Button
                                 variant="outline"
@@ -157,6 +146,17 @@ export const RegistrationForm = () => {
                                 <FcGoogle className="" />
                                 <p className="text-sm">Sign in with Google</p>
                             </Button>
+                        </div>
+                        <div className="flex items-center justify-center gap-x-3 text-sm pt-2 font-medium">
+                            <p className="text-gray-400">
+                                Don't have an account?
+                            </p>
+                            <span
+                                onClick={onClick}
+                                className="cursor-pointer"
+                            >
+                                Sign In
+                            </span>
                         </div>
                     </div>
                 </div>

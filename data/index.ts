@@ -66,7 +66,7 @@ export const routes = [
     },
     {
         label: "Sign Up",
-        href: "/auth/sign-up"
+        href: "/auth/register"
     },
 ] as navItemProps[];
 

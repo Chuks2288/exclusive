@@ -7,10 +7,10 @@ import { AuthError } from "next-auth";
 
 import { getUserByEmail, updateUserIP } from "@/lib/user";
 import { LoginSchema } from "@/schema";
-// import { DEFAULT_LOGIN_REDIRECT } from "@/route";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { sendIPChangeNotification } from "@/lib/mail";
-import { getGeolocation } from "@/lib/user";
 
+import { getGeolocation } from "@/lib/user";
 
 type FormValues = z.infer<typeof LoginSchema>;
 
@@ -66,8 +66,8 @@ export const login = async (
         await signIn("credentials", {
             email,
             password,
-            // redirectTo: DEFAULT_LOGIN_REDIRECT || callbackUrl
-            redirectTo: callbackUrl || "/"
+            // @ts-ignore
+            redirectTo: DEFAULT_LOGIN_REDIRECT || callbackUrl
         })
     } catch (error) {
         if (error instanceof AuthError) {

@@ -1,10 +1,14 @@
-import { ModeToggle } from "@/components/mode-toggle";
+"use client";
+
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { Logo } from "./logo";
 import { NavItems } from "./nav-items";
 import { SearchInput } from "./search-input";
 import { UserActions } from "./user-actions";
 
 export const Navbar = () => {
+
+
     return (
         <div className="border-b-2 navbar">
             <div className="w-full px-3">

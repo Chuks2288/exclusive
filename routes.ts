@@ -4,6 +4,11 @@
  * @type {string[]}
  */
 export const publicRoutes = [
+    '/',            // Home page
+    '/about',       // About page
+    '/contact',     // Contact page
+    '/cart',
+    '/product/:id',
     "/api/uploadthing",
     "/api/webhooks/stripe",
     // "https://sandbox.plaid.com/link/token/create",
@@ -32,4 +37,4 @@ export const apiAuthPrefix = "/api/auth";
  * The default redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/";
+export const DEFAULT_LOGIN_REDIRECT = "";

@@ -16,7 +16,6 @@ const HomePage = () => {
     const productQuery = useGetProducts();
     const products = productQuery.data ?? [];
 
-
     return (
         <main className="">
             <Hero />

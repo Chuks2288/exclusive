@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 
-export const getProducts = async () => {
+export const getAllProducts = async () => {
     try {
         const products = await db.product.findMany({
             orderBy: {

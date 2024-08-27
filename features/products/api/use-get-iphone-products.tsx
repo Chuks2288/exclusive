@@ -8,11 +8,11 @@ export const useGetIphoneProducts = () => {
             const data = await getIphoneProducts();
 
             if (!Array.isArray(data)) {
-                throw new Error("Failed to fetch iPhone products or products data is not an array");
+                throw new Error("Failed to fetch iPhone products");
             }
             return data;
         },
-        // Optionally, you can add other query options here, such as cacheTime, staleTime, etc.
+
     });
 
     return query;

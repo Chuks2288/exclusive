@@ -6,26 +6,34 @@ import 'swiper/css';
 import { Navigation } from 'swiper/modules';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { flashSalesProducts } from '@/constants';
 import { ProductsCard } from './products-card';
+import { Product } from '@prisma/client';
 
+type Props = {
+    products: any;
+}
 
-export const FlashSalesProduct = () => {
+export const FlashSalesProduct = ({
+    products
+}: Props) => {
     const [showAll, setShowAll] = useState(false);
 
-    // Slice the products array to show only the first 10 items
-    const displayedProducts = showAll ? flashSalesProducts : flashSalesProducts.slice(0, 10);
+    // Determine which products to display based on the `showAll` state
+    const displayedProducts = showAll ? products.slice(0, 20) : products.slice(0, 10);
+
+    // Slice the products array to limit to a maximum of 20
+    const flashSalesProducts = products.slice(0, 20);
 
     return (
         <div className="relative w-full">
             {!showAll ? (
                 <>
                     <Swiper
-                        slidesPerView={1}  // Default to 1 slide
+                        slidesPerView={1}
                         spaceBetween={10}
                         navigation={{
-                            nextEl: '.custom-next',  // Target the custom next button
-                            prevEl: '.custom-prev',  // Target the custom prev button
+                            nextEl: '.custom-next',
+                            prevEl: '.custom-prev',
                         }}
                         grabCursor={true}
                         breakpoints={{
@@ -51,9 +59,9 @@ export const FlashSalesProduct = () => {
                             },
                         }}
                         modules={[Navigation]}
-                        className="mySwiper"  // Ensure Swiper takes full height
+                        className="mySwiper"
                     >
-                        {displayedProducts.map((product) => (
+                        {displayedProducts.map((product: any) => (
                             <SwiperSlide
                                 key={product.id}
                                 className="h-full flex items-center justify-center"
@@ -61,7 +69,8 @@ export const FlashSalesProduct = () => {
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
-                                    discount={product.discount.amount}
+                                    // Add optional chaining to handle cases where discount might be null
+                                    discount={product.discount?.amount || 0}
                                     name={product.name}
                                     price={product.price}
                                     initialPrice={product.initialPrice}
@@ -97,7 +106,7 @@ export const FlashSalesProduct = () => {
             ) : (
                 <>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                        {flashSalesProducts.map((product) => (
+                        {flashSalesProducts.map((product: any) => (
                             <div
                                 key={product.id}
                                 className="h-full max-w-[350px] flex flex-col items-center justify-center"
@@ -105,7 +114,8 @@ export const FlashSalesProduct = () => {
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
-                                    discount={product.discount.amount}
+                                    // Add optional chaining to handle cases where discount might be null
+                                    discount={product.discount?.amount || 0}
                                     name={product.name}
                                     price={product.price}
                                     initialPrice={product.initialPrice}

@@ -7,7 +7,16 @@ export const getAllProducts = async () => {
         const products = await db.product.findMany({
             orderBy: {
                 createdAt: "desc",
-            }
+            },
+            include: {
+                discount: true,
+                rating: true,
+                specifications: true,
+                shipping: true,
+                reviews: true,
+                returnPolicy: true,
+                warranty: true,
+            },
         });
 
         return products;  // Return the fetched products

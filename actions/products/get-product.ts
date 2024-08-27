@@ -13,7 +13,16 @@ export const getProduct = async ({
     await db.product.findUnique({
         where: {
             id
-        }
+        },
+        include: {
+            discount: true,
+            rating: true,
+            specifications: true,
+            shipping: true,
+            reviews: true,
+            returnPolicy: true,
+            warranty: true,
+        },
     });
 
     return { success: "Product fetched successfully" }

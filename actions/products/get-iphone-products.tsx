@@ -19,8 +19,6 @@ export const getIphoneProducts = async () => {
             },
         });
 
-        console.log(products);
-
         return products; // Return the filtered products
     } catch (error) {
         console.error("Error fetching iPhone products", error);

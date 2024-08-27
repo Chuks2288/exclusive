@@ -1,7 +1,25 @@
+import { Product } from "@prisma/client";
 import { FlashSalesProduct } from "./flash-sales-product"
-import { FlashSalesTime } from "./flash-sales-time"
+import { FlashSalesTime } from "./flash-sales-time";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ProductSkeleton } from "./skeleton/product-skeleton";
 
-export const FlashSales = () => {
+type Props = {
+    products: any;
+    isLoading: boolean;
+}
+
+export const FlashSales = ({
+    products,
+    isLoading
+}: Props) => {
+
+    if (isLoading) {
+        return (
+            <ProductSkeleton />
+        );
+    }
+
     return (
         <div className="py-10 space-y-4">
             <div className="flex items-center gap-x-3">
@@ -11,7 +29,9 @@ export const FlashSales = () => {
                 </p>
             </div>
             <FlashSalesTime />
-            <FlashSalesProduct />
+            <FlashSalesProduct
+                products={products}
+            />
         </div>
     )
 }

@@ -36,6 +36,7 @@ export const ProductsCard = ({
     // const discountPercentage = Math.round((discount / initialPrice) * 100);
     const router = useRouter();
 
+
     return (
         <div>
             <div

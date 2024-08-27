@@ -15,28 +15,14 @@ import { useGetIphoneProducts } from "@/features/products/api/use-get-iphone-pro
 import { Loader2 } from "lucide-react";
 
 const HomePage = () => {
-    // const productQuery = useGetAllProducts();
-    // const products = productQuery.data ?? [];
-
-    // const iphoneProductQuery = useGetIphoneProducts();
-    // const { data: iphoneProducts = [] } = iphoneProductQuery;
-
     const { data: products = [], isLoading: productLoading } = useGetAllProducts();
     const { data: iphoneProducts = [], isLoading: iphoneProductLoading } = useGetIphoneProducts();
-
-    if (productLoading || iphoneProductLoading) {
-        return <div className="flex items-center justify-center h-screen">
-            <Loader2
-                className="animate-spin size-4"
-            />
-        </div>
-    }
-
 
     return (
         <main className="">
             <Hero
                 iphoneProducts={iphoneProducts as any}
+                isLoading={productLoading || iphoneProductLoading}
             />
             <FlashSales />
             <Separator className="my-4" />

@@ -1,21 +1,45 @@
 "use client";
-import { flashSalesProducts, ourProducts } from "@/constants";
+
+import { Loader2 } from "lucide-react";
 import { useParams } from "next/navigation";
+
 import { ProductImage } from "./_components/product-image";
 import { ProductDetails } from "./_components/product-details";
 import { ProductHeadLink } from "./_components/product-head-link";
 import { ProductAdditionalDetails } from "./_components/product-additional-details";
 import { useGetProductById } from "@/features/products/api/use-get-product-byId";
-
-
+import { ProductHeadLinkSkeleton } from "./_components/skeleton/product-head-link-skeleton";
+import { ProductImageSkeleton } from "./_components/skeleton/product-image-skeleton";
+import { ProductDetailsSkeleton } from "./_components/skeleton/product-details-skeleton";
+import { ProductAdditionalDetailsSkeleton } from "./_components/skeleton/product-additional-details-skeleton";
 
 const ProductIdPage = () => {
-
     const { id } = useParams();
 
-    const { data: product } = useGetProductById(id);
+    const {
+        data: product,
+        isLoading,
+    } = useGetProductById(id);
 
 
+    if (isLoading) {
+        return (
+            <div className="py-10">
+                <ProductHeadLinkSkeleton />
+                <div className="flex lg:flex-row flex-col items-start justify-start gap-4">
+                    <div className="flex-[2] p-4 justify-center items-center">
+                        <ProductImageSkeleton />
+                    </div>
+                    <div className="flex-[1.4] p-4 h-full">
+                        <ProductDetailsSkeleton />
+                    </div>
+                </div>
+                <div className="mt-6">
+                    <ProductAdditionalDetailsSkeleton />
+                </div>
+            </div>
+        );
+    }
 
     if (!product) {
         return <div>Product not found</div>;
@@ -30,24 +54,22 @@ const ProductIdPage = () => {
             />
             <div className="flex lg:flex-row flex-col items-start justify-start gap-4">
                 <div className="flex-[2] p-4 justify-center items-center">
-                    <ProductImage
-                        images={product.images}
-                    />
+                    <ProductImage images={product.images} />
                 </div>
                 <div className="flex-[1.4] p-4 h-full">
                     <ProductDetails
                         name={product.name}
-                        rating={product.rating.average}
-                        reviews={product.rating.reviews}
+                        rating={product.rating?.average || 0}
+                        reviews={product.rating?.reviews || 0}
                         availability={product.availability}
                         price={product.price}
                         initialPrice={product.initialPrice}
                         description={product.description}
-                        color={product.specifications.color}
-                        size={product.specifications.sizes_available as string[]}
+                        color={product.specifications?.color}
+                        size={product.specifications?.sizes_available || []}
                         returnable={product.returnPolicy?.returnable}
-                        returnPeriod={product.return_policy.return_period}
-                        returnCondition={product.return_policy.conditions}
+                        returnPeriod={product.returnPolicy?.returnPeriod}
+                        returnCondition={product.returnPolicy?.conditions}
                     />
                 </div>
             </div>
@@ -55,7 +77,7 @@ const ProductIdPage = () => {
                 <ProductAdditionalDetails
                     id={product.id}
                     features={product.features}
-                    specifications={product.specifications as any}
+                    specifications={product.specifications}
                     discount={product.discount}
                     relatedProducts={product.related_products}
                     reviews={product.reviews}

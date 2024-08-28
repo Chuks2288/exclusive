@@ -2,28 +2,23 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getProductById } from "@/actions/products/get-product-byId";
 import { Product } from "@prisma/client";
 
-export const useGetProductById = (id?: any): UseQueryResult<any, Error> => {
+export const useGetProductById = (id?: string | any): UseQueryResult<any, Error> => {
     return useQuery<any, Error>({
-        enabled: !!id,
+        enabled: !!id, // Ensure the query runs only if 'id' is provided
         queryKey: ["productById", { id }],
         queryFn: async () => {
             if (!id) {
                 throw new Error("Product ID is required");
             }
 
-            const data = await getProductById({ id });
+            const data = await getProductById({ id }); // Pass 'id' wrapped in an object
 
-            // Handle cases where the API returns an object with a success property
-            if (data && typeof data === "object" && "success" in data) {
+            // Check if the returned data is a valid Product object
+            if (!data || typeof data !== "object" || !data.id) {
                 throw new Error("Invalid product data");
             }
 
-            // Ensure data is of type Product
-            if (typeof data !== 'object' || !('id' in data)) {
-                throw new Error("Invalid product data");
-            }
-
-            return data as Product;
+            return data;
         },
     });
 };

@@ -4,13 +4,13 @@ import { db } from "@/lib/db";
 
 type IParams = {
     id: string;
-}
+};
 
 export const getProductById = async ({
     id
 }: IParams) => {
 
-    await db.product.findUnique({
+    const product = await db.product.findUnique({
         where: {
             id
         },
@@ -25,5 +25,9 @@ export const getProductById = async ({
         },
     });
 
-    return { success: "Product fetched successfully" }
-}
+    if (!product) {
+        throw new Error("Product not found");
+    }
+
+    return product;
+};

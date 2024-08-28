@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { RelatedProducts } from "./related-products";
 import { flashSalesProducts, ourProducts } from "@/constants";
+import { Rating, Star } from "@smastrom/react-rating";
+import { ProductComment } from "./product-comment";
 
 
 interface ProductAdditionalDetailsProps {
@@ -98,26 +100,25 @@ export const ProductAdditionalDetails = ({
                         {reviews.map((review, index) => (
                             <div key={index} className="p-4 rounded-sm bg-gray-100 dark:bg-gray-700">
                                 <p className="font-semibold text-md">{review.user}</p>
-                                <p className="text-xs text-yellow-600 dark:text-yellow-400">Rating: {review.rating} / 5</p>
+                                <div className="max-w-[80px]">
+                                    <Rating
+                                        value={review.rating}
+                                        readOnly
+                                        itemStyles={{
+                                            itemShapes: Star,
+                                            activeFillColor: "#FFAD33",
+                                            inactiveFillColor: "#D3D3D3",
+                                        }}
+                                    />
+                                </div>
+                                {/* <p className="text-xs text-yellow-600 dark:text-yellow-400">Rating: {review.rating} / 5</p> */}
                                 <p className="italic text-xs">"{review.comment}"</p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">{new Date(review.date).toLocaleDateString()}</p>
                             </div>
                         ))}
                     </div>
-                    <div className="w-full m-4 space-y-2">
-                        <h2>Add Comment</h2>
-                        <div className="max-w-[300px]">
-                            <textarea
-                                placeholder=""
-                                className="p-2 border-2 w-full rounded-md"
-                                rows={3}
-                            />
-                        </div>
-                        <Button
-                            size="sm"
-                        >
-                            Submit
-                        </Button>
+                    <div>
+                        <ProductComment />
                     </div>
                 </div>
                 {discount && (

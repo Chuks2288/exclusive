@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { flashSalesProducts } from '@/constants';
 import { ProductsCard } from './products-card';
-import { ourProducts } from '@/constants';
 
 type Props = {
     bestSellingProducts: any;
@@ -29,7 +28,7 @@ export const BestSellingItems = ({
                         <ProductsCard
                             id={product.id}
                             image={product.images}
-                            discount={product.discount.amount}
+                            discount={product.discount?.amount || 0}
                             name={product.name}
                             price={product.price}
                             initialPrice={product.initialPrice}

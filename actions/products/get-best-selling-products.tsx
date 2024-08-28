@@ -15,22 +15,14 @@ export const getBestSellingProducts = async () => {
             orderBy: [
                 {
                     rating: {
-                        reviews: 'desc',
+                        reviews: 'asc',
                     }
                 },
-                // {
-                //     rating: {
-                //         average: 'desc',
-                //     }
-                // },
-                // {
-                //     discount: {
-                //         amount: 'desc',
-                //     }
-                // },
-                // {
-                //     isNew: 'desc'
-                // }
+                {
+                    rating: {
+                        average: 'asc',
+                    }
+                },
             ],
             // take: 5
         });

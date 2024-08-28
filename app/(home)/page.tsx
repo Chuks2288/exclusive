@@ -14,25 +14,31 @@ import { ServiceHighlights } from "./_components/service-highlights";
 import { useGetAllProducts } from "@/features/products/api/use-get-all-products";
 import { useGetIphoneProducts } from "@/features/products/api/use-get-iphone-products";
 import { useGetBestSellingProducts } from "@/features/products/api/use-get-best-selling-products";
+import { useGetSpeakerProduct } from "@/features/products/api/use-get-speaker-product";
 
 const HomePage = () => {
     const {
         data: products = [],
-        isLoading: productLoading
+        isLoading: productIsLoading
     } = useGetAllProducts();
     const {
         data: iphoneProducts = [],
-        isLoading: iphoneProductLoading
+        isLoading: iphoneProductIsLoading
     } = useGetIphoneProducts();
     const {
         data: bestSellingProducts = [],
-        isLoading: bestSellingProductsLoading
+        isLoading: bestSellingProductsIsLoading
     } = useGetBestSellingProducts();
+    const {
+        data: speakerProduct = [],
+        isLoading: speakerProductIsLoading
+    } = useGetSpeakerProduct();
 
     const isLoading =
-        productLoading ||
-        iphoneProductLoading ||
-        bestSellingProductsLoading
+        productIsLoading ||
+        iphoneProductIsLoading ||
+        bestSellingProductsIsLoading ||
+        speakerProductIsLoading
 
     return (
         <main>
@@ -53,7 +59,10 @@ const HomePage = () => {
                 bestSellingProducts={bestSellingProducts as any}
                 isLoading={isLoading}
             />
-            <ProductBanner />
+            <ProductBanner
+                product={speakerProduct as any}
+                isLoading={isLoading}
+            />
             <Products />
             <NewArrivalProducts />
             <ServiceHighlights />

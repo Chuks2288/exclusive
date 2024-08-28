@@ -8,12 +8,15 @@ import { ProductDetails } from "./_components/product-details";
 import { ProductHeadLink } from "./_components/product-head-link";
 import { ProductAdditionalDetails } from "./_components/product-additional-details";
 import { useGetProductById } from "@/features/products/api/use-get-product-byId";
+
 import { ProductHeadLinkSkeleton } from "./_components/skeleton/product-head-link-skeleton";
 import { ProductImageSkeleton } from "./_components/skeleton/product-image-skeleton";
 import { ProductDetailsSkeleton } from "./_components/skeleton/product-details-skeleton";
 import { ProductAdditionalDetailsSkeleton } from "./_components/skeleton/product-additional-details-skeleton";
 
+
 const ProductIdPage = () => {
+
     const { id } = useParams();
 
     const {

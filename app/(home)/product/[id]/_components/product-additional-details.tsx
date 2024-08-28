@@ -3,6 +3,8 @@ import { RelatedProducts } from "./related-products";
 import { flashSalesProducts, ourProducts } from "@/constants";
 import { Rating, Star } from "@smastrom/react-rating";
 import { ProductComment } from "./product-comment";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { User } from "@prisma/client";
 
 
 interface ProductAdditionalDetailsProps {
@@ -50,6 +52,9 @@ export const ProductAdditionalDetails = ({
     warranty,
 }: ProductAdditionalDetailsProps) => {
     const products = [...ourProducts, ...flashSalesProducts];
+
+    const user = useCurrentUser();
+
     return (
         <div className="p-8 space-y-12 ">
             <div className="grid lg:grid-cols-4 grid-cols-2  gap-8">
@@ -94,11 +99,11 @@ export const ProductAdditionalDetails = ({
                 )}
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
-                <div className="bg-gray-100">
-                    <h2 className="font-bold rounded-sm text-white p-1 text-md mb-4 text-gradient bg-gradient-to-r from-red-500 to-pink-500">Reviews</h2>
+                <div className="bg-gray-100 dark:bg-gray-500">
+                    <h2 className="font-bold rounded-sm  p-1 text-md mb-4 text-gradient bg-gradient-to-r from-red-500 to-pink-500">Reviews</h2>
                     <div className="space-y-3">
                         {reviews.map((review, index) => (
-                            <div key={index} className="p-4 rounded-sm bg-gray-100 dark:bg-gray-700">
+                            <div key={index} className="p-4 rounded-sm ">
                                 <p className="font-semibold text-md">{review.user}</p>
                                 <div className="max-w-[80px]">
                                     <Rating
@@ -113,13 +118,15 @@ export const ProductAdditionalDetails = ({
                                 </div>
                                 {/* <p className="text-xs text-yellow-600 dark:text-yellow-400">Rating: {review.rating} / 5</p> */}
                                 <p className="italic text-xs">"{review.comment}"</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">{new Date(review.date).toLocaleDateString()}</p>
+                                <p className="text-xs ">{new Date(review.date).toLocaleDateString()}</p>
                             </div>
                         ))}
                     </div>
-                    <div>
-                        <ProductComment />
-                    </div>
+                    {user && (
+                        <div>
+                            <ProductComment />
+                        </div>
+                    )}
                 </div>
                 {discount && (
                     <div className="space-y-4">

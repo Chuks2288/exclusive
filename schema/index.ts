@@ -37,5 +37,15 @@ export const NewPasswordSchema = z.object({
     confirmPassword: z.string().min(8, {
         message: "Password must match",
     }),
-    // token: z.string(),
+});
+
+export const ProductCommentSchema = z.object({
+    rating: z.number().min(1, {
+        message: "Rating is required",
+    }),
+    comment: z.string().min(1, {
+        message: "Comment is required",
+    }),
+    userId: z.string(),
+    productId: z.string(),
 });

@@ -1,6 +1,20 @@
-import { AllProducts } from "./all-products"
+import { AllProducts } from "./all-products";
+import { ProductSkeleton } from "./skeleton/product-skeleton";
 
-export const Products = () => {
+type Props = {
+    products: any;
+    isLoading: boolean;
+}
+
+export const Products = ({
+    products,
+    isLoading
+}: Props) => {
+
+    if (isLoading) {
+        return <ProductSkeleton length={10} height="400px" />
+    }
+
     return (
         <div className="py-10 space-y-4">
             <div className="flex items-center gap-x-3">
@@ -12,7 +26,9 @@ export const Products = () => {
             <h1 className="font-bold lg:text-2xl text-xl self-end">
                 Explore Our Products
             </h1>
-            <AllProducts />
+            <AllProducts
+                products={products}
+            />
         </div>
     )
 }

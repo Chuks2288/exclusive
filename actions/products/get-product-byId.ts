@@ -6,7 +6,7 @@ type IParams = {
     id: string;
 }
 
-export const getProduct = async ({
+export const getProductById = async ({
     id
 }: IParams) => {
 

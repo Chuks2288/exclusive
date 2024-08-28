@@ -60,10 +60,13 @@ const HomePage = () => {
                 isLoading={isLoading}
             />
             <ProductBanner
-                product={speakerProduct as any}
+                products={speakerProduct as any}
                 isLoading={isLoading}
             />
-            <Products />
+            <Products
+                products={products}
+                isLoading={isLoading}
+            />
             <NewArrivalProducts />
             <ServiceHighlights />
         </main>

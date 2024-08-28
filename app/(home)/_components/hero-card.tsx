@@ -10,6 +10,7 @@ import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { SafeIphoneListing } from '@/types';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     products: any;
@@ -18,6 +19,8 @@ type Props = {
 export const HeroCard = ({
     products
 }: Props) => {
+
+    const router = useRouter();
 
     const iphonesQuery = products.slice(0, 3);
 
@@ -49,7 +52,8 @@ export const HeroCard = ({
                 {iphonesQuery.map((product: any) => (
                     <SwiperSlide
                         key={product.id}
-                        className="bg-black dark:bg-white text-white dark:text-black"
+                        className="bg-black dark:bg-white text-white dark:text-black cursor-pointer"
+                        onClick={() => router.push(`product/${product.id}`)}
                     >
                         <div className="flex justify-between items-center p-4 h-full">
                             <div className="flex flex-col justify-center items-start lg:pl-8 pl-0 space-y-4">

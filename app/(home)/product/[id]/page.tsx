@@ -5,12 +5,17 @@ import { ProductImage } from "./_components/product-image";
 import { ProductDetails } from "./_components/product-details";
 import { ProductHeadLink } from "./_components/product-head-link";
 import { ProductAdditionalDetails } from "./_components/product-additional-details";
+import { useGetProductById } from "@/features/products/api/use-get-product-byId";
+
+
 
 const ProductIdPage = () => {
-    const products = [...flashSalesProducts, ...ourProducts];
-    const { id: productId } = useParams();
 
-    const product = products.find((product) => product.id === productId);
+    const { id } = useParams();
+
+    const { data: product } = useGetProductById(id);
+
+
 
     if (!product) {
         return <div>Product not found</div>;
@@ -40,7 +45,7 @@ const ProductIdPage = () => {
                         description={product.description}
                         color={product.specifications.color}
                         size={product.specifications.sizes_available as string[]}
-                        returnable={product.return_policy?.returnable}
+                        returnable={product.returnPolicy?.returnable}
                         returnPeriod={product.return_policy.return_period}
                         returnCondition={product.return_policy.conditions}
                     />

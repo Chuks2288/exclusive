@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/grid';  // Make sure the Grid CSS is imported
@@ -9,13 +9,19 @@ import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductsCard } from './products-card';
 
-import { ourProducts } from '@/constants';
 
-export const AllProducts = () => {
+type Props = {
+    products: any;
+}
+
+export const AllProducts = ({
+    products
+}: Props) => {
+
     const [showAll, setShowAll] = useState(false);
 
     // Slice the products array to show only the first 15 items
-    const displayedProducts = showAll ? ourProducts : ourProducts.slice(0, 12);
+    const displayedProducts = showAll ? products : products.slice(0, 12);
 
     return (
         <div className="relative w-full">
@@ -58,7 +64,7 @@ export const AllProducts = () => {
                         modules={[Grid, Navigation]}
                         className="mySwiper"
                     >
-                        {displayedProducts.map((product) => (
+                        {displayedProducts.map((product: any) => (
                             <SwiperSlide
                                 key={product.id}
                                 className="h-full flex items-center justify-center"
@@ -66,7 +72,7 @@ export const AllProducts = () => {
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
-                                    discount={product.discount.amount}
+                                    discount={product.discount?.amount || 0}
                                     name={product.name}
                                     price={product.price}
                                     initialPrice={product.initialPrice}
@@ -88,7 +94,7 @@ export const AllProducts = () => {
                     </div>
 
                     {/* View More Products Button */}
-                    {ourProducts.length > 12 && (
+                    {products.length > 12 && (
                         <div className="flex justify-center mt-4">
                             <Button
                                 size="sm"
@@ -103,7 +109,7 @@ export const AllProducts = () => {
             ) : (
                 <>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                        {ourProducts.map((product) => (
+                        {products.map((product: any) => (
                             <div
                                 key={product.id}
                                 className="h-full max-w-[350px] flex flex-col items-center justify-center"
@@ -111,7 +117,7 @@ export const AllProducts = () => {
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
-                                    discount={product.discount.amount}
+                                    discount={product.discount?.amount || 0}
                                     name={product.name}
                                     price={product.price}
                                     initialPrice={product.initialPrice}

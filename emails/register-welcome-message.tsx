@@ -14,7 +14,6 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-const user = useCurrentUser();
 
 export const RegisterWelcomeMessage = () => (
     <Html>
@@ -42,7 +41,7 @@ export const RegisterWelcomeMessage = () => (
                         Welcome to Exclusive!
                     </Text>
                     <Text className="text-base leading-7 text-gray-600 mb-5 text-center">
-                        Hi, {user?.lastName} " " {user?.firstName}
+                        Hi,
                         <br />
                         We’re thrilled to have you on board. At Exclusive, we bring you the best and latest products at unbeatable prices. Get ready to start your shopping adventure with us!
                     </Text>

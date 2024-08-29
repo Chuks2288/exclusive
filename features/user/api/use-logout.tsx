@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { logout } from '@/actions/user/logout';
 import { toast } from 'sonner';
 
-import { redirect, useRouter } from 'next/navigation';
+// import { redirect, useRouter } from 'next/navigation';
 
 export const useLogout = () => {
     const queryClient = useQueryClient();

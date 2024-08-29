@@ -22,7 +22,7 @@ export const createProductComment = async (
 
     const { rating, comment } = validateFields.data;
 
-    const product = await getProductById(id)
+    const product = await getProductById(id);
 
     const productId = product?.id;
 

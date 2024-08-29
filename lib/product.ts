@@ -2,7 +2,7 @@ import { db } from "./db";
 
 export const getProductById = async (id: string | any) => {
 
-    const product = await db.product.findFirst({
+    const product = await db.product.findUnique({
         where: {
             id,
         },

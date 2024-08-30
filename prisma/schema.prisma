@@ -138,17 +138,17 @@ model Discount {
   amount     Int
   type       String
   validUntil DateTime
-  productId  String
+  productId  String   @unique
   product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  @@unique([productId])
 }
 
 model RelatedProduct {
   id               String  @id @default(cuid())
-  relatedProductId String
   productId        String
-  product          Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  relatedProductId String
+  relatedProduct   Product @relation(fields: [relatedProductId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, relatedProductId]) // Enforce uniqueness
 }
 
 model ProductReview {

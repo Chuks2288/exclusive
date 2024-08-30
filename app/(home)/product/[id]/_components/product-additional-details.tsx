@@ -22,7 +22,7 @@ interface ProductAdditionalDetailsProps {
         type: string;
         valid_until: string;
     };
-    relatedProducts: string[];
+    relatedProducts: any;
     reviews: {
         user: string;
         rating: number;
@@ -51,7 +51,7 @@ export const ProductAdditionalDetails = ({
     shipping,
     warranty,
 }: ProductAdditionalDetailsProps) => {
-    const products = [...ourProducts, ...flashSalesProducts];
+    // const products = [...ourProducts, ...flashSalesProducts];
 
     const user = useCurrentUser();
 
@@ -124,7 +124,10 @@ export const ProductAdditionalDetails = ({
                     </div>
                     {user && (
                         <div>
-                            <ProductComment />
+                            <ProductComment
+                                userId={user?.id}
+                                productId={id}
+                            />
                         </div>
                     )}
                 </div>
@@ -159,7 +162,7 @@ export const ProductAdditionalDetails = ({
                 </div>
                 <div className="">
                     <RelatedProducts
-                        products={products as any}
+                        products={relatedProducts}
                     />
                 </div>
             </div>

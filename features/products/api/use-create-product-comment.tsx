@@ -1,11 +1,10 @@
-// hooks/useCreateProductComment.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
 import { createProductComment } from '@/actions/products/create-product-comment';
 
 type Props = {
-    userId: string;
-    productId: string;
+    userId: any;
+    productId: any;
 }
 
 export const useCreateProductComment = ({
@@ -16,7 +15,7 @@ export const useCreateProductComment = ({
 
     const mutation = useMutation({
         mutationFn: (values: { rating: number; comment: string }) =>
-            createProductComment(values, productId), // Ensure userId and productId are correct
+            createProductComment(values, productId),
         onSuccess: (data) => {
             if (data?.success) {
                 toast.success(data.success);
@@ -26,8 +25,10 @@ export const useCreateProductComment = ({
                 toast.error(data.error);
             }
 
-            // Invalidate the query to refresh data
-            queryClient.invalidateQueries({ queryKey: ['products'] });
+            // Debugging logs
+            console.log('Invalidating queries');
+            queryClient.invalidateQueries({ queryKey: ['product', productId] });
+            queryClient.invalidateQueries({ queryKey: ['productReviews', productId] });
         },
         onError: () => {
             toast.error("Something went wrong");

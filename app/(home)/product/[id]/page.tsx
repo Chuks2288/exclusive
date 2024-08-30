@@ -13,6 +13,7 @@ import { ProductHeadLinkSkeleton } from "./_components/skeleton/product-head-lin
 import { ProductImageSkeleton } from "./_components/skeleton/product-image-skeleton";
 import { ProductDetailsSkeleton } from "./_components/skeleton/product-details-skeleton";
 import { ProductAdditionalDetailsSkeleton } from "./_components/skeleton/product-additional-details-skeleton";
+import { useGetRelatedProducts } from "@/features/products/api/use-get-related-products";
 
 
 const ProductIdPage = () => {
@@ -21,11 +22,17 @@ const ProductIdPage = () => {
 
     const {
         data: product,
-        isLoading,
+        isLoading: productIsLoading,
     } = useGetProductById(id);
 
+    const {
+        data: relatedProducts = [],
+        isLoading: relatedProductIsLoading,
+    } = useGetRelatedProducts();
 
-    if (isLoading) {
+
+
+    if (productIsLoading || relatedProductIsLoading) {
         return (
             <div className="py-10">
                 <ProductHeadLinkSkeleton />
@@ -82,7 +89,7 @@ const ProductIdPage = () => {
                     features={product.features}
                     specifications={product.specifications}
                     discount={product.discount}
-                    relatedProducts={product.related_products}
+                    relatedProducts={relatedProducts}
                     reviews={product.reviews}
                     shipping={product.shipping}
                     warranty={product.warranty}

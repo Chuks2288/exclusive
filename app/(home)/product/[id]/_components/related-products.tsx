@@ -20,20 +20,22 @@ type RelatedProductsProps = {
     products: Product[];
 };
 
-export const RelatedProducts = ({ products }: RelatedProductsProps) => {
+export const RelatedProducts = ({ products = [] }: RelatedProductsProps) => {
     const generateRelatedProducts = (products: Product[]) => {
+        if (!products || products.length === 0) return [];
+
         const relatedProducts: Product[] = [];
 
         products.forEach((product) => {
             const related = products.filter(
                 (p) =>
-                    p.id === product.id &&
+                    p.id !== product.id && // Ensure we are not comparing the same product
                     (p.category === product.category || p.subcategory === product.subcategory)
             );
 
             related.forEach((relProduct) => {
                 relatedProducts.push({
-                    id: `${product.id}`,
+                    id: relProduct.id, // Use the actual related product id
                     images: relProduct.images,
                     discount: relProduct.discount,
                     name: relProduct.name,
@@ -55,11 +57,11 @@ export const RelatedProducts = ({ products }: RelatedProductsProps) => {
     return (
         <div className="relative w-full">
             <Swiper
-                slidesPerView={1}  // Default to 1 slide
+                slidesPerView={1}
                 spaceBetween={10}
                 navigation={{
-                    nextEl: '.custom-next-related',  // Target the custom next button
-                    prevEl: '.custom-prev-related',  // Target the custom prev button
+                    nextEl: '.custom-next-related',
+                    prevEl: '.custom-prev-related',
                 }}
                 grabCursor={true}
                 breakpoints={{
@@ -114,7 +116,6 @@ export const RelatedProducts = ({ products }: RelatedProductsProps) => {
             <div className="custom-next-related w-6 h-6 rounded-full border-none flex justify-center items-center bg-gray-200 dark:bg-gray-800 absolute -top-8 right-0 -translate-y-1/2 cursor-pointer z-10">
                 <ArrowRight className='text-black dark:text-white size-4' />
             </div>
-
         </div>
     );
 };

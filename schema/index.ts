@@ -46,6 +46,4 @@ export const ProductCommentSchema = z.object({
     comment: z.string().min(1, {
         message: "Comment is required",
     }),
-    // userId: z.string(),
-    // productId: z.string(),
 });

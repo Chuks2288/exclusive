@@ -10,6 +10,7 @@ export const ProductSkeleton = ({
     length = 5,
     height = "200px" // Default height value
 }: Props) => {
+
     return (
         <div className="py-10 space-y-4">
             <div className="flex items-center gap-x-3">

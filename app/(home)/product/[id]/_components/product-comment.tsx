@@ -26,8 +26,8 @@ import { Loader2 } from "lucide-react";
 type FormValues = z.infer<typeof ProductCommentSchema>;
 
 type Props = {
-    userId?: string | any;
-    productId?: string | any;
+    userId: string | any;
+    productId: string | any;
 };
 
 export const ProductComment = ({

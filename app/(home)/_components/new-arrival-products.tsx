@@ -1,7 +1,30 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { NewArrivalItems } from "./new-arrival-items";
-import { CategoryProducts } from "./category-product";
+import { NewArrivalItemsSkeleton } from "./skeleton/new-arrival-items-skeleton";
 
-export const NewArrivalProducts = () => {
+
+type Props = {
+    isLoading: boolean;
+}
+
+export const NewArrivalProducts = ({
+    isLoading,
+}: Props) => {
+
+    if (isLoading) {
+        return (
+            <div className="py-10 space-y-4">
+                <div className="flex items-center gap-x-3">
+                    <Skeleton className="w-3 h-8 rounded-sm" />
+                    <Skeleton className="w-16 h-4" />
+                </div>
+                <Skeleton className="w-40 h-6 lg:h-8" />
+                <NewArrivalItemsSkeleton />
+            </div>
+        )
+    }
+
+
 
     return (
         <div className="py-10 space-y-4">

@@ -3,7 +3,22 @@
 import { motion } from "framer-motion";
 import { features } from "@/data";
 
-export const ServiceHighlights = () => {
+import { ServiceHighlightsSkeleton } from "./skeleton/service-highlight-skeleton";
+type Props = {
+    isLoading: boolean;
+}
+
+export const ServiceHighlights = ({
+    isLoading
+}: Props) => {
+
+    if (isLoading) {
+        return (
+            <>
+                <ServiceHighlightsSkeleton />
+            </>
+        )
+    }
 
     return (
         <div className="flex justify-around items-center py-8">

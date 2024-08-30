@@ -67,8 +67,12 @@ const HomePage = () => {
                 products={products}
                 isLoading={isLoading}
             />
-            <NewArrivalProducts />
-            <ServiceHighlights />
+            <NewArrivalProducts
+                isLoading={isLoading}
+            />
+            <ServiceHighlights
+                isLoading={isLoading}
+            />
         </main>
     );
 }

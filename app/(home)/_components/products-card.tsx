@@ -2,16 +2,17 @@
 
 import Image from "next/image";
 import { Eye, Heart } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
-
-import { Rating, Star } from '@smastrom/react-rating'
-
-import '@smastrom/react-rating/style.css'
+import { Rating, Star } from '@smastrom/react-rating';
+import '@smastrom/react-rating/style.css';
 import { useRouter } from "next/navigation";
+import { useAddToCart } from "@/features/cart/use-add-to-cart";
+import { useRemoveFromCart } from "@/features/cart/use-remove-from-cart";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 type Props = {
-    id: string;
+    id: any;
     image: string[];
     discount: number;
     name: string;
@@ -20,7 +21,8 @@ type Props = {
     rating: number;
     reviews: number;
     isNew?: boolean;
-}
+};
+
 export const ProductsCard = ({
     id,
     image,
@@ -32,10 +34,30 @@ export const ProductsCard = ({
     reviews,
     isNew,
 }: Props) => {
-
-    // const discountPercentage = Math.round((discount / initialPrice) * 100);
     const router = useRouter();
+    const { mutate: addToCart } = useAddToCart();
+    const { mutate: removeFromCart } = useRemoveFromCart(id);
+    const cartItems = useSelector((state: RootState) => state.cart.items);
 
+    const isInCart = cartItems.some(item => item.id === id);
+
+    // Handle add/remove to/from cart
+    const handleCartAction = (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        if (isInCart) {
+            removeFromCart(id);
+        } else {
+            addToCart({
+                id,
+                name,
+                price,
+                initialPrice,
+                rating,
+                quantity: 1,
+            });
+        }
+    };
 
     return (
         <div>
@@ -60,7 +82,7 @@ export const ProductsCard = ({
                         width={160}
                         height={160}
                         priority
-                        objectFit="cover"
+                        style={{ objectFit: 'cover' }}
                     />
                 </div>
                 <span className="absolute top-2 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
@@ -75,8 +97,9 @@ export const ProductsCard = ({
                     variant="outline"
                     size="sm"
                     className="w-full rounded-none py-2 absolute bottom-0 left-0 flex justify-center transition-transform transform translate-y-full group-hover:translate-y-0 text-xs"
+                    onClick={handleCartAction}
                 >
-                    Add to Cart
+                    {isInCart ? "Remove from Cart" : "Add to Cart"}
                 </Button>
             </div>
             <div className="flex flex-col gap-y-2 mt-4">

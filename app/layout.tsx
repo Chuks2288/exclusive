@@ -9,8 +9,7 @@ import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react"; // Import SessionProvider
 import QueryProvider from "@/providers/query-provider";
 
-import { Provider } from "react-redux";
-import { store } from "@/store";
+import { ReduxProviders } from "@/providers/redux-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,11 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <SessionProvider>
-          <QueryProvider>
-            <Provider store={store}>
+    <ReduxProviders>
+      <html lang="en">
+        <body className={inter.className}>
+          <SessionProvider>
+            <QueryProvider>
               <ThemeProvider
                 attribute="class"
                 defaultTheme="system"
@@ -49,10 +48,10 @@ export default function RootLayout({
                 <ModalProvider />
                 {children}
               </ThemeProvider>
-            </Provider>
-          </QueryProvider>
-        </SessionProvider>
-      </body>
-    </html>
+            </QueryProvider>
+          </SessionProvider>
+        </body>
+      </html>
+    </ReduxProviders>
   );
 }

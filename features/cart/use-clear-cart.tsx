@@ -1,9 +1,8 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { clearCart } from '@/store/cart-slice';
 
-export const CartActions = () => {
+export const useClearCart = () => {
     const dispatch = useDispatch();
 
     const clearCartMutation = useMutation({

@@ -16,6 +16,7 @@ export const CategoryProducts = ({
     if (isLoading) {
         return <CategorySkeleton />
     }
+
     return (
         <div className="py-10 space-y-4">
             <div className="flex items-center gap-x-3">

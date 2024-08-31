@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from './cart-slice';
+"use client";
+
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./cart-slice";
 
 const loadState = () => {
     try {
-        const serializedState = localStorage.getItem('cartState');
+        const serializedState = localStorage.getItem("cartState");
         if (serializedState === null) {
             return undefined;
         }
@@ -16,23 +18,23 @@ const loadState = () => {
 const saveState = (state: any) => {
     try {
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('cartState', serializedState);
-    } catch {
-        // Ignore write errors
+        localStorage.setItem("cartState", serializedState);
+    } catch (err) {
+        // Handle errors if necessary
     }
 };
 
 export const store = configureStore({
     reducer: {
+        // @ts-ignore
         cart: cartReducer,
     },
-    preloadedState: loadState(),
+    preloadedState: loadState(), // Preloading state from localStorage
 });
 
 store.subscribe(() => {
-    saveState(store.getState().cart);
+    saveState({ cart: store.getState().cart }); // Save only the cart state to localStorage
 });
 
-// Types for TypeScript
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

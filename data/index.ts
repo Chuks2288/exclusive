@@ -27,11 +27,7 @@ interface navItemProps {
     label: string,
     href: string,
 }
-interface userActionRoutesProps {
-    icon: any,
-    path: string,
-    item: number,
-}
+
 interface userProfileRoutesProps {
     icon: any,
     label: string,
@@ -70,18 +66,7 @@ export const routes = [
     },
 ] as navItemProps[];
 
-export const userActionRoutes = [
-    {
-        icon: Heart,
-        path: "/wishlist",
-        item: 0,
-    },
-    {
-        icon: ShoppingCart,
-        path: "/cart",
-        item: 2,
-    },
-] as userActionRoutesProps[];
+
 
 export const userProfileRoutes = [
     {

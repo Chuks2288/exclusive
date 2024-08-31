@@ -8,7 +8,6 @@ import { UserActions } from "./user-actions";
 
 export const Navbar = () => {
 
-
     return (
         <div className="border-b-2 navbar">
             <div className="w-full px-3">

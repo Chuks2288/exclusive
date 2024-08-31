@@ -22,7 +22,6 @@ interface ProductAdditionalDetailsProps {
         type: string;
         valid_until: string;
     };
-    relatedProducts: any;
     reviews: {
         user: string;
         rating: number;
@@ -39,6 +38,7 @@ interface ProductAdditionalDetailsProps {
         duration: string;
         coverage: string;
     };
+    products: any[];
 }
 
 export const ProductAdditionalDetails = ({
@@ -46,13 +46,11 @@ export const ProductAdditionalDetails = ({
     features,
     specifications,
     discount,
-    relatedProducts,
     reviews,
     shipping,
     warranty,
+    products,
 }: ProductAdditionalDetailsProps) => {
-    // const products = [...ourProducts, ...flashSalesProducts];
-
     const user = useCurrentUser();
 
     return (
@@ -71,7 +69,6 @@ export const ProductAdditionalDetails = ({
                         ))}
                     </ul>
                 </div>
-
                 <div>
                     <h2 className="font-bold text-md mb-4">Specifications</h2>
                     <ul className="list-disc list-inside text-sm leading-relaxed">
@@ -162,7 +159,7 @@ export const ProductAdditionalDetails = ({
                 </div>
                 <div className="">
                     <RelatedProducts
-                        products={relatedProducts}
+                        products={products}
                     />
                 </div>
             </div>

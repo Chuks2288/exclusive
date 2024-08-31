@@ -3,39 +3,27 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-type Product = {
-    id: string;
-    images: string[];
-    discount?: { amount: number };
-    name: string;
-    price: number;
-    initialPrice?: number;
-    rating: { average: number; reviews: number };
-    isNew?: boolean;
-    category: string;
-    subcategory: string;
-};
-
 type RelatedProductsProps = {
-    products: Product[];
+    products: any[];
 };
 
-export const RelatedProducts = ({ products = [] }: RelatedProductsProps) => {
-    const generateRelatedProducts = (products: Product[]) => {
-        if (!products || products.length === 0) return [];
+export const RelatedProducts = ({
+    products
+}: RelatedProductsProps) => {
 
-        const relatedProducts: Product[] = [];
+    const generateRelatedProducts = (products: any[]) => {
+        const relatedProducts: any[] = [];
 
         products.forEach((product) => {
             const related = products.filter(
                 (p) =>
-                    p.id !== product.id && // Ensure we are not comparing the same product
+                    p.id === product.id &&
                     (p.category === product.category || p.subcategory === product.subcategory)
             );
 
             related.forEach((relProduct) => {
                 relatedProducts.push({
-                    id: relProduct.id, // Use the actual related product id
+                    id: `${product.id}`,
                     images: relProduct.images,
                     discount: relProduct.discount,
                     name: relProduct.name,
@@ -109,13 +97,13 @@ export const RelatedProducts = ({ products = [] }: RelatedProductsProps) => {
                 ))}
             </Swiper>
 
-            {/* Custom navigation arrows */}
             <div className="custom-prev-related w-6 h-6 mx-4 rounded-full border-none flex justify-center items-center bg-gray-200 dark:bg-gray-800 absolute -top-8 right-4 -translate-y-1/2 cursor-pointer z-10">
                 <ArrowLeft className='text-black dark:text-white size-4' />
             </div>
             <div className="custom-next-related w-6 h-6 rounded-full border-none flex justify-center items-center bg-gray-200 dark:bg-gray-800 absolute -top-8 right-0 -translate-y-1/2 cursor-pointer z-10">
                 <ArrowRight className='text-black dark:text-white size-4' />
             </div>
+
         </div>
     );
 };

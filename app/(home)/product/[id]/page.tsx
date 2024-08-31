@@ -13,26 +13,27 @@ import { ProductHeadLinkSkeleton } from "./_components/skeleton/product-head-lin
 import { ProductImageSkeleton } from "./_components/skeleton/product-image-skeleton";
 import { ProductDetailsSkeleton } from "./_components/skeleton/product-details-skeleton";
 import { ProductAdditionalDetailsSkeleton } from "./_components/skeleton/product-additional-details-skeleton";
-import { useGetRelatedProducts } from "@/features/products/api/use-get-related-products";
+import { useGetAllProducts } from "@/features/products/api/use-get-all-products";
 
+type Props = {
+    productId: string | any;
+}
 
-const ProductIdPage = () => {
-
+const ProductIdPage = ({
+    productId
+}: Props) => {
     const { id } = useParams();
 
+    const {
+        data: products,
+        isLoading: productsIsLoading,
+    } = useGetAllProducts();
     const {
         data: product,
         isLoading: productIsLoading,
     } = useGetProductById(id);
 
-    const {
-        data: relatedProducts = [],
-        isLoading: relatedProductIsLoading,
-    } = useGetRelatedProducts();
-
-
-
-    if (productIsLoading || relatedProductIsLoading) {
+    if (productIsLoading || productsIsLoading) {
         return (
             <div className="py-10">
                 <ProductHeadLinkSkeleton />
@@ -89,10 +90,10 @@ const ProductIdPage = () => {
                     features={product.features}
                     specifications={product.specifications}
                     discount={product.discount}
-                    relatedProducts={relatedProducts}
                     reviews={product.reviews}
                     shipping={product.shipping}
                     warranty={product.warranty}
+                    products={products as any[]}
                 />
             </div>
         </div>

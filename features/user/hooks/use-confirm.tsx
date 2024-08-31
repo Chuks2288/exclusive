@@ -46,7 +46,7 @@ export const useConfirm = (
                         {message}
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter className="flex items-center gap-3">
+                <DialogFooter className="flex items-center gap-2">
                     <Button
                         size="sm"
                         onClick={handleCancel}

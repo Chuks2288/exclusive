@@ -9,6 +9,9 @@ import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react"; // Import SessionProvider
 import QueryProvider from "@/providers/query-provider";
 
+import { Provider } from "react-redux";
+import { store } from "@/store";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -35,16 +38,18 @@ export default function RootLayout({
       <body className={inter.className}>
         <SessionProvider>
           <QueryProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Toaster />
-              <ModalProvider />
-              {children}
-            </ThemeProvider>
+            <Provider store={store}>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <Toaster />
+                <ModalProvider />
+                {children}
+              </ThemeProvider>
+            </Provider>
           </QueryProvider>
         </SessionProvider>
       </body>

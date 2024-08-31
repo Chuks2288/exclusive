@@ -50,9 +50,12 @@ export const ProductComment = ({
         },
     });
 
-
     const submit = (values: FormValues) => {
-        mutation.mutate(values);
+        mutation.mutate(values, {
+            onSuccess: () => {
+                form.reset();
+            }
+        });
     };
 
     return (
@@ -82,7 +85,10 @@ export const ProductComment = ({
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {[1, 2, 3, 4, 5].map((rating) => (
-                                                    <SelectItem key={rating} value={rating.toString()}>
+                                                    <SelectItem
+                                                        key={rating}
+                                                        value={rating.toString()}
+                                                    >
                                                         {rating}
                                                     </SelectItem>
                                                 ))}

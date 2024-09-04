@@ -9,10 +9,8 @@ export const useAddToCart = () => {
 
     const addToCartMutation = useMutation({
         mutationFn: (item: CartItem) => {
-            // Execute the Redux action to update the state
             dispatch(addToCart(item));
 
-            // Return a resolved promise with the item
             return Promise.resolve(item);
         },
         onSuccess: (data) => {

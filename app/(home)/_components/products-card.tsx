@@ -51,6 +51,7 @@ export const ProductsCard = ({
             addToCart({
                 id,
                 name,
+                image,
                 price,
                 initialPrice,
                 rating,

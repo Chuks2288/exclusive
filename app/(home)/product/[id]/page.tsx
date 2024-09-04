@@ -69,7 +69,9 @@ const ProductIdPage = ({
                 </div>
                 <div className="flex-[1.4] p-4 h-full">
                     <ProductDetails
+                        id={product.id}
                         name={product.name}
+                        image={product.images[0]}
                         rating={product.rating?.average || 0}
                         reviews={product.rating?.reviews || 0}
                         availability={product.availability}

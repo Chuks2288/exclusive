@@ -1,12 +1,21 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Rating, Star } from "@smastrom/react-rating";
 import { Heart, Minus, Plus, RefreshCcw, Truck } from "lucide-react";
 import { useReturnModal } from "@/features/products/hooks/use-return-modal";
+import { useSelector } from "react-redux";
+import { useRemoveFromCart } from "@/features/cart/use-remove-from-cart";
+import { useAddToCart } from "@/features/cart/use-add-to-cart";
+import { RootState } from "@/store";
+import { Input } from "@/components/ui/input";
 
 type Props = {
+    id: any;
     name: string;
+    image: string[];
     rating: number;
     reviews: number;
     availability: string;
@@ -21,7 +30,9 @@ type Props = {
 };
 
 export const ProductDetails = ({
+    id,
     name,
+    image,
     rating,
     reviews,
     availability,
@@ -37,15 +48,55 @@ export const ProductDetails = ({
     const { onOpen } = useReturnModal();
     const [quantity, setQuantity] = useState(1);
 
+    const { mutate: addToCart } = useAddToCart();
+    const { mutate: removeFromCart } = useRemoveFromCart(id);
+    const cartItems = useSelector((state: RootState) => state.cart.items);
+
+    // Initialize quantity from cart items
+    useEffect(() => {
+        const cartItem = cartItems.find((item) => item.id === id);
+        if (cartItem) {
+            setQuantity(cartItem.quantity);
+        }
+    }, [cartItems, id]);
+
+    const isInCart = cartItems.some((item) => item.id === id);
+
     const increaseQuantity = () => {
-        setQuantity(prevQuantity => prevQuantity + 1);
+        setQuantity((prevQuantity) => prevQuantity + 1);
     };
 
     const decreaseQuantity = () => {
-        setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+        setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+    };
+
+    const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = parseInt(e.target.value, 10);
+        if (!isNaN(value) && value > 0) {
+            setQuantity(value);
+        }
     };
 
     const totalPrice = price * quantity;
+
+    const handleCartAction = (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        // Extract the first image URL if the image is an array
+        if (isInCart) {
+            removeFromCart(id);
+        } else {
+            addToCart({
+                id,
+                name,
+                image,
+                price: totalPrice,
+                initialPrice,
+                rating,
+                quantity,
+            });
+        }
+    };
 
     return (
         <div className="space-y-4">
@@ -111,26 +162,29 @@ export const ProductDetails = ({
                         onClick={decreaseQuantity}
                         className="text-md border-2 hover:bg-red-500 hover:text-white"
                     >
-                        {/* <Minus className="w-4 h-4" /> */}
                         -
                     </Button>
-                    <div className="w-20 h-10  flex justify-center items-center text-center border-t border-b border-gray-300">
-                        {quantity}
-                    </div>
+                    <Input
+                        type="number"
+                        min="1"
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                        className="w-20 h-10 text-center border-t border-b border-gray-300"
+                    />
                     <Button
                         size="lg"
                         onClick={increaseQuantity}
                         className="text-md border-2  hover:bg-red-500 hover:text-white"
                     >
-                        {/* <Plus className="w-4 h-4" /> */}
                         +
                     </Button>
                 </div>
                 <Button
+                    onClick={handleCartAction}
                     size="sm"
                     className="bg-red-500 hover:bg-red-600 text-white md:w-[200px] w-full"
                 >
-                    Buy Now
+                    {isInCart ? "Remove From cart" : "Buy Now"}
                 </Button>
                 <span className="flex justify-center items-center w-8 h-8 border-2 p-1 rounded-sm text-[10px] cursor-pointer">
                     <Heart className="w-4 h-4" />
@@ -140,9 +194,7 @@ export const ProductDetails = ({
                 <div className="flex items-center gap-x-4">
                     <Truck className="size-6" />
                     <div className="space-y-2">
-                        <p className="text-sm font-bold">
-                            Free Delivery
-                        </p>
+                        <p className="text-sm font-bold">Free Delivery</p>
                         <span className="text-xs underline cursor-pointer">
                             Enter your postal code for Delivery Availability
                         </span>
@@ -153,13 +205,9 @@ export const ProductDetails = ({
                         <div className="flex items-center gap-x-4">
                             <RefreshCcw className="size-6" />
                             <div className="space-y-2">
-                                <p className="text-sm font-bold">
-                                    Return Delivery
-                                </p>
+                                <p className="text-sm font-bold">Return Delivery</p>
                                 <div className="text-xs flex items-center gap-x-1">
-                                    <p className="">
-                                        Free {returnPeriod || "30 days"} Returns.
-                                    </p>
+                                    <p>Free {returnPeriod || "30 days"} Returns.</p>
                                     <span
                                         onClick={onOpen}
                                         className="underline cursor-pointer"

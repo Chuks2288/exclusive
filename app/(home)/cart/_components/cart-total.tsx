@@ -51,7 +51,7 @@ export const CartTotal = () => {
                     Total:
                     <p className="font-bold text-xl">${total.toFixed(2)}</p>
                 </div>
-                <div className="flex justify-center items-center mt-6">
+                <div className="flex justify-center items-center pt-8">
                     <Button
                         variant="destructive"
                         className=""

@@ -20,10 +20,10 @@ export const CartTotal = () => {
     const total = shippingFee ? subtotal + shippingFee : subtotal;
 
     return (
-        <div className="flex justify-between items-start mt-6">
-            <div className="flex gap-x-3 items-center ">
+        <div className="flex md:flex-row flex-col gap-6 justify-between items-start mt-6">
+            <div className="flex gap-x-3 items-center w-full">
                 <Input
-                    className="max-w-[298px]"
+                    className="md:max-w-[298px] max-w-full"
                     placeholder="Enter coupon code"
                 />
                 <Button
@@ -33,7 +33,7 @@ export const CartTotal = () => {
                     Apply Coupon
                 </Button>
             </div>
-            <div className="w-[420px] border p-4">
+            <div className="md:w-[420px] w-full border p-4">
                 <h4 className="font-bold text-lg mb-2">Cart Total</h4>
                 <div className="flex items-center justify-between mb-2">
                     Subtotal:
@@ -51,6 +51,14 @@ export const CartTotal = () => {
                     Total:
                     <p className="font-bold text-xl">${total.toFixed(2)}</p>
                 </div>
+            </div>
+            <div className="flex justify-center items-center">
+                <Button
+                    variant="destructive"
+                    className=""
+                >
+                    Proceed to Checkout
+                </Button>
             </div>
         </div>
     );

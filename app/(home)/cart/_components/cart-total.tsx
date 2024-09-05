@@ -33,7 +33,7 @@ export const CartTotal = () => {
                     Apply Coupon
                 </Button>
             </div>
-            <div className="md:w-[420px] w-full border p-4">
+            <div className="md:w-[520px] w-full border p-4 space-y-2">
                 <h4 className="font-bold text-lg mb-2">Cart Total</h4>
                 <div className="flex items-center justify-between mb-2">
                     Subtotal:
@@ -51,15 +51,16 @@ export const CartTotal = () => {
                     Total:
                     <p className="font-bold text-xl">${total.toFixed(2)}</p>
                 </div>
+                <div className="flex justify-center items-center mt-6">
+                    <Button
+                        variant="destructive"
+                        className=""
+                    >
+                        Proceed to Checkout
+                    </Button>
+                </div>
             </div>
-            <div className="flex justify-center items-center">
-                <Button
-                    variant="destructive"
-                    className=""
-                >
-                    Proceed to Checkout
-                </Button>
-            </div>
+
         </div>
     );
 };

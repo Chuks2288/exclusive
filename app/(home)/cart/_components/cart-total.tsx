@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useRouter } from "next/navigation";
 
 export const CartTotal = () => {
-
+    const router = useRouter();
     const cart = useSelector((state: RootState) => state.cart.items);
-    // const shippingFee = useSelector((state: RootState) => state.cart.shippingFee); 
+
     const shippingFee = 50;
 
     // Calculate subtotal
@@ -53,6 +54,7 @@ export const CartTotal = () => {
                 </div>
                 <div className="flex justify-center items-center pt-8">
                     <Button
+                        onClick={() => router.push("/checkout")}
                         variant="destructive"
                         className=""
                     >

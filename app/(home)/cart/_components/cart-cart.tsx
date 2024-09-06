@@ -3,13 +3,7 @@
 import React from "react";
 import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCartQuantity, removeFromCart, clearCart } from "@/store/cart-slice";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { clearCart } from "@/store/cart-slice";
 import { CartTotal } from "./cart-total";
 import { useConfirm } from "@/hooks/use-confirm";
 import { CartSubDetails } from "./cart-sub-details";

@@ -5,7 +5,6 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { IoCaretForward } from "react-icons/io5";
 import { Loader2 } from "lucide-react";
 
@@ -111,9 +110,9 @@ export const RegistrationForm = () => {
                                                 <FormControl>
                                                     <Input
                                                         disabled={mutation.isPending}
-                                                        placeholder=""
-                                                        {...field}
-                                                        type={type}
+                                     <FormField />                   placeholder=""
+                                                    {...field}
+                                                    type={type}
                                                     />
                                                 </FormControl>
                                             </FormItem>

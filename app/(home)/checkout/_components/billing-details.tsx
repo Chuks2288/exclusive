@@ -1,7 +1,10 @@
+import { BillingDetailsForm } from "./billing-details-form"
 
 export const BillingDetails = () => {
     return (
-        <div className="border">BillingDetails</div>
+        <div className="">
+            <BillingDetailsForm />
+        </div>
     )
 }
 

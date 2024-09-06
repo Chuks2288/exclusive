@@ -6,7 +6,7 @@ const CheckoutPage = () => {
     return (
         <main className="py-4 space-y-6">
             <HeadCrumbs />
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-4 border">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                 <BillingDetails />
                 <CheckoutDetails />
             </div>

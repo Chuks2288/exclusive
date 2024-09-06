@@ -17,9 +17,8 @@ export const CheckoutDetails = () => {
     const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const total = shippingFee ? subtotal + shippingFee : subtotal;
 
-
     return (
-        <div className="border md:max-w-[520px] w-full p-4 space-y-3">
+        <div className="md:max-w-[520px] w-full p-4 space-y-3">
             <div className="">
                 {cart.map((item) => (
                     <CheckoutCard
@@ -44,7 +43,7 @@ export const CheckoutDetails = () => {
             <Separator />
             <div className="flex items-center justify-between mb-2">
                 Total:
-                <p className="font-bold text-xl">${total.toFixed(2)}</p>
+                <p className="font-bold text-lg">${total.toFixed(2)}</p>
             </div>
             <div className="flex gap-x-3 items-center w-full pt-4">
                 <Input

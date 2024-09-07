@@ -18,12 +18,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { billingInfoSchema } from "@/schema";
+import { useCreateBillingAddress } from "@/features/address/api/use-create-billing-address";
+import { Loader2 } from "lucide-react";
 
 
 
 type FormValues = z.input<typeof billingInfoSchema>;
 
-export const BillingDetailsForm = () => {
+type Props = {
+    userId?: any;
+}
+
+export const BillingDetailsForm = ({
+    userId
+}: Props) => {
+
+    const mutation = useCreateBillingAddress(userId);
+
     const form = useForm<FormValues>({
         resolver: zodResolver(billingInfoSchema),
         defaultValues: {
@@ -36,7 +47,7 @@ export const BillingDetailsForm = () => {
     });
 
     const onSubmit = (values: FormValues) => {
-        console.log(values);
+        mutation.mutate(values);
     };
 
     return (
@@ -68,7 +79,6 @@ export const BillingDetailsForm = () => {
                                 </FormItem>
                             )}
                         />
-
                         <FormField
                             name="city"
                             control={form.control}
@@ -89,7 +99,6 @@ export const BillingDetailsForm = () => {
                                 </FormItem>
                             )}
                         />
-
                         <FormField
                             name="apartment"
                             control={form.control}
@@ -130,8 +139,12 @@ export const BillingDetailsForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">
-                            Submit
+                        <Button type="submit" className="w-full">
+                            {mutation.isPending ?
+                                (
+                                    <Loader2 className="animate-spin size-4" />
+                                )
+                                : "Submit"}
                         </Button>
                     </form>
                 </Form>

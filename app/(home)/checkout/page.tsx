@@ -1,4 +1,4 @@
-import { BillingDetails } from "./_components/billing-details"
+import { BillingDetailsForm } from "./_components/billing-details-form"
 import { CheckoutDetails } from "./_components/checkout-details"
 import { HeadCrumbs } from "./_components/head-crumbs"
 
@@ -7,7 +7,7 @@ const CheckoutPage = () => {
         <main className="py-4 space-y-6">
             <HeadCrumbs />
             <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                <BillingDetails />
+                <BillingDetailsForm />
                 <CheckoutDetails />
             </div>
         </main>

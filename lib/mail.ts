@@ -73,12 +73,13 @@ export const sendIPChangeNotification = async (
 
 export const BillingAddressUpdate = async (
     email: string,
+    userId?: string | any,
 ) => {
 
     await resend.emails.send({
         from: "onboarding@resend.dev",
         to: email,
         subject: "Billing Address updated Successfully",
-        react: BillingAddressUpdateMessage(),
+        react: BillingAddressUpdateMessage({ userId }),
     });
 };

@@ -1,49 +1,48 @@
 "use server";
 
 import { z } from "zod";
-import bcrypt from "bcryptjs";
-
 import { billingInfoSchema } from "@/schema";
-import { getUserByEmail } from "@/lib/user";
 import { db } from "@/lib/db";
 import { BillingAddressUpdate } from "@/lib/mail";
+import { currentUser } from "@/lib/auth";
 
+type FormValues = z.infer<typeof billingInfoSchema>;
 
-type FormValues = z.infer<typeof billingInfoSchema>
-
-export const createBillingAddress = async (
-    values: FormValues,
-    userId: string,
-    email?: any,
-) => {
+export const createBillingAddress = async (values: FormValues, email?: string) => {
     const validateFields = billingInfoSchema.safeParse(values);
 
     if (!validateFields.success) {
-        return { error: "Invalid fields" }
+        return { error: "Invalid fields" };
     }
 
     const { street, city, phoneNumber, apartment } = validateFields.data;
 
-    if (!street || !city || !phoneNumber || !apartment) {
-        return { error: "Fill out the field correctly" }
+    if (!street || !city || !phoneNumber) {
+        return { error: "Fill out the fields correctly" };
     }
 
-    // const existingUserByEmail = await getUserByEmail(email)
+    const user = await currentUser();
+    const userId = user?.id;
 
+    if (!userId) {
+        return { error: "User not authenticated." };
+    }
 
+    // Create the billing address linked to the authenticated user
     await db.address.create({
         data: {
             street,
             city,
             phoneNumber,
             apartment,
-            userId,
-        }
+            userId,  // Connect by userId
+        },
     });
 
-    await BillingAddressUpdate(
-        email
-    )
+    // Optionally send email notification
+    if (email) {
+        await BillingAddressUpdate(email);
+    }
 
-    return { success: "You have successfull created your account" }
-}
+    return { success: "You have successfully created your billing address" };
+};

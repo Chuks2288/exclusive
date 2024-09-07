@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { z } from "zod";
 import {
     Form,
@@ -10,30 +12,16 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { billingInfoSchema } from "@/schema";
 import { useCreateBillingAddress } from "@/features/address/api/use-create-billing-address";
-import { Loader2 } from "lucide-react";
-
-
 
 type FormValues = z.input<typeof billingInfoSchema>;
 
-type Props = {
-    userId?: any;
-}
+export const BillingDetailsForm = () => {
 
-export const BillingDetailsForm = ({
-    userId
-}: Props) => {
-
-    const mutation = useCreateBillingAddress(userId);
+    const mutation = useCreateBillingAddress();  // Removed userId as it's not needed
 
     const form = useForm<FormValues>({
         resolver: zodResolver(billingInfoSchema),
@@ -70,7 +58,7 @@ export const BillingDetailsForm = ({
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            disabled={false}
+                                            disabled={mutation.isPending} // Disable during loading
                                             className="p-2.5 rounded-md text-sm bg-gray-100"
                                             {...field}
                                         />
@@ -90,7 +78,7 @@ export const BillingDetailsForm = ({
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            disabled={false}
+                                            disabled={mutation.isPending}
                                             className="p-2.5 rounded-md text-sm bg-gray-100"
                                             {...field}
                                         />
@@ -109,7 +97,7 @@ export const BillingDetailsForm = ({
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            disabled={false}
+                                            disabled={mutation.isPending}
                                             className="p-2.5 rounded-md text-sm bg-gray-100"
                                             {...field}
                                         />
@@ -128,18 +116,35 @@ export const BillingDetailsForm = ({
                                         <span className="text-red-500">*</span>
                                     </FormLabel>
                                     <FormControl>
+                                        {/* Uncomment this if PhoneInput is needed */}
+                                        {/* <Controller
+                                            name="phoneNumber"
+                                            control={form.control}
+                                            render={({ field: { onChange, value } }) => (
+                                                <PhoneInput
+                                                    country={'us'}
+                                                    value={value}
+                                                    onChange={(phone) => onChange(parsePhoneNumberFromString(phone)?.number)}
+                                                    inputProps={{
+                                                        name: 'phoneNumber',
+                                                        required: true,
+                                                    }}
+                                                    disabled={mutation.isPending}
+                                                    inputClass="p-2.5 rounded-md text-sm bg-gray-100 w-full"
+                                                />
+                                            )}
+                                        /> */}
                                         <Input
-                                            disabled={false}
+                                            disabled={mutation.isPending}
                                             className="p-2.5 rounded-md text-sm bg-gray-100"
                                             {...field}
                                         />
                                     </FormControl>
                                     <FormMessage />
-
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full">
+                        <Button type="submit" className="w-full" disabled={mutation.isPending}>
                             {mutation.isPending ?
                                 (
                                     <Loader2 className="animate-spin size-4" />

@@ -17,15 +17,13 @@ model User {
   loginDate     DateTime?
   loginDevice   String?
 
-  // Personal and shipping details
-  firstName   String?
-  lastName    String?
-  // phoneNumber String?
-  homeAddress Address? // Optional billing address if different from homeAddress
+  firstName String?
+  lastName  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  Address       Address[]
   Account       Account[]
   ProductReview ProductReview[]
 }
@@ -60,8 +58,6 @@ model Address {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@unique([userId])
 }
 
 model FlashSalesProduct {

@@ -47,3 +47,16 @@ export const ProductCommentSchema = z.object({
         message: "Comment is required",
     }),
 });
+
+export const billingInfoSchema = z.object({
+    city: z.string().min(1, {
+        message: 'City is required',
+    }),
+    street: z.string().min(5, {
+        message: 'Street Address is required',
+    }),
+    apartment: z.string().optional(),
+    phoneNumber: z.string().min(10, {
+        message: 'Invalid phone number',
+    }),
+});

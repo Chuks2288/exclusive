@@ -53,9 +53,6 @@ model Address {
   id          String  @id @default(cuid())
   street      String
   city        String
-  state       String
-  postalCode  String
-  country     String
   phoneNumber String?
   apartment   String?
   userId      String

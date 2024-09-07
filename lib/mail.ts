@@ -5,6 +5,7 @@ import ResetSuccessMessage from "@/emails/reset-success-message";
 import { RegisterWelcomeMessage } from "@/emails/register-welcome-message";
 import IPChangeNotification from "@/emails/ipchange-notification";
 import { config } from "dotenv";
+import BillingAddressUpdateMessage from "@/emails/billing-address-message";
 
 config({ path: ".env" });
 
@@ -70,3 +71,14 @@ export const sendIPChangeNotification = async (
     });
 };
 
+export const BillingAddressUpdate = async (
+    email: string,
+) => {
+
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Billing Address updated Successfully",
+        react: BillingAddressUpdateMessage(),
+    });
+};

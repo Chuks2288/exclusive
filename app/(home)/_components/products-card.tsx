@@ -1,15 +1,18 @@
-"use client";
-
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Eye, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Rating, Star } from '@smastrom/react-rating';
-import '@smastrom/react-rating/style.css';
+import { Rating, Star } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 import { useRouter } from "next/navigation";
 import { useAddToCart } from "@/features/cart/use-add-to-cart";
 import { useRemoveFromCart } from "@/features/cart/use-remove-from-cart";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useCreateWishlist } from "@/features/wishlist/api/use-create-wishlist";
+import { useDeleteWishlistById } from "@/features/wishlist/api/use-delete-wishlist-by-id";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { toast } from "sonner";
 
 type Props = {
     id: any;
@@ -34,12 +37,16 @@ export const ProductsCard = ({
     reviews,
     isNew,
 }: Props) => {
+    const user = useCurrentUser();
     const router = useRouter();
     const { mutate: addToCart } = useAddToCart();
     const { mutate: removeFromCart } = useRemoveFromCart(id);
+    const { mutate: addToWishlist } = useCreateWishlist({ userId: user?.id, productId: id });
+    const { mutate: removeFromWishlist } = useDeleteWishlistById(id);
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
-    const isInCart = cartItems.some(item => item.id === id);
+    const isInCart = cartItems.some((item) => item.id === id);
+    const [isInWishlist, setIsInWishlist] = useState(false);
 
     // Handle add/remove to/from cart
     const handleCartAction = (e: React.MouseEvent) => {
@@ -59,6 +66,45 @@ export const ProductsCard = ({
             });
         }
     };
+
+    // Handle adding/removing from wishlist
+    const handleAddToWishlist = (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        if (user?.id) {
+            if (isInWishlist) {
+                // Remove from wishlist
+                removeFromWishlist(id, {
+                    onSuccess: () => {
+                        setIsInWishlist(false);
+                        toast.success("Removed from wishlist");
+                    },
+                    onError: () => {
+                        toast.error("Failed to remove from wishlist");
+                    },
+                });
+            } else {
+                // Add to wishlist
+                addToWishlist(id, {
+                    onSuccess: () => {
+                        setIsInWishlist(true);
+                        toast.success("Added to wishlist");
+                    },
+                    onError: () => {
+                        toast.error("Failed to add to wishlist");
+                    },
+                });
+            }
+        } else {
+            toast.error("Please log in to add items to your wishlist");
+        }
+    };
+
+    useEffect(() => {
+        if (!user?.id) {
+            setIsInWishlist(false); // Reset wishlist state when user logs out
+        }
+    }, [user]);
 
     return (
         <div>
@@ -83,11 +129,17 @@ export const ProductsCard = ({
                         width={160}
                         height={160}
                         priority
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: "cover" }}
                     />
                 </div>
-                <span className="absolute top-2 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
-                    <Heart className="size-3 text-black" />
+                <span
+                    onClick={handleAddToWishlist}
+                    className={`absolute top-2 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer ${isInWishlist ? "text-red-500" : "text-black"
+                        }`}
+                >
+                    <Heart
+                        className={`size-3 ${isInWishlist ? "text-red-500" : "text-black"}`}
+                    />
                 </span>
                 <span className="absolute top-10 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
                     <Eye className="size-3 text-black" />
@@ -104,17 +156,11 @@ export const ProductsCard = ({
                 </Button>
             </div>
             <div className="flex flex-col gap-y-2 mt-4">
-                <h4 className="text-sm font-bold">
-                    {name}
-                </h4>
+                <h4 className="text-sm font-bold">{name}</h4>
                 <div className="flex items-center gap-x-2">
-                    <p className="text-xs text-red-500">
-                        {`$${price}`}
-                    </p>
+                    <p className="text-xs text-red-500">{`$${price}`}</p>
                     {initialPrice > price && (
-                        <p className="text-xs line-through">
-                            {`$${initialPrice}`}
-                        </p>
+                        <p className="text-xs line-through">{`$${initialPrice}`}</p>
                     )}
                 </div>
                 <div className="flex items-center gap-x-2">

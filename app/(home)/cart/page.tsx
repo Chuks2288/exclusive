@@ -1,4 +1,4 @@
-import { CartCard } from "./_components/cart-cart"
+import { CartCard } from "./_components/cart-card"
 import { CartCrumb } from "./_components/cart-crumb"
 
 const CartPage = async () => {

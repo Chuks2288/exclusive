@@ -1,22 +1,35 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getBillingAddress } from "@/actions/address/get-billing-address";
 
-export const useGetBillingAddress = (id?: string | any): UseQueryResult<any, Error> => {
-    return useQuery<any, Error>({
-        enabled: !!id,
-        queryKey: ["billingAddress", { id }],
+type BillingAddress = {
+    id: string;
+    street: string;
+    city: string;
+    apartment: string | null;
+    phoneNumber: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+};
+
+export const useGetBillingAddress = (id?: string): UseQueryResult<BillingAddress, Error> => {
+    return useQuery<BillingAddress, Error>({
+        enabled: !!id,  // only enable the query if 'id' exists
+        queryKey: ["billingAddress", id],
         queryFn: async () => {
             if (!id) {
-                throw new Error("Product ID is required");
+                throw new Error("Address ID is required");
             }
 
+            // Fetch the billing address from the server
             const data = await getBillingAddress({ id });
 
-            if (!data || typeof data !== "object" || !data.id) {
-                throw new Error("Invalid product data");
+            // Check if data is valid
+            if (!data || !data.id) {
+                throw new Error("Invalid address data");
             }
 
-            return data;
+            return data; // This must return a `BillingAddress`
         },
+        retry: false, // Disable retry on failure (optional)
     });
 };

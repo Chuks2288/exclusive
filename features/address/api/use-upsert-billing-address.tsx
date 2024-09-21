@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
-import { createBillingAddress } from '@/actions/address/create-billing-address';
+import { upsertBillingAddress } from '@/actions/address/upsert-billing-address';
 
-export const useCreateBillingAddress = (email?: string) => {
+export const useUpsertBillingAddress = (email?: string) => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation({
@@ -12,8 +12,7 @@ export const useCreateBillingAddress = (email?: string) => {
             phoneNumber: string;
             apartment?: string;
         }) => {
-            // Pass the values and optionally email to the server-side function
-            const response = await createBillingAddress(values, email);
+            const response = await upsertBillingAddress(values, email);
             if (response.error) {
                 throw new Error(response.error);
             }
@@ -24,7 +23,6 @@ export const useCreateBillingAddress = (email?: string) => {
                 toast.success(data.success);
             }
 
-            // Invalidate billingAddress queries to refetch the data
             queryClient.invalidateQueries({ queryKey: ['billingAddress'] });
         },
         onError: (error: any) => {

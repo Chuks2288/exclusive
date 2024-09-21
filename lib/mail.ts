@@ -9,7 +9,8 @@ import BillingAddressUpdateMessage from "@/emails/billing-address-message";
 
 config({ path: ".env" });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_bA9eAqCi_Prvaa8mxNykJRm1JMhWVRGwN");
 
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 

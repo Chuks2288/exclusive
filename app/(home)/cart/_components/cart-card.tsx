@@ -16,7 +16,7 @@ export const CartCard = () => {
 
     const [ConfirmDialog, confirm] = useConfirm(
         "Confirm Deletion",
-        "Are you sure you want to remove this item from the cart?"
+        "Are you sure you want to clear the cart?"
     );
 
     const handleClearCart = async () => {

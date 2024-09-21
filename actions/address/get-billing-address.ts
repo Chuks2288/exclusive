@@ -6,14 +6,9 @@ type IParams = {
     id: string;
 };
 
-export const getBillingAddress = async ({
-    id
-}: IParams) => {
-
+export const getBillingAddress = async ({ id }: IParams) => {
     const address = await db.address.findUnique({
-        where: {
-            id
-        },
+        where: { id },
     });
 
     if (!address) {

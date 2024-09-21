@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { useConfirm } from "@/hooks/use-confirm";
 import Link from "next/link"
 
 
@@ -10,14 +9,8 @@ type Props = {
 export const CartSubDetails = ({
     handleClearCart
 }: Props) => {
-    const [ConfirmDialog, confirm] = useConfirm(
-        "Confirm Deletion",
-        "Are you sure you want to clear the cart?"
-    );
-
     return (
         <>
-            <ConfirmDialog />
             <div className="flex justify-between items-center mt-6 text-sm font-medium">
                 <Link
                     href="/"

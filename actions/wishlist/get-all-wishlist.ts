@@ -2,12 +2,11 @@
 
 import { db } from "@/lib/db";
 
-export const getWishlistById = async (wishlistId: string, productId: string) => {
+export const getAllWishlist = async () => {
     try {
-        const wishlist = await db.wishlist.findFirst({
-            where: {
-                id: wishlistId,
-                productId: productId, // Ensure this matches both wishlist and product
+        const wishlist = await db.wishlist.findMany({
+            orderBy: {
+                createdAt: "desc",
             },
             include: {
                 product: {
@@ -24,13 +23,10 @@ export const getWishlistById = async (wishlistId: string, productId: string) => 
             },
         });
 
-        if (!wishlist) {
-            return { error: "Wishlist not found" };
-        }
-
+        // No need to check for null/undefined, as findMany returns an empty array if nothing is found
         return wishlist;
     } catch (error) {
-        console.error("Error fetching wishlist", error);
+        console.error("Error fetching wishlist:", error);
         return { error: "Failed to fetch wishlist" };
     }
 };

@@ -13,6 +13,7 @@ import { useCreateWishlist } from "@/features/wishlist/api/use-create-wishlist";
 import { useDeleteWishlistById } from "@/features/wishlist/api/use-delete-wishlist-by-id";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { toast } from "sonner";
+import { useGetWishlistById } from "@/features/wishlist/api/use-get-wishlist-by-id";
 
 type Props = {
     id: any;
@@ -43,10 +44,19 @@ export const ProductsCard = ({
     const { mutate: removeFromCart } = useRemoveFromCart(id);
     const { mutate: addToWishlist } = useCreateWishlist({ userId: user?.id, productId: id });
     const { mutate: removeFromWishlist } = useDeleteWishlistById(id);
+    const { data: wishlistItems = [] } = useGetWishlistById(user?.id);
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
     const isInCart = cartItems.some((item) => item.id === id);
     const [isInWishlist, setIsInWishlist] = useState(false);
+
+    // Check if the product is in the wishlist on mount
+    useEffect(() => {
+        if (Array.isArray(wishlistItems)) {
+            const existsInWishlist = wishlistItems.some((item: any) => item.productId === id);
+            setIsInWishlist(existsInWishlist);
+        }
+    }, [wishlistItems, id]);
 
     // Handle add/remove to/from cart
     const handleCartAction = (e: React.MouseEvent) => {
@@ -100,12 +110,6 @@ export const ProductsCard = ({
         }
     };
 
-    useEffect(() => {
-        if (!user?.id) {
-            setIsInWishlist(false); // Reset wishlist state when user logs out
-        }
-    }, [user]);
-
     return (
         <div>
             <div
@@ -134,12 +138,9 @@ export const ProductsCard = ({
                 </div>
                 <span
                     onClick={handleAddToWishlist}
-                    className={`absolute top-2 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer ${isInWishlist ? "text-red-500" : "text-black"
-                        }`}
+                    className={`absolute top-2 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer ${isInWishlist ? "text-red-500" : "text-black"}`}
                 >
-                    <Heart
-                        className={`size-3 ${isInWishlist ? "text-red-500" : "text-black"}`}
-                    />
+                    <Heart className={`size-3 ${isInWishlist ? "text-red-500" : "text-black"}`} />
                 </span>
                 <span className="absolute top-10 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
                     <Eye className="size-3 text-black" />

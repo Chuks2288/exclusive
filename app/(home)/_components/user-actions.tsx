@@ -1,5 +1,3 @@
-"use client"; // Ensures the component is treated as a client component
-
 import { Popover, PopoverClose, PopoverTrigger } from "@/components/ui/popover";
 import { userProfileRoutes } from "@/data";
 import { PopoverContent } from "@radix-ui/react-popover";
@@ -15,6 +13,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ActionTooltip from "@/components/action-tooltip";
+import { useGetAllWishlists } from "@/features/wishlist/api/use-get-all-wishlist"; // Assuming you have a hook to fetch wishlist
 
 interface UserActionRoutesProps {
     icon: any;
@@ -30,6 +29,7 @@ export const UserActions = () => {
     );
 
     const { mutate: logout } = useLogout();
+    const { data: wishlistData } = useGetAllWishlists();
     const pathname = usePathname();
     const user = useCurrentUser();
 
@@ -43,12 +43,14 @@ export const UserActions = () => {
 
     const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
 
+    const wishlistItemCount = wishlistData?.length || 0;
+
     const userActionRoutes: UserActionRoutesProps[] = [
         {
             icon: Heart,
             path: "/wishlist",
-            label: "wishList",
-            item: 0,
+            label: "Wishlist",
+            item: wishlistItemCount,
         },
         {
             icon: ShoppingCart,
@@ -66,20 +68,18 @@ export const UserActions = () => {
                         label={item.label}
                         side="top"
                         align="start"
+                        key={item.path}
                     >
                         <Link
                             href={item.path}
-                            key={item.path}
                             className="relative"
                         >
-
                             <item.icon className="size-5" />
                             {item.item > 0 && (
                                 <span className="absolute -top-3.5 -right-2 w-5 h-5 rounded-full bg-red-500 text-xs flex justify-center items-center text-white">
                                     {item.item}
                                 </span>
                             )}
-
                         </Link>
                     </ActionTooltip>
                 ))}

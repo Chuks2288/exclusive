@@ -8,7 +8,8 @@ export const publicRoutes = [
     '/about',       // About page
     '/contact',     // Contact page
     '/cart',
-    '/product/*',
+    '/product',
+    '/product/[id]',
     "/api/uploadthing",
     "/api/webhooks/stripe",
     // "https://sandbox.plaid.com/link/token/create",

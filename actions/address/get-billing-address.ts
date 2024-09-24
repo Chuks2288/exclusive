@@ -7,12 +7,17 @@ type IParams = {
 };
 
 export const getBillingAddress = async ({ id }: IParams) => {
+    if (!id) {
+        throw new Error("ID parameter is required");
+    }
+
     const address = await db.address.findUnique({
         where: { id },
     });
 
     if (!address) {
-        throw new Error("Address not found");
+        console.error("Address not found for ID:", id);
+        return null; // Instead of throwing an error
     }
 
     return address;

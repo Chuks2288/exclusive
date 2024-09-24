@@ -1,16 +1,12 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export const FlashSalesTime = () => {
-    // Function to initialize or retrieve the target date
     const initializeTargetDate = () => {
         const storedTargetDate = localStorage.getItem('flashSalesTargetDate');
         if (storedTargetDate) {
             return parseInt(storedTargetDate, 10);
         }
 
-        // If no stored target date, set a new one 3 days from now
         const newTargetDate = new Date().getTime() + 3 * 24 * 60 * 60 * 1000;
         localStorage.setItem('flashSalesTargetDate', newTargetDate.toString());
         return newTargetDate;
@@ -18,13 +14,12 @@ export const FlashSalesTime = () => {
 
     const targetDate = initializeTargetDate();
 
-    const calculateTimeLeft = () => {
+    const calculateTimeLeft = useCallback(() => {
         const currentTime = new Date().getTime();
         const difference = targetDate - currentTime;
 
-        // Check if the countdown has ended
         if (difference <= 0) {
-            localStorage.removeItem('flashSalesTargetDate'); // Clear the stored target date
+            localStorage.removeItem('flashSalesTargetDate');
             return {
                 days: 0,
                 hours: 0,
@@ -39,18 +34,17 @@ export const FlashSalesTime = () => {
             minutes: Math.floor((difference / 1000 / 60) % 60),
             seconds: Math.floor((difference / 1000) % 60),
         };
-    };
+    }, [targetDate]);
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
-        // Update the countdown every second
         const timer = setInterval(() => {
             setTimeLeft(calculateTimeLeft());
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [calculateTimeLeft]);
 
     return (
         <div className="flex items-center justify-between lg:max-w-[580px] max-w-[90%]">

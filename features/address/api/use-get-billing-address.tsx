@@ -11,25 +11,23 @@ type BillingAddress = {
     updatedAt: Date;
 };
 
-export const useGetBillingAddress = (id?: string): UseQueryResult<BillingAddress, Error> => {
-    return useQuery<BillingAddress, Error>({
-        enabled: !!id,  // only enable the query if 'id' exists
+export const useGetBillingAddress = (id?: string): UseQueryResult<BillingAddress | null, Error> => {
+    return useQuery<BillingAddress | null, Error>({
+        enabled: !!id,
         queryKey: ["billingAddress", id],
         queryFn: async () => {
             if (!id) {
                 throw new Error("Address ID is required");
             }
 
-            // Fetch the billing address from the server
             const data = await getBillingAddress({ id });
 
-            // Check if data is valid
-            if (!data || !data.id) {
+            if (!data || typeof data.id !== "string") {
                 throw new Error("Invalid address data");
             }
 
-            return data; // This must return a `BillingAddress`
+            return data;
         },
-        retry: false, // Disable retry on failure (optional)
+        retry: false,
     });
 };

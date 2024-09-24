@@ -18,16 +18,25 @@ import { billingInfoSchema } from "@/schema";
 import { useUpsertBillingAddress } from "@/features/address/api/use-upsert-billing-address";
 import { useGetBillingAddress } from "@/features/address/api/use-get-billing-address";
 import { useEffect } from "react";
+import { Address } from "@prisma/client";
 
 type FormValues = z.input<typeof billingInfoSchema>;
 
 type Props = {
-    id?: any;
+    id: any;
+    billingAddress: Address;
+    isBillingAddressLoading: boolean;
 }
 
-export const BillingDetailsForm = ({ id }: Props) => {
-    const { data: billingAddress, isLoading: isBillingAddressLoading } = useGetBillingAddress(id);
+export const BillingDetailsForm = ({
+    id,
+    billingAddress,
+    isBillingAddressLoading
+}: Props) => {
     const mutation = useUpsertBillingAddress();
+
+
+    console.log(billingAddress);
 
     const form = useForm<FormValues>({
         resolver: zodResolver(billingInfoSchema),
@@ -40,7 +49,6 @@ export const BillingDetailsForm = ({ id }: Props) => {
         mode: "onChange",
     });
 
-    // Update form default values after billingAddress is loaded
     useEffect(() => {
         if (billingAddress) {
             form.reset({

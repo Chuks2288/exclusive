@@ -25,7 +25,7 @@ export const FlashSales = ({
             <div className="flex items-center gap-x-3">
                 <div className="w-3 h-8 rounded-sm bg-red-600" />
                 <p className="text-red-600 text-sm font-bold">
-                    Today's
+                    Today&rsquo;s
                 </p>
             </div>
             <FlashSalesTime />

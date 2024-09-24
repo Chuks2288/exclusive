@@ -148,7 +148,7 @@ export const RegistrationForm = () => {
                         </div>
                         <div className="flex items-center justify-center gap-x-3 text-sm pt-2 font-medium">
                             <p className="text-gray-400">
-                                Don't have an account?
+                                Don&apos;t have an account?
                             </p>
                             <span
                                 onClick={onClick}

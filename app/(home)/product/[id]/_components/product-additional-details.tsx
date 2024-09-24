@@ -113,8 +113,7 @@ export const ProductAdditionalDetails = ({
                                         }}
                                     />
                                 </div>
-                                {/* <p className="text-xs text-yellow-600 dark:text-yellow-400">Rating: {review.rating} / 5</p> */}
-                                <p className="italic text-xs">"{review.comment}"</p>
+                                <p className="italic text-xs">&ldquo;{review.comment}&rdquo;</p>
                                 <p className="text-xs ">{new Date(review.date).toLocaleDateString()}</p>
                             </div>
                         ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { footerData } from "@/data";
+import Image from "next/image";
 
 export const Footer = () => {
     return (
@@ -50,10 +51,12 @@ export const Footer = () => {
                                             return (
                                                 <div key={idx} className="flex space-x-4 mt-4">
                                                     {item.images.map((image: any, imgIdx: any) => (
-                                                        <img
+                                                        <Image
                                                             key={imgIdx}
                                                             src={image.src}
                                                             alt={image.alt}
+                                                            width={96}  // Adjust width and height based on your requirements
+                                                            height={90}  // Next.js requires explicit width and height
                                                             className="w-24 h-auto"
                                                         />
                                                     ))}

@@ -43,14 +43,13 @@ export const ProductsCard = ({
     const { mutate: addToCart } = useAddToCart();
     const { mutate: removeFromCart } = useRemoveFromCart(id);
     const { mutate: addToWishlist } = useCreateWishlist({ userId: user?.id, productId: id });
-    const { mutate: removeFromWishlist } = useDeleteWishlistById(id);
-    const { data: wishlistItems = [] } = useGetWishlistById(user?.id);
+    const { mutate: removeFromWishlist } = useDeleteWishlistById({ userId: user?.id, product: id });
+    const { data: wishlistItems = [] } = useGetWishlistById(id);
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
-    const isInCart = cartItems.some((item) => item.id === id);
     const [isInWishlist, setIsInWishlist] = useState(false);
+    const isInCart = cartItems.some((item) => item.id === id);
 
-    // Check if the product is in the wishlist on mount
     useEffect(() => {
         if (Array.isArray(wishlistItems)) {
             const existsInWishlist = wishlistItems.some((item: any) => item.productId === id);
@@ -58,10 +57,8 @@ export const ProductsCard = ({
         }
     }, [wishlistItems, id]);
 
-    // Handle add/remove to/from cart
     const handleCartAction = (e: React.MouseEvent) => {
         e.stopPropagation();
-
         if (isInCart) {
             removeFromCart(id);
         } else {
@@ -77,13 +74,11 @@ export const ProductsCard = ({
         }
     };
 
-    // Handle adding/removing from wishlist
     const handleAddToWishlist = (e: React.MouseEvent) => {
         e.stopPropagation();
 
         if (user?.id) {
             if (isInWishlist) {
-                // Remove from wishlist
                 removeFromWishlist(id, {
                     onSuccess: () => {
                         setIsInWishlist(false);
@@ -94,7 +89,6 @@ export const ProductsCard = ({
                     },
                 });
             } else {
-                // Add to wishlist
                 addToWishlist(id, {
                     onSuccess: () => {
                         setIsInWishlist(true);
@@ -136,17 +130,18 @@ export const ProductsCard = ({
                         style={{ objectFit: "cover" }}
                     />
                 </div>
+
                 <span
                     onClick={handleAddToWishlist}
-                    className={`absolute top-2 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer ${isInWishlist ? "text-red-500" : "text-black"}`}
+                    className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer ${isInWishlist ? "text-red-500" : "text-black"}`}
                 >
-                    <Heart className={`size-3 ${isInWishlist ? "text-red-500" : "text-black"}`} />
+                    <Heart className="size-3" />
                 </span>
-                <span className="absolute top-10 right-2 flex justify-center items-center text-white w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
+
+                <span className="absolute top-10 right-2 flex justify-center items-center w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
                     <Eye className="size-3 text-black" />
                 </span>
 
-                {/* Add to Cart Button */}
                 <Button
                     variant="outline"
                     size="sm"
@@ -156,6 +151,7 @@ export const ProductsCard = ({
                     {isInCart ? "Remove from Cart" : "Add to Cart"}
                 </Button>
             </div>
+
             <div className="flex flex-col gap-y-2 mt-4">
                 <h4 className="text-sm font-bold">{name}</h4>
                 <div className="flex items-center gap-x-2">

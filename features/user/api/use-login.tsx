@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { login } from '@/actions/user/login';
 import { LoginSchema } from '@/schema';
 import { z } from 'zod';
+import { useEffect } from 'react';
 
 type FormValues = z.infer<typeof LoginSchema>;
 
@@ -15,6 +16,13 @@ export const useLogin = () => {
     const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
         ? "Email already in use with different provider!"
         : "";
+
+    // Show toast if there's an OAuth error from the URL
+    useEffect(() => {
+        if (urlError) {
+            toast.error(urlError);
+        }
+    }, [urlError]);
 
     const mutation = useMutation({
         mutationFn: async (values: FormValues) => {
@@ -35,7 +43,7 @@ export const useLogin = () => {
             }
 
             if (data?.error) {
-                toast.error(data.error || urlError);
+                toast.error(data.error);
             }
 
             queryClient.invalidateQueries({ queryKey: ["user"] });

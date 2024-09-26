@@ -4,10 +4,8 @@ import { ResetPassword } from "@/emails/reset-password";
 import ResetSuccessMessage from "@/emails/reset-success-message";
 import { RegisterWelcomeMessage } from "@/emails/register-welcome-message";
 import IPChangeNotification from "@/emails/ipchange-notification";
-import { config } from "dotenv";
 import BillingAddressUpdateMessage from "@/emails/billing-address-message";
 
-config({ path: ".env" });
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

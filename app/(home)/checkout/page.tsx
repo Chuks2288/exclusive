@@ -15,7 +15,7 @@ import { z } from "zod";
 type FormValues = z.input<typeof billingInfoSchema>;
 
 type Props = {
-    id: string | any;
+    id: string; // Change made here
 };
 
 const CheckoutPage = ({ id }: Props) => {

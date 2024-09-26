@@ -10,16 +10,14 @@ import { CheckoutDetailsSkeleton } from "./_components/skeleton/checkout-details
 import { Address } from "@prisma/client";
 import { useUpsertBillingAddress } from "@/features/address/api/use-upsert-billing-address";
 import { billingInfoSchema } from "@/schema";
+import { useParams } from "next/navigation";
 import { z } from "zod";
 
 type FormValues = z.input<typeof billingInfoSchema>;
 
-type Props = {
-    id: string; // Change made here
-};
-
-const CheckoutPage = ({ id }: Props) => {
-    const { data: billingAddress, isLoading: isBillingAddressLoading } = useGetBillingAddress(id);
+const CheckoutPage = () => {
+    const { id } = useParams();
+    const { data: billingAddress, isLoading: isBillingAddressLoading } = useGetBillingAddress();
     const mutation = useUpsertBillingAddress();
 
     const onSubmit = (values: FormValues) => {

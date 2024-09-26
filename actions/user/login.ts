@@ -12,6 +12,10 @@ import { sendIPChangeNotification } from "@/lib/mail";
 
 import { getGeolocation } from "@/lib/user";
 
+export const config = {
+    runtime: "nodejs",
+};
+
 type FormValues = z.infer<typeof LoginSchema>;
 
 export const login = async (

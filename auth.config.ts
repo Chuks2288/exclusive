@@ -5,8 +5,12 @@ import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "./schema";
 import { getUserByEmail } from "./lib/user";
 import type { NextAuthConfig } from "next-auth";
-
 import bcrypt from "bcryptjs";
+
+export const config = {
+    runtime: "nodejs",
+};
+
 
 export default {
     providers: [

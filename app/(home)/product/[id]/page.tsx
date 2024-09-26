@@ -15,13 +15,9 @@ import { ProductDetailsSkeleton } from "./_components/skeleton/product-details-s
 import { ProductAdditionalDetailsSkeleton } from "./_components/skeleton/product-additional-details-skeleton";
 import { useGetAllProducts } from "@/features/products/api/use-get-all-products";
 
-type Props = {
-    productId: string | any;
-}
 
-const ProductIdPage = ({
-    productId
-}: Props) => {
+
+const ProductIdPage = () => {
     const { id } = useParams();
 
     const {

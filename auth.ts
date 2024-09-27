@@ -91,7 +91,6 @@ export const {
             return token;
         }
     },
-    // @ts-ignore
     adapter: PrismaAdapter(db),
     session: {
         strategy: "jwt",
@@ -99,3 +98,4 @@ export const {
     },
     ...authConfig,
 })
+

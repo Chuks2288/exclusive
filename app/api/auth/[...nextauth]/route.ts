@@ -1,3 +1,4 @@
-export { GET, POST } from "@/auth"; // No need to set the runtime again
+export { GET, POST } from "@/auth";
 
-export const runtime = "nodejs"
+export const runtime = 'nodejs';
+

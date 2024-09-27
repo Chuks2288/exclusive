@@ -1,4 +1,4 @@
-import { config } from "dotenv";
+// import { config } from "dotenv";
 import { db } from "@/lib/db";
 import {
     Discount,
@@ -11,7 +11,7 @@ import {
     Warranty,
 } from "@prisma/client";
 
-config({ path: ".env.local" });
+// config({ path: ".env.local" });
 
 type ProductWithoutTimestamps = Omit<Product, "createdAt" | "updatedAt">;
 

@@ -18,12 +18,14 @@ interface Props {
     userId: string; // Pass the user ID
 }
 
-export const BillingAddressUpdateMessage = ({
-    userId
-}: Props) => {
+export const BillingAddressUpdateMessage = ({ userId }: Props) => {
     const { data } = useGetBillingAddress(userId);
 
-    const { street, city, apartment, phoneNumber } = data;
+    // Ensure `data` exists and provide a fallback for undefined values
+    const street = data?.street ?? "N/A";
+    const city = data?.city ?? "N/A";
+    const apartment = data?.apartment ?? "N/A";
+    const phoneNumber = data?.phoneNumber ?? "N/A";
 
     return (
         <Html>

@@ -9,10 +9,6 @@ import { getUserByEmail } from "@/lib/user";
 import { db } from "@/lib/db";
 import { PasswodResetSuccessMessage } from "@/lib/mail";
 
-export const config = {
-    runtime: "nodejs",
-};
-
 export const newPassword = async (
     values: z.infer<typeof NewPasswordSchema>,
     token?: string | null,

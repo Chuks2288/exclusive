@@ -8,11 +8,6 @@ import { getUserByEmail } from "@/lib/user";
 import { db } from "@/lib/db";
 import { RegisterWelcomeMessageEmail } from "@/lib/mail";
 
-export const config = {
-    runtime: "nodejs",
-};
-
-
 type FormValues = z.infer<typeof RegisterSchema>
 
 export const register = async (values: FormValues) => {

@@ -6,6 +6,7 @@ import { Hero } from "./_components/hero";
 import { Products } from "./_components/products";
 import { FlashSales } from "./_components/flash-sales";
 
+
 import { CategoryProducts } from "./_components/category-product";
 import { ProductBanner } from "./_components/product-banner";
 import { BestSellingProducts } from "./_components/best-selling-products";

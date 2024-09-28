@@ -1,5 +1,3 @@
-"use client";
-
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMutation, QueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";

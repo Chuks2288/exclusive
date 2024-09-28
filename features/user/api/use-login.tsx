@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { login } from '@/actions/user/login';
 import { LoginSchema } from '@/schema';
 import { z } from 'zod';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type FormValues = z.infer<typeof LoginSchema>;
 
@@ -12,13 +12,15 @@ export const useLogin = () => {
     const queryClient = new QueryClient();
     const router = useRouter();
     const searchParams = useSearchParams();
+    const [isMounted, setIsMounted] = useState(false);
+
     const callbackUrl = searchParams.get("callbackUrl");
     const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
-        ? "Email already in use with different provider!"
+        ? "Email already in use with a different provider!"
         : "";
 
-    // Show toast if there's an OAuth error from the URL
     useEffect(() => {
+        setIsMounted(true);
         if (urlError) {
             toast.error(urlError);
         }
@@ -26,11 +28,10 @@ export const useLogin = () => {
 
     const mutation = useMutation({
         mutationFn: async (values: FormValues) => {
-            const result = await login(values,
-                {
-                    headers:
-                        { 'x-forwarded-for': '127.0.0.1', 'user-agent': 'browser' }
-                }, callbackUrl);
+            if (!isMounted) return; // Prevent execution if not mounted
+            const result = await login(values, {
+                headers: { 'x-forwarded-for': '127.0.0.1', 'user-agent': 'browser' }
+            }, callbackUrl);
 
             return result;
         },

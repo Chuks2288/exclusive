@@ -15,7 +15,6 @@ export const ProductImageSkeleton = () => {
                         />
                     ))}
             </div>
-
             <div className="mb-4 self-center bg-gray-100 p-4 rounded-sm">
                 <Skeleton className="w-[400px] h-[500px] bg-gray-200" />
             </div>

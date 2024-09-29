@@ -17,7 +17,7 @@ export const ProductInfo = ({
     return (
         <div
             onClick={() => router.push(`/product/${id}`)}
-            className="flex gap-x-2 items-center text-left cursor-pointer hover:underline">
+            className="flex gap-x-2 items-center text-left cursor-pointer hover:underline w-[220px]">
             {image && Array.isArray(image) && image.length > 0 ? (
                 <Image
                     src={image[0]}
@@ -31,7 +31,7 @@ export const ProductInfo = ({
                     <span>No Image</span>
                 </div>
             )}
-            <span className="">{name}</span>
+            <span className="lg:text-sm text-xs">{name}</span>
         </div>
     )
 }

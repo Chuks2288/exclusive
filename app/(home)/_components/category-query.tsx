@@ -12,7 +12,6 @@ export const CategoryQuery = () => {
     return (
         <div className="relative w-full">
             <Swiper
-                slidesPerView={1}  // Default to 1 slide
                 spaceBetween={10}
                 navigation={{
                     nextEl: '.category-next',  // Unique class name for next button

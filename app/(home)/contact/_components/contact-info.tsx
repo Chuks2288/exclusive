@@ -38,9 +38,17 @@ export const ContactInfo = () => {
                             <h4 className="text-sm font-bold">{contact.title}</h4>
                         </div>
                         <p className="text-xs font-medium">{contact.label}</p>
-                        <p className="text-xs font-medium">{contact.contact}</p>
+                        <p className="text-xs font-medium">
+                            <a href={`tel:${contact.contact}`} className="text-blue-600 hover:underline">
+                                {contact.contact}
+                            </a>
+                        </p>
                         {contact.contact2 && (
-                            <p className="text-xs font-medium">{contact.contact2}</p>
+                            <p className="text-xs font-medium">
+                                <a href={`mailto:${contact.contact2}`} className="text-blue-600 hover:underline">
+                                    {contact.contact2}
+                                </a>
+                            </p>
                         )}
                     </article>
                     {index < contacts.length - 1 && <Separator className="mt-6" />}

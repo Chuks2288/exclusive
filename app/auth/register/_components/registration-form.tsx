@@ -82,7 +82,7 @@ export const RegistrationForm = () => {
 
     return (
         <div className="flex flex-1 items-center justify-center">
-            <div className="lg:border-0 border-2 text-center w-full flex justify-center items-center max-w-lg mx-2 rounded-md p-4">
+            <div className=" text-center w-full flex justify-center items-center max-w-lg mx-2 rounded-md p-4">
                 <div className="flex flex-col gap-y-2 w-full">
                     <h2 className="font-bold text-xl">
                         Create Account

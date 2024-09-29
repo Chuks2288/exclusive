@@ -3,7 +3,7 @@ import { RegistrationForm } from "./_components/registration-form"
 
 const RegistrationPage = () => {
     return (
-        <main className="flex flex-row justify-center min-h-screen w-full">
+        <main className="flex flex-row justify-center md:h-screen h-max w-full">
             <Logo />
             <RegistrationForm />
         </main>

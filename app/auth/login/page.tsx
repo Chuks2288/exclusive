@@ -6,7 +6,7 @@ const LoginPage = () => {
     return (
         <main className="">
             <Suspense fallback={<div>Loading...</div>}>
-                <main className="flex flex-row justify-center min-h-screen w-full">
+                <main className="flex flex-row justify-center md:h-screen h-max w-full">
                     <Logo />
                     <LoginForm />
                 </main>

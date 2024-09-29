@@ -45,7 +45,6 @@ export const RelatedProducts = ({
     return (
         <div className="relative w-full">
             <Swiper
-                slidesPerView={1}
                 spaceBetween={10}
                 navigation={{
                     nextEl: '.custom-next-related',

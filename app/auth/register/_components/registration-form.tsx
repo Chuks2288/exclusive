@@ -143,7 +143,7 @@ export const RegistrationForm = () => {
                                 className="flex items-center justify-center w-full border-[1px] p-1.5 rounded-lg gap-x-3 cursor-pointer mt-3"
                             >
                                 <FcGoogle className="" />
-                                <p className="text-sm">Sign in with Google</p>
+                                <p className="text-sm">Sign up with Google</p>
                             </Button>
                         </div>
                         <div className="flex items-center justify-center gap-x-3 text-sm pt-2 font-medium">

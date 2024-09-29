@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ActionTooltip from "@/components/action-tooltip";
 import { useGetAllWishlists } from "@/features/wishlist/api/use-get-all-wishlist"; // Assuming you have a hook to fetch wishlist
+import { boolean } from "zod";
 
 interface UserActionRoutesProps {
     icon: any;
@@ -22,7 +23,13 @@ interface UserActionRoutesProps {
     item: number;
 }
 
-export const UserActions = () => {
+type Props = {
+    isLoading: boolean;
+}
+
+export const UserActions = ({
+    isLoading
+}: Props) => {
     const [ConfirmDialog, confirm] = useConfirm(
         "Are you sure?",
         "You are about to logout"

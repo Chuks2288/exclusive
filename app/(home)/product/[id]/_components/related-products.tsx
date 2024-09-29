@@ -52,6 +52,10 @@ export const RelatedProducts = ({
                 }}
                 grabCursor={true}
                 breakpoints={{
+                    340: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
                     480: {
                         slidesPerView: 2,
                         spaceBetween: 15,

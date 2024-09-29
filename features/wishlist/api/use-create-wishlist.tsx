@@ -7,12 +7,12 @@ type Props = {
     productId?: string | any;
 };
 
-export const useCreateWishlist = ({ userId, productId }: Props) => {
+export const useCreateWishlist = ({ productId }: Props) => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation({
         mutationFn: () =>
-            createWishlist({ userId, productId }),
+            createWishlist({ productId }),
         onSuccess: (data) => {
             if (data?.success) {
                 toast.success(data.success);
@@ -23,7 +23,7 @@ export const useCreateWishlist = ({ userId, productId }: Props) => {
             }
 
             // Invalidate queries to refresh data
-            queryClient.invalidateQueries({ queryKey: ['wishlist', userId] });
+            queryClient.invalidateQueries({ queryKey: ['wishlist'] });
             queryClient.invalidateQueries({ queryKey: ['product', productId] });
         },
         onError: (error) => {

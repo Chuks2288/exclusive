@@ -19,6 +19,7 @@ import {
     Mail,
     MapPin
 } from "lucide-react";
+import { Twitter, Instagram, Linkedin } from 'lucide-react'; // Make sure to import Lucide icons
 
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
@@ -45,6 +46,22 @@ interface FeaturesProps {
     icon: LucideIcon;
     title: string;
     description: string;
+}
+interface AboutProps {
+    id: number;
+    icon: LucideIcon;
+    value: string;
+    title: string;
+}
+
+type boardMemberProps = {
+    memberImage: string;
+    name: string;
+    position: string;
+    socials: {
+        icon: LucideIcon,
+        url: string;
+    }[]
 }
 
 export const routes = [
@@ -294,6 +311,33 @@ export const features = [
     },
 ] as FeaturesProps[];
 
+export const abouts = [
+    {
+        id: 1,
+        icon: Truck,
+        value: "10.5K",
+        title: "Sellers active on our site",
+    },
+    {
+        id: 2,
+        icon: Headset,
+        value: "33K",
+        title: "Monthly Product Sale",
+    },
+    {
+        id: 3,
+        icon: ShieldCheck,
+        value: "44.5k",
+        title: "Customer active in our site",
+    },
+    {
+        id: 4,
+        icon: ShieldCheck,
+        value: "25k",
+        title: "Anual gross sale in our site",
+    },
+] as AboutProps[];
+
 
 export const footerData = [
     {
@@ -357,5 +401,184 @@ export const footerData = [
                 ],
             },
         ],
+    },
+];
+
+
+
+
+
+
+export const boardMembers: boardMemberProps[] = [
+    {
+        memberImage: "/about/board1.png",
+        name: "Tom Cruise",
+        position: "Founder & Chairman",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board2.png",
+        name: "Emma Watson",
+        position: "Managing Director",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board3.png",
+        name: "Will Smith",
+        position: "Product Designer",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board1.png",
+        name: "Tom Cruise",
+        position: "Founder & Chairman",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board2.png",
+        name: "Emma Watson",
+        position: "Managing Director",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board3.png",
+        name: "Will Smith",
+        position: "Product Designer",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board1.png",
+        name: "Tom Cruise",
+        position: "Founder & Chairman",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board2.png",
+        name: "Emma Watson",
+        position: "Managing Director",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
+    },
+    {
+        memberImage: "/about/board3.png",
+        name: "Will Smith",
+        position: "Product Designer",
+        socials: [
+            {
+                icon: Twitter,
+                url: "https://www.twitter.com"
+            },
+            {
+                icon: Instagram,
+                url: "https://www.instagram.com"
+            },
+            {
+                icon: Linkedin,
+                url: "https://www.linkedin.com"
+            },
+        ]
     },
 ];

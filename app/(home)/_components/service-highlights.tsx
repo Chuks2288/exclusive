@@ -5,7 +5,7 @@ import { features } from "@/data";
 
 import { ServiceHighlightsSkeleton } from "./skeleton/service-highlight-skeleton";
 type Props = {
-    isLoading: boolean;
+    isLoading?: boolean;
 }
 
 export const ServiceHighlights = ({
@@ -50,7 +50,7 @@ export const ServiceHighlights = ({
                             />
                         </motion.div>
                     </div>
-                    <h4 className="font-bold mt-4 text-sm sm:text-md">{feature.title}</h4>
+                    <h4 className="font-bold mt-4 text-xs sm:text-md">{feature.title}</h4>
                     <p className="text-xs">{feature.description}</p>
                 </motion.div>
             ))}

@@ -17,6 +17,9 @@ export const NewArrivalItems = () => {
                     <h4 className="text-md font-semibold mb-2">
                         PlayStation 5
                     </h4>
+                    <p className="max-w-[170px] text-xs">
+                        Black and White version of the PS5 coming out on sale.
+                    </p>
                     <Button
                         variant="link"
                         className="text-white dark:text-black -ml-4 underline"
@@ -41,6 +44,9 @@ export const NewArrivalItems = () => {
                         <h4 className="text-md font-semibold mb-2">
                             Women’s Collections
                         </h4>
+                        <p className="max-w-[170px] text-xs">
+                            Featured woman collections that give you another vibe.
+                        </p>
                         <Button
                             variant="link"
                             className="text-white dark:text-black -ml-4 underline"
@@ -64,6 +70,9 @@ export const NewArrivalItems = () => {
                             <h4 className="text-md font-semibold mb-2 ">
                                 Speakers
                             </h4>
+                            <p className="max-w-[170px] text-xs">
+                                Amazon wireless speakers
+                            </p>
                             <Button
                                 variant="link"
                                 className="text-white dark:text-black -ml-4 underline"
@@ -84,6 +93,9 @@ export const NewArrivalItems = () => {
                             <h4 className="text-md font-semibold mb-2 ">
                                 Perfume
                             </h4>
+                            <p className="max-w-[170px] text-xs">
+                                GUCCI INTENSE OUD EDP
+                            </p>
                             <Button
                                 variant="link"
                                 className="text-white dark:text-black -ml-4 underline"

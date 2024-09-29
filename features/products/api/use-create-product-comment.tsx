@@ -25,8 +25,6 @@ export const useCreateProductComment = ({
                 toast.error(data.error);
             }
 
-            // Debugging logs
-            console.log('Invalidating queries');
             queryClient.invalidateQueries({ queryKey: ['product', productId] });
             queryClient.invalidateQueries({ queryKey: ['productReviews', productId] });
         },

@@ -201,3 +201,13 @@ model Wishlist {
   user    User    @relation(fields: [userId], references: [id])
   product Product @relation(fields: [productId], references: [id])
 }
+
+model FormMessage {
+  id      String @id @default(cuid())
+  name    String
+  email   String
+  phone   String
+  message String
+
+  createdAt DateTime @default(now())
+}

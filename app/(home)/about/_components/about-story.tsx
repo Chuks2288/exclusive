@@ -2,7 +2,7 @@
 
 export const AboutStory = () => {
     return (
-        <div className="flex flex-col justify-center md:items-start items-center md:pr-20 pr-0 md:px-0 px-4 space-y-6">
+        <div className="flex flex-col justify-center md:items-start items-center md:pr-20 pr-0  space-y-6">
             <h1 className="md:text-3xl text-xl font-bold">
                 Our Story
             </h1>

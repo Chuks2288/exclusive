@@ -9,6 +9,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import { Loader2 } from "lucide-react";
 
 
 export const useConfirm = (
@@ -16,6 +17,7 @@ export const useConfirm = (
     message: string,
 ): [() => JSX.Element, () => Promise<unknown>] => {
     const [promise, setPromise] = useState<{ resolve: (value: boolean) => void } | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const confirm = () => new Promise((resolve, reject) => {
         setPromise({ resolve })
@@ -23,11 +25,16 @@ export const useConfirm = (
 
     const handleClose = () => {
         setPromise(null);
-    }
+        setLoading(false); // Reset loading state
+    };
 
-    const handleConfirm = () => {
-        promise?.resolve(true);
-        handleClose();
+    const handleConfirm = async () => {
+        setLoading(true); // Set loading to true when the confirm button is clicked
+        // Simulate an async operation (you can replace this with your actual logic)
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated delay
+
+        promise?.resolve(true); // Resolve the promise with true when done
+        handleClose(); // Close the dialog after loading is complete
     };
 
     const handleCancel = () => {
@@ -61,7 +68,11 @@ export const useConfirm = (
                         onClick={handleConfirm}
                         className="w-full text-red-600"
                     >
-                        Confirm
+                        {loading ? (
+                            <Loader2 className="w-5 h-5 animate-spin" /> // Show loader if loading
+                        ) : (
+                            "Confirm"
+                        )}
                     </Button>
                 </DialogFooter>
             </DialogContent>

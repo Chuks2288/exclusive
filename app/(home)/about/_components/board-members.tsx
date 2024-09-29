@@ -24,13 +24,13 @@ export const BoardMembers = () => {
                         slidesPerView: 1,
                     },
                     640: {
-                        slidesPerView: 2, // 1 slide for small screens
+                        slidesPerView: 2,
                     },
                     768: {
-                        slidesPerView: 2, // 2 slides for medium screens
+                        slidesPerView: 2,
                     },
                     1024: {
-                        slidesPerView: 3, // 3 slides for large screens
+                        slidesPerView: 3,
                     },
                 }}
             >

@@ -47,14 +47,14 @@ export const FlashSalesTime = () => {
     }, [calculateTimeLeft]);
 
     return (
-        <div className="flex items-center justify-between lg:max-w-[580px] max-w-[90%]">
-            <h1 className="font-bold md:text-2xl text-sm self-end">
+        <div className="flex items-center justify-between lg:max-w-[580px] max-w-[80%]">
+            <h1 className="font-bold md:text-2xl text-md self-end">
                 Flash Sales
             </h1>
             <div className="font-bold flex items-center gap-x-2">
                 <div className="flex flex-col gap-y-1">
                     <p className="text-sm">Days</p>
-                    <p className="text-2xl text-center">
+                    <p className="md:text-2xl text-sm text-center">
                         {String(timeLeft.days).padStart(2, '0')}
                     </p>
                 </div>

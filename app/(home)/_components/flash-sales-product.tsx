@@ -29,7 +29,6 @@ export const FlashSalesProduct = ({
             {!showAll ? (
                 <>
                     <Swiper
-                        slidesPerView={1}
                         spaceBetween={10}
                         navigation={{
                             nextEl: '.custom-next',

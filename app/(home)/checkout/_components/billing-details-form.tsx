@@ -66,11 +66,6 @@ export const BillingDetailsForm = ({
 
     return (
         <div className="md:max-w-[350px] w-full py-4 space-y-3">
-            <div>
-                {billingAddress?.street}
-                {billingAddress?.city}
-                {billingAddress?.phoneNumber}
-            </div>
             <h1 className="text-lg font-semibold">Billing Details</h1>
             <div className="py-5 space-y-3">
                 {isBillingAddressLoading ? (
@@ -90,7 +85,7 @@ export const BillingDetailsForm = ({
                                         <FormControl>
                                             <Input
                                                 disabled={mutation.isPending}
-                                                className="p-2.5 rounded-md text-sm bg-gray-100"
+                                                className="p-2.5 rounded-md text-sm bg-gray-100 text-black"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -110,7 +105,7 @@ export const BillingDetailsForm = ({
                                         <FormControl>
                                             <Input
                                                 disabled={mutation.isPending}
-                                                className="p-2.5 rounded-md text-sm bg-gray-100"
+                                                className="p-2.5 rounded-md text-sm bg-gray-100 text-black"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -129,7 +124,7 @@ export const BillingDetailsForm = ({
                                         <FormControl>
                                             <Input
                                                 disabled={mutation.isPending}
-                                                className="p-2.5 rounded-md text-sm bg-gray-100"
+                                                className="p-2.5 rounded-md text-sm bg-gray-100 text-black"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -149,7 +144,7 @@ export const BillingDetailsForm = ({
                                         <FormControl>
                                             <Input
                                                 disabled={mutation.isPending}
-                                                className="p-2.5 rounded-md text-sm bg-gray-100"
+                                                className="p-2.5 rounded-md text-sm bg-gray-100 text-black"
                                                 {...field}
                                             />
                                         </FormControl>

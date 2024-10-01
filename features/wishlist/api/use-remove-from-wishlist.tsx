@@ -4,29 +4,30 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { deleteWishlistById } from '@/actions/wishlist/delete-wishlist-by-id';
 import { useDispatch } from 'react-redux';
-import { removeFromWishlist } from '@/store/wishlist-slice';
+import { removeFromWishlist, WishlistItem } from '@/store/wishlist-slice';
 
-export const useRemoveFromWishlist = (productId: any) => {
+export const useRemoveFromWishlist = () => {
+    const dispatch = useDispatch();
     const queryClient = useQueryClient();
-    const dispatch = useDispatch(); // Initialize the dispatch function
 
     const mutation = useMutation({
-        mutationFn: () => deleteWishlistById(productId),
-        onSuccess: (data) => {
-            if (data?.success) {
-                toast.success(data.success);
-                dispatch(removeFromWishlist(productId)); // Dispatch the remove action
-            }
-
-            if (data?.error) {
-                toast.error(data.error);
-            }
-
-            queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+        mutationFn: (item: WishlistItem) => {
+            return deleteWishlistById(item.id);
         },
-        onError: () => {
-            toast.error("Something went wrong");
-        }
+        onSuccess: (data, variables) => {
+            if (data?.success) {
+                dispatch(removeFromWishlist(variables.id));
+                toast.success("Product removed to wishlist");
+
+                queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+            } else {
+                toast.error(data?.error || 'Unexpected response from server');
+            }
+        },
+        onError: (error) => {
+            console.error('Failed to remove product to wishlist:', error);
+            toast.error("Failed to remove product to wishlist");
+        },
     });
 
     return mutation;

@@ -42,8 +42,8 @@ export const ProductsCard = ({
     const user = useCurrentUser();
     const router = useRouter();
     const { mutate: addToCart } = useAddToCart();
-    const { mutate: removeFromCart } = useRemoveFromCart(id);
-    const { mutate: addToWishlist } = useAddToWishlist(id); // Initialize useAddToWishlist
+    const { mutate: removeFromCart } = useRemoveFromCart();
+    const { mutate: addToWishlist } = useAddToWishlist(); // Initialize useAddToWishlist
     const { data: wishlistItems = [] } = useGetWishlistById(id);
     const cartItems = useSelector((state: RootState) => state.cart.items);
 

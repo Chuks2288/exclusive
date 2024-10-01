@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Eye, Heart } from "lucide-react";
@@ -9,8 +11,7 @@ import { useAddToCart } from "@/features/cart/use-add-to-cart";
 import { useRemoveFromCart } from "@/features/cart/use-remove-from-cart";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { useCreateWishlist } from "@/features/wishlist/api/use-create-wishlist";
-import { useDeleteWishlistById } from "@/features/wishlist/api/use-delete-wishlist-by-id";
+import { useAddToWishlist } from "@/features/wishlist/api/use-add-to-wishlist"; // Import the useAddToWishlist mutation
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { toast } from "sonner";
 import { useGetWishlistById } from "@/features/wishlist/api/use-get-wishlist-by-id";
@@ -42,8 +43,7 @@ export const ProductsCard = ({
     const router = useRouter();
     const { mutate: addToCart } = useAddToCart();
     const { mutate: removeFromCart } = useRemoveFromCart(id);
-    const { mutate: addToWishlist } = useCreateWishlist({ userId: user?.id, productId: id });
-    const { mutate: removeFromWishlist } = useDeleteWishlistById({ userId: user?.id, product: id });
+    const { mutate: addToWishlist } = useAddToWishlist(id); // Initialize useAddToWishlist
     const { data: wishlistItems = [] } = useGetWishlistById(id);
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
@@ -74,34 +74,24 @@ export const ProductsCard = ({
         }
     };
 
+    // Handler for wishlist actions (add/remove)
     const handleAddToWishlist = (e: React.MouseEvent) => {
         e.stopPropagation();
 
-        if (user?.id) {
-            if (isInWishlist) {
-                removeFromWishlist(id, {
-                    onSuccess: () => {
-                        setIsInWishlist(false);
-                        toast.success("Removed from wishlist");
-                    },
-                    onError: () => {
-                        toast.error("Failed to remove from wishlist");
-                    },
-                });
-            } else {
-                addToWishlist(id, {
-                    onSuccess: () => {
-                        setIsInWishlist(true);
-                        toast.success("Added to wishlist");
-                    },
-                    onError: () => {
-                        toast.error("Failed to add to wishlist");
-                    },
-                });
-            }
-        } else {
+        if (!user?.id) {
             toast.error("Please log in to add items to your wishlist");
+            return;
         }
+
+        addToWishlist(id, {
+            onSuccess: () => {
+                setIsInWishlist(true);
+                toast.success("Added to wishlist");
+            },
+            onError: () => {
+                toast.error("Failed to add to wishlist");
+            },
+        });
     };
 
     return (
@@ -131,17 +121,21 @@ export const ProductsCard = ({
                     />
                 </div>
 
+                {/* Heart Icon for Wishlist */}
                 <span
                     onClick={handleAddToWishlist}
-                    className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer ${isInWishlist ? "text-red-500" : "text-black"}`}
+                    className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 rounded-full text-[10px] cursor-pointer 
+                    ${isInWishlist ? "bg-red-500 text-white" : "bg-white text-black"}`}
                 >
-                    <Heart className="size-3" />
+                    <Heart className={`size-3 ${isInWishlist ? "text-white" : "text-red-500"}`} />
                 </span>
 
+                {/* Eye Icon */}
                 <span className="absolute top-10 right-2 flex justify-center items-center w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
                     <Eye className="size-3 text-black" />
                 </span>
 
+                {/* Add to Cart Button */}
                 <Button
                     variant="outline"
                     size="sm"
@@ -152,6 +146,7 @@ export const ProductsCard = ({
                 </Button>
             </div>
 
+            {/* Product Info */}
             <div className="flex flex-col gap-y-2 mt-4">
                 <h4 className="text-sm font-bold">{name}</h4>
                 <div className="flex items-center gap-x-2">

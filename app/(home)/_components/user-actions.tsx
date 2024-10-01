@@ -13,8 +13,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ActionTooltip from "@/components/action-tooltip";
-import { useGetAllWishlists } from "@/features/wishlist/api/use-get-all-wishlist"; // Assuming you have a hook to fetch wishlist
-import { boolean } from "zod";
 
 interface UserActionRoutesProps {
     icon: any;
@@ -27,30 +25,25 @@ type Props = {
     isLoading: boolean;
 }
 
-export const UserActions = ({
-    isLoading
-}: Props) => {
+export const UserActions = ({ isLoading }: Props) => {
     const [ConfirmDialog, confirm] = useConfirm(
         "Are you sure?",
         "You are about to logout"
     );
 
     const { mutate: logout } = useLogout();
-    const { data: wishlistData } = useGetAllWishlists();
     const pathname = usePathname();
     const user = useCurrentUser();
 
     const onLogout = async () => {
         const ok = await confirm();
-
         if (ok) {
             logout();
         }
     };
 
     const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
-
-    const wishlistItemCount = wishlistData?.length || 0;
+    const wishlistItemCount = useSelector((state: RootState) => state.wishlist.items.length); // Get wishlist count from Redux state
 
     const userActionRoutes: UserActionRoutesProps[] = [
         {

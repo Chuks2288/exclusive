@@ -1,3 +1,5 @@
+"use client";
+
 import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { removeFromCart } from '@/store/cart-slice';
@@ -7,21 +9,19 @@ type ProductsCardProps = {
     id: string | any;
 };
 
-export const useRemoveFromCart = ({
-    id
-}: ProductsCardProps) => {
+export const useRemoveFromCart = ({ id }: ProductsCardProps) => {
     const dispatch = useDispatch();
 
     const removeFromCartMutation = useMutation({
-        mutationFn: (id: any) => {
+        mutationFn: () => {
             dispatch(removeFromCart(id));
             return Promise.resolve(id);
         },
-        onSuccess: (data) => {
-            toast.success("Product removed from cart")
+        onSuccess: () => {
+            toast.success("Product removed from cart");
         },
-        onError: (error) => {
-            toast.error("Error removing product from cart")
+        onError: () => {
+            toast.error("Error removing product from cart");
         },
     });
 

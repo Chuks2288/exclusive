@@ -10,6 +10,9 @@ export const createWishlist = async (
     const user = await currentUser();
     const userId = user?.id;
 
+    console.log("User ID:", userId);
+    console.log("Product ID:", productId);
+
     // Validate userId and productId
     if (!userId || !productId) {
         return { error: "You are not logged in" };

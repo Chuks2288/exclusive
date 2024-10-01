@@ -24,28 +24,24 @@ export const WishlistCard = ({
     initialPrice,
     description,
     color,
-    size
+    isNew,
+    size,
+    discount,
 }: WishlistItem) => {
     const router = useRouter();
     const { mutate: addToCart } = useAddToCart();
     const { mutate: removeFromCart } = useRemoveFromCart();
-    const { mutate: removeFromWishlist } = useRemoveFromWishlist(); // Initialize useRemoveFromWishlist
+    const { mutate: removeFromWishlist } = useRemoveFromWishlist();
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
 
     const isInCart = cartItems.some((item) => item.id === id);
 
     const handleRemoveFromWishlist = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent the parent click handler
-        removeFromWishlist(id, {
-            onSuccess: () => {
-                // Optionally handle success (like showing a toast)
-            },
-            onError: () => {
-                // Optionally handle error (like showing a toast)
-            },
-        });
+        e.stopPropagation();
+        removeFromWishlist(id);
     };
+
     return (
         <div>
             <div
@@ -64,7 +60,7 @@ export const WishlistCard = ({
                         </span>
                     )}
                     <Image
-                        src={image[0]}
+                        src={image && image.length > 0 ? image[0] : '/path/to/default-image.jpg'}
                         alt={name}
                         width={160}
                         height={160}
@@ -74,12 +70,11 @@ export const WishlistCard = ({
                 </div>
 
                 <span
-                    // onClick={handleAddToWishlist}
+                    onClick={handleRemoveFromWishlist}
                     className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 rounded-full text-[10px] cursor-pointer bg-white`}
                 >
                     <Trash className="size-3 textr-red-500" />
                 </span>
-
 
                 {/* Add to Cart Button */}
                 <Button

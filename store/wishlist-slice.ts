@@ -3,19 +3,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type WishlistItem = {
-    id: string;
+    id: string | any;
     name?: string | any;
     image: string[];
-    rating?: number;
+    rating?: number | any;
     reviews?: number;
     availability?: string;
     price: number;
     quantity: number;
-    initialPrice?: number;
+    initialPrice?: number | any;
     description?: string;
     color?: string;
     size?: string[];
-    discount?: number;
+    discount?: number | any;
+    isNew?: boolean | any;
 };
 
 interface WishlistState {

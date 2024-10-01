@@ -14,7 +14,7 @@ import { RootState } from "@/store";
 import { useAddToWishlist } from "@/features/wishlist/api/use-add-to-wishlist"; // Import the useAddToWishlist mutation
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { toast } from "sonner";
-import { useGetWishlistById } from "@/features/wishlist/api/use-get-wishlist-by-id";
+import { useRemoveFromWishlist } from "@/features/wishlist/api/use-remove-from-wishlist";
 
 type Props = {
     id: any;
@@ -43,19 +43,13 @@ export const ProductsCard = ({
     const router = useRouter();
     const { mutate: addToCart } = useAddToCart();
     const { mutate: removeFromCart } = useRemoveFromCart();
-    const { mutate: addToWishlist } = useAddToWishlist(); // Initialize useAddToWishlist
-    const { data: wishlistItems = [] } = useGetWishlistById(id);
+    const { mutate: addToWishlist } = useAddToWishlist();
+    const { mutate: removeFromWishlist } = useRemoveFromWishlist();
     const cartItems = useSelector((state: RootState) => state.cart.items);
+    const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
 
-    const [isInWishlist, setIsInWishlist] = useState(false);
     const isInCart = cartItems.some((item) => item.id === id);
-
-    useEffect(() => {
-        if (Array.isArray(wishlistItems)) {
-            const existsInWishlist = wishlistItems.some((item: any) => item.productId === id);
-            setIsInWishlist(existsInWishlist);
-        }
-    }, [wishlistItems, id]);
+    const isInWishlist = wishlistItems.some((item) => item.id === id);
 
     const handleCartAction = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -81,17 +75,21 @@ export const ProductsCard = ({
         if (!user?.id) {
             toast.error("Please log in to add items to your wishlist");
             return;
+        } else {
+            if (isInWishlist) {
+                removeFromWishlist(id);
+            } else {
+                addToWishlist({
+                    id,
+                    name,
+                    image,
+                    price,
+                    initialPrice,
+                    rating,
+                    quantity: 1,
+                })
+            }
         }
-
-        addToWishlist(id, {
-            onSuccess: () => {
-                setIsInWishlist(true);
-                toast.success("Added to wishlist");
-            },
-            onError: () => {
-                toast.error("Failed to add to wishlist");
-            },
-        });
     };
 
     return (
@@ -125,9 +123,9 @@ export const ProductsCard = ({
                 <span
                     onClick={handleAddToWishlist}
                     className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 rounded-full text-[10px] cursor-pointer 
-                    ${isInWishlist ? "bg-red-500 text-white" : "bg-white text-black"}`}
+                    ${isInWishlist ? "bg-red-500 " : "bg-white "}`}
                 >
-                    <Heart className={`size-3 ${isInWishlist ? "text-white" : "text-red-500"}`} />
+                    <Heart className={`size-3 ${isInWishlist ? " text-white" : "text-black"}`} />
                 </span>
 
                 {/* Eye Icon */}

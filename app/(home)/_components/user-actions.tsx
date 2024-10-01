@@ -42,42 +42,42 @@ export const UserActions = ({ isLoading }: Props) => {
         }
     };
 
+    // Select cart and wishlist item counts from the Redux store
     const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
-    const wishlistItemCount = useSelector((state: RootState) => state.wishlist.items.length); // Get wishlist count from Redux state
+    const wishlistItemCount = useSelector((state: RootState) => state.wishlist.items.length);
 
     const userActionRoutes: UserActionRoutesProps[] = [
         {
             icon: Heart,
             path: "/wishlist",
             label: "Wishlist",
-            item: wishlistItemCount,
+            item: wishlistItemCount, // Dynamically show wishlist count
         },
         {
             icon: ShoppingCart,
             path: "/cart",
             label: "Cart",
-            item: cartItemCount,
+            item: cartItemCount, // Dynamically show cart count
         },
     ];
-
     return (
         <>
             <div className="flex items-center gap-x-8">
-                {userActionRoutes.map((item) => (
+                {userActionRoutes.map((route) => (
                     <ActionTooltip
-                        label={item.label}
+                        label={route.label}
                         side="top"
                         align="start"
-                        key={item.path}
+                        key={route.path}
                     >
                         <Link
-                            href={item.path}
+                            href={route.path}
                             className="relative"
                         >
-                            <item.icon className="size-5" />
-                            {item.item > 0 && (
+                            <route.icon className="size-5" />
+                            {route.item > 0 && (
                                 <span className="absolute -top-3.5 -right-2 w-5 h-5 rounded-full bg-red-500 text-xs flex justify-center items-center text-white">
-                                    {item.item}
+                                    {route.item}
                                 </span>
                             )}
                         </Link>

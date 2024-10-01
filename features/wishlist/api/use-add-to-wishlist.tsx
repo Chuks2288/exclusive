@@ -10,11 +10,11 @@ export const useAddToWishlist = () => {
 
     const mutation = useMutation({
         mutationFn: (item: WishlistItem) => {
-            return createWishlist(item);
+            return createWishlist(item.id);
         },
         onSuccess: (data, variables) => {
             if (data?.success) {
-                dispatch(addToWishlist(variables));
+                dispatch(addToWishlist(variables.id));
                 toast.success("Product added to wishlist");
 
                 queryClient.invalidateQueries({ queryKey: ['wishlist'] });

@@ -1,18 +1,45 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getAllWishlist } from "@/actions/wishlist/get-all-wishlist";
+import { useDispatch } from "react-redux";
+import { setWishlist } from "@/store/wishlist-slice";
+import { WishlistItem } from '@/store/wishlist-slice';
 
-export const useGetAllWishlists = (): UseQueryResult<any[], Error> => {
-    return useQuery<any[], Error>({
+export const useGetAllWishlists = () => {
+    const dispatch = useDispatch();
+
+    return useQuery({
         queryKey: ["allWishlist"],
         queryFn: async () => {
-            const data = await getAllWishlist(); // Fetch all wishlists
+            const data = await getAllWishlist();
 
             // Check if the returned data is valid
             if (!Array.isArray(data)) {
                 throw new Error("Invalid wishlists data");
             }
 
-            return data;
+            // Transform the data to match WishlistItem type
+            const wishlistItems: WishlistItem[] = data.map((wishlistEntry: any) => ({
+                id: wishlistEntry.product.id,
+                name: wishlistEntry.product.name,
+                image: wishlistEntry.product.image || [],
+                price: wishlistEntry.product.price,
+                initialPrice: wishlistEntry.product.initialPrice || wishlistEntry.product.price, // Handle discount
+                quantity: wishlistEntry.quantity || 1,
+                rating: wishlistEntry.product.rating?.average || 0,
+                reviews: wishlistEntry.product.rating?.reviews || 0,
+                discount: wishlistEntry.product.discount?.amount || 0,
+                isNew: wishlistEntry.product.isNew || false,
+                description: wishlistEntry.product.description || "",
+                color: wishlistEntry.product.color || "default",
+                size: wishlistEntry.product.size || "default",
+                availability: wishlistEntry.product.availability || "in stock",
+            }));
+
+            // Dispatch the transformed data to the Redux store
+            dispatch(setWishlist(wishlistItems));
+
+            return wishlistItems;
         },
+        staleTime: 1000 * 60 * 5
     });
 };

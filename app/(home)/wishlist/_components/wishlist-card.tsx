@@ -42,6 +42,23 @@ export const WishlistCard = ({
         removeFromWishlist(id);
     };
 
+    const handleCartAction = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (isInCart) {
+            removeFromCart(id);
+        } else {
+            addToCart({
+                id,
+                name,
+                image,
+                price,
+                initialPrice,
+                rating,
+                quantity: 1,
+            });
+        }
+    };
+
     return (
         <div>
             <div
@@ -81,7 +98,7 @@ export const WishlistCard = ({
                     variant="outline"
                     size="sm"
                     className="w-full rounded-none py-2 absolute bottom-0 left-0 flex justify-center transition-transform transform translate-y-full group-hover:translate-y-0 text-xs"
-                // onClick={handleCartAction}
+                    onClick={handleCartAction}
                 >
                     {isInCart ? "Remove from Cart" : "Add to Cart"}
                 </Button>

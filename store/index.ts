@@ -1,29 +1,33 @@
-"use client";
+"use client"; // Ensure this file runs on the client-side
 
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cart-slice";
 import wishlistReducer from "./wishlist-slice";
 import productCommentsReducer from "./product-comments-slice";
 
-// Load state from local storage
+// Load state from local storage (client-side only)
 const loadState = () => {
     try {
-        const serializedState = localStorage.getItem("appState");
-        if (serializedState === null) {
-            return undefined;
+        if (typeof window !== "undefined") { // Check if we're in a browser environment
+            const serializedState = localStorage.getItem("appState");
+            if (serializedState === null) {
+                return undefined;
+            }
+            return JSON.parse(serializedState); // This will include both cart and wishlist states
         }
-        return JSON.parse(serializedState); // This will include both cart and wishlist states
     } catch (error) {
         console.error("Could not load state from local storage:", error);
         return undefined;
     }
 };
 
-// Save state to local storage
+// Save state to local storage (client-side only)
 const saveState = (state: { cart: unknown; wishlist: unknown }) => {
     try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem("appState", serializedState); // Store both cart and wishlist under a single key
+        if (typeof window !== "undefined") { // Check if we're in a browser environment
+            const serializedState = JSON.stringify(state);
+            localStorage.setItem("appState", serializedState); // Store both cart and wishlist under a single key
+        }
     } catch (error) {
         console.error("Could not save state to local storage:", error);
     }

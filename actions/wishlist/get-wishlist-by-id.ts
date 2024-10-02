@@ -7,7 +7,7 @@ export const getWishlistById = async (wishlistId: string, productId: string) => 
         const wishlist = await db.wishlist.findFirst({
             where: {
                 id: wishlistId,
-                productId: productId, // Ensure this matches both wishlist and product
+                productId: productId,
             },
             include: {
                 product: {

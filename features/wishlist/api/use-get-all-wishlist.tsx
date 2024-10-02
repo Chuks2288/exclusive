@@ -21,7 +21,7 @@ export const useGetAllWishlists = () => {
             const wishlistItems: WishlistItem[] = data.map((wishlistEntry: any) => ({
                 id: wishlistEntry.product.id,
                 name: wishlistEntry.product.name,
-                image: wishlistEntry.product.image || [], // Safeguard null/undefined
+                images: wishlistEntry.product.image || [], // Safeguard null/undefined
                 price: wishlistEntry.product.price,
                 initialPrice: wishlistEntry.product.initialPrice || wishlistEntry.product.price,
                 quantity: wishlistEntry.quantity || 1,

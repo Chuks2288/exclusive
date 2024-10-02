@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Eye, Heart } from "lucide-react";
+import { Eye, Heart, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Rating, Star } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
@@ -15,6 +15,7 @@ import { useAddToWishlist } from "@/features/wishlist/api/use-add-to-wishlist"; 
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { toast } from "sonner";
 import { useRemoveFromWishlist } from "@/features/wishlist/api/use-remove-from-wishlist";
+import { useConfirm } from "@/hooks/use-confirm";
 
 type Props = {
     id: any;
@@ -23,9 +24,10 @@ type Props = {
     name: string;
     price: number;
     initialPrice: number;
-    rating: number;
-    reviews: number;
+    rating?: number;
+    reviews?: number;
     isNew?: boolean;
+    isWishlistPage?: boolean;
 };
 
 export const ProductsCard = ({
@@ -38,7 +40,14 @@ export const ProductsCard = ({
     rating,
     reviews,
     isNew,
+    isWishlistPage = false,
 }: Props) => {
+
+    const [ConfirmDialog, confirm] = useConfirm(
+        "Confirm Deletion",
+        "Are you sure you want to remove the items from the wishlist?"
+    );
+
     const user = useCurrentUser();
     const router = useRouter();
     const { mutate: addToCart } = useAddToCart();
@@ -68,7 +77,6 @@ export const ProductsCard = ({
         }
     };
 
-    // Handler for wishlist actions (add/remove)
     const handleAddToWishlist = (e: React.MouseEvent) => {
         e.stopPropagation();
 
@@ -82,7 +90,7 @@ export const ProductsCard = ({
                 addToWishlist({
                     id,
                     name,
-                    image,
+                    images: image,
                     price,
                     initialPrice,
                     rating,
@@ -92,8 +100,21 @@ export const ProductsCard = ({
         }
     };
 
+    const handleRemoveFromWishlist = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        const ok = await confirm();
+
+        if (ok) {
+            removeFromWishlist(id);
+        }
+    };
+
+
+
     return (
         <div>
+            <ConfirmDialog />
             <div
                 onClick={() => router.push(`/product/${id}`)}
                 className="relative cursor-pointer overflow-hidden group"
@@ -119,21 +140,29 @@ export const ProductsCard = ({
                     />
                 </div>
 
-                {/* Heart Icon for Wishlist */}
-                <span
-                    onClick={handleAddToWishlist}
-                    className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 rounded-full text-[10px] cursor-pointer 
-                    ${isInWishlist ? "bg-red-500 " : "bg-white "}`}
-                >
-                    <Heart className={`size-3 ${isInWishlist ? " text-white" : "text-black"}`} />
-                </span>
+                {!isWishlistPage && (
+                    <>
+                        <span
+                            onClick={handleAddToWishlist}
+                            className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 rounded-full text-[10px] cursor-pointer 
+                            ${isInWishlist ? "bg-red-500 " : "bg-white "}`}
+                        >
+                            <Heart className={`size-3 ${isInWishlist ? " text-white" : "text-black"}`} />
+                        </span>
+                        <span className="absolute top-10 right-2 flex justify-center items-center w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
+                            <Eye className="size-3 text-black" />
+                        </span>
+                    </>
+                )}
 
-                {/* Eye Icon */}
-                <span className="absolute top-10 right-2 flex justify-center items-center w-6 h-6 bg-white hover:bg-gray-100 rounded-full text-[10px] cursor-pointer">
-                    <Eye className="size-3 text-black" />
-                </span>
-
-                {/* Add to Cart Button */}
+                {isWishlistPage && (
+                    <span
+                        onClick={handleRemoveFromWishlist}
+                        className={`absolute top-2 right-2 flex justify-center items-center w-6 h-6 rounded-full text-[10px] cursor-pointer bg-white`}
+                    >
+                        <Trash className="size-3 text-red-500" />
+                    </span>
+                )}
                 <Button
                     variant="outline"
                     size="sm"
@@ -144,7 +173,6 @@ export const ProductsCard = ({
                 </Button>
             </div>
 
-            {/* Product Info */}
             <div className="flex flex-col gap-y-2 mt-4">
                 <h4 className="text-sm font-bold">{name}</h4>
                 <div className="flex items-center gap-x-2">
@@ -156,7 +184,7 @@ export const ProductsCard = ({
                 <div className="flex items-center gap-x-2">
                     <div className="max-w-[90px]">
                         <Rating
-                            value={rating}
+                            value={rating ?? 0}
                             readOnly
                             itemStyles={{
                                 itemShapes: Star,

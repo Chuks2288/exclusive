@@ -5,12 +5,13 @@ import { useAddToCart } from "@/features/cart/use-add-to-cart";
 import { useRemoveFromCart } from "@/features/cart/use-remove-from-cart";
 import { RootState } from "@/store";
 import { Rating, Star } from "@smastrom/react-rating";
-import { DeleteIcon, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useRemoveFromWishlist } from "@/features/wishlist/api/use-remove-from-wishlist";
 import { WishlistItem } from "@/store/wishlist-slice";
+import { useConfirm } from "@/hooks/use-confirm";
 
 export const WishlistCard = ({
     id,
@@ -29,38 +30,53 @@ export const WishlistCard = ({
     discount,
 }: WishlistItem) => {
     const router = useRouter();
+    const [ConfirmDialog, confirm] = useConfirm(
+        "Confirm Deletion",
+        "Are you sure you want to remove the items from the wishlist?"
+    );
+
+    const dispatch = useDispatch();
+
     const { mutate: addToCart } = useAddToCart();
     const { mutate: removeFromCart } = useRemoveFromCart();
     const { mutate: removeFromWishlist } = useRemoveFromWishlist();
     const cartItems = useSelector((state: RootState) => state.cart.items);
-    const dispatch = useDispatch();
 
     const isInCart = cartItems.some((item) => item.id === id);
 
-    const handleRemoveFromWishlist = (e: React.MouseEvent) => {
+    const handleRemoveFromWishlist = async (e: React.MouseEvent) => {
         e.stopPropagation();
-        removeFromWishlist(id);
-    };
 
-    const handleCartAction = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (isInCart) {
-            removeFromCart(id);
-        } else {
-            addToCart({
-                id,
-                name,
-                image,
-                price,
-                initialPrice,
-                rating,
-                quantity: 1,
-            });
+        const ok = await confirm();
+
+        if (ok) {
+            removeFromWishlist(id);
         }
     };
 
+    const handleCartAction = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+        try {
+            if (isInCart) {
+                await removeFromCart(id);
+            } else {
+                await addToCart({
+                    id,
+                    name,
+                    image,
+                    price,
+                    initialPrice,
+                    rating,
+                    quantity: 1,
+                });
+            }
+        } catch (error) {
+            console.error("Failed to update cart:", error);
+        }
+    };
     return (
         <div>
+            <ConfirmDialog />
             <div
                 onClick={() => router.push(`/product/${id}`)}
                 className="relative cursor-pointer overflow-hidden group"

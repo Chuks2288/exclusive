@@ -1,5 +1,6 @@
 "use server";
 
+
 import { db } from "@/lib/db";
 
 export const getAllWishlist = async () => {
@@ -23,10 +24,9 @@ export const getAllWishlist = async () => {
             },
         });
 
-        // No need to check for null/undefined, as findMany returns an empty array if nothing is found
-        return wishlist;
+        return wishlist; // findMany returns an array, no need for null checks
     } catch (error) {
         console.error("Error fetching wishlist:", error);
-        return { error: "Failed to fetch wishlist" };
+        throw new Error("Failed to fetch wishlist"); // Re-throw the error to handle it properly
     }
 };

@@ -116,7 +116,7 @@ export const WishlistCard = ({
                 <div className="flex items-center gap-x-2">
                     <div className="max-w-[90px]">
                         <Rating
-                            value={rating}
+                            value={rating ?? 0}
                             readOnly
                             itemStyles={{
                                 itemShapes: Star,

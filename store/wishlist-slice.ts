@@ -6,7 +6,7 @@ export type WishlistItem = {
     id: string | any;
     name?: string | any;
     image: string[];
-    rating?: number | any;
+    rating?: number;
     reviews?: number;
     availability?: string;
     price: number;

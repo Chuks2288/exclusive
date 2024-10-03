@@ -1,19 +1,21 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { deleteAllWishlist } from '@/actions/wishlist/delete-all-wishlist';
-import { useDispatch } from 'react-redux'; // Import useDispatch
-import { clearWishlist } from '@/store/wishlist-slice'; // Import the clearWishlist action
+import { useDispatch } from 'react-redux';
+import { clearWishlist } from '@/store/wishlist-slice';
 
 export const useDeleteAllWishlist = () => {
     const queryClient = useQueryClient();
-    const dispatch = useDispatch(); // Get the dispatch function
+    const dispatch = useDispatch();
 
     const mutation = useMutation({
-        mutationFn: deleteAllWishlist,
+        mutationFn: () => {
+            return deleteAllWishlist();
+        },
+
         onSuccess: (data) => {
             if (data?.success) {
                 toast.success(data.success);
-                // Dispatch clearWishlist action to clear the Redux state
                 dispatch(clearWishlist());
             }
 
@@ -21,7 +23,6 @@ export const useDeleteAllWishlist = () => {
                 toast.error(data.error);
             }
 
-            // Invalidate the wishlist query to refresh the UI
             queryClient.invalidateQueries({ queryKey: ['wishlist'] });
         },
         onError: () => {

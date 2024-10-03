@@ -32,7 +32,7 @@ export const CartCard = () => {
             <ConfirmDialog />
             <div>
                 {cart.length === 0 ? (
-                    <div className="flex items-center justify-center h-screen">
+                    <div className="flex items-center justify-center h-[70vh]">
                         <p className="text-md font-bold">Your Cart is Empty</p>
                     </div>
                 ) : (

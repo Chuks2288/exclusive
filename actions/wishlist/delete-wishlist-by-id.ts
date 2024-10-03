@@ -4,14 +4,21 @@ import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 export const deleteWishlistById = async (
-    productId: string | any,
+    productId: string,
 ) => {
     const user = await currentUser();
     const userId = user?.id;
 
+
+    console.log("Product ID:", productId);
+
     // Validate userId and productId
-    if (!userId || !productId) {
+    if (!userId) {
         return { error: "You are not currently logged in." };
+    }
+
+    if (!productId) {
+        return { error: "Product ID is required." };
     }
 
     try {
@@ -34,7 +41,7 @@ export const deleteWishlistById = async (
             },
         });
 
-        return { success: "Product removed from your wishlist successfully" };
+        return { success: true, message: "Product removed from your wishlist successfully" };
     } catch (error) {
         console.error("Error deleting product from wishlist:", error);
         return { error: "Failed to remove product from wishlist. Please try again." };

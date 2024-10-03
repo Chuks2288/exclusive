@@ -25,7 +25,6 @@ const Wishlist = () => {
         }
     }, [data, dispatch, wishlistItems.length]);
 
-
     if (isLoading && wishlistItems.length === 0) {
         return (
             <div>
@@ -39,13 +38,12 @@ const Wishlist = () => {
         );
     }
 
-
     const items = wishlistItems || [];
 
     return (
         <div>
             {items.length === 0 ? (
-                <div className="flex items-center justify-center h-screen">
+                <div className="flex items-center justify-center h-[70vh]">
                     <div className="flex flex-col justify-center items-center space-y-3">
                         <p>No items in the wishlist.</p>
                         <p>Please click the button below to go back home.</p>

@@ -18,7 +18,7 @@ import { useRemoveFromWishlist } from "@/features/wishlist/api/use-remove-from-w
 import { useConfirm } from "@/hooks/use-confirm";
 
 type Props = {
-    id: any;
+    id: string | any;
     image: string[];
     discount: number;
     name: string;

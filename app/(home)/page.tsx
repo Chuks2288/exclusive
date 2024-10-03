@@ -60,6 +60,7 @@ const HomePage = () => {
             <BestSellingProducts
                 bestSellingProducts={bestSellingProducts as any}
                 isLoading={isLoading}
+                header
             />
             <ProductBanner
                 products={speakerProduct as any}

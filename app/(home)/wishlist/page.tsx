@@ -12,6 +12,8 @@ import { useGetAllWishlists } from "@/features/wishlist/api/use-get-all-wishlist
 import { ProductsCard } from "../_components/products-card";
 import { useConfirm } from "@/hooks/use-confirm";
 import { useDeleteAllWishlist } from "@/features/wishlist/api/use-delete-all-wishlist";
+import { useGetBestSellingProducts } from "@/features/products/api/use-get-best-selling-products";
+import { BestSellingProducts } from "../_components/best-selling-products";
 
 const Wishlist = () => {
     const router = useRouter();
@@ -27,6 +29,10 @@ const Wishlist = () => {
 
     const { data, isLoading } = useGetAllWishlists();
     const { mutate: clearAllWishlist } = useDeleteAllWishlist();
+    const {
+        data: bestSellingProducts = [],
+        isLoading: bestSellingProductsIsLoading
+    } = useGetBestSellingProducts();
 
     useEffect(() => {
         if (data && wishlistItems.length === 0) {
@@ -104,6 +110,12 @@ const Wishlist = () => {
                     </div>
                 )}
             </div>
+            <BestSellingProducts
+                bestSellingProducts={bestSellingProducts as any}
+                isLoading={isLoading}
+                title="Just For you"
+            />
+
         </>
     );
 };

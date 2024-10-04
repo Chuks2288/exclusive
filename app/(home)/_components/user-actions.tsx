@@ -1,7 +1,7 @@
 import { Popover, PopoverClose, PopoverTrigger } from "@/components/ui/popover";
 import { userProfileRoutes } from "@/data";
 import { PopoverContent } from "@radix-ui/react-popover";
-import { Heart, LogOut, ShoppingCart, User } from "lucide-react";
+import { Heart, LayoutDashboard, LogOut, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserProfile } from "./user-profile";
@@ -13,6 +13,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ActionTooltip from "@/components/action-tooltip";
+import { useIsAdmin } from "@/hooks/use-isAdmin";
+import { isAdmin } from "@/lib/admin";
+import { useIsModerator } from "@/hooks/use-isModerator";
 
 interface UserActionRoutesProps {
     icon: any;
@@ -25,7 +28,16 @@ type Props = {
     isLoading: boolean;
 }
 
-export const UserActions = ({ isLoading }: Props) => {
+export const UserActions = ({
+    isLoading,
+}: Props) => {
+
+    // const isAdmin = await isAdmin();
+    const isAdmin = useIsAdmin();
+    const isModerator = useIsModerator();
+
+
+
     const [ConfirmDialog, confirm] = useConfirm(
         "Are you sure?",
         "You are about to logout"
@@ -99,6 +111,25 @@ export const UserActions = ({ isLoading }: Props) => {
                                 alignOffset={35}
                                 className="flex flex-col items-start justify-start gap-y-2 py-1 bg-[#2f4f4f] text-white rounded-md z-50"
                             >
+                                {(isAdmin || isModerator) && (
+                                    <Button
+                                        variant="ghost"
+                                        asChild
+                                        className={"w-full rounded-none text-white"}
+                                    >
+                                        <Link
+                                            href="/admin/dashboard"
+                                            className="gap-x-4 flex"
+                                        >
+                                            <LayoutDashboard
+                                                className="size-5"
+                                            />
+                                            <h4 className="text-sm font-medium w-full">
+                                                Admin Dashboard
+                                            </h4>
+                                        </Link>
+                                    </Button>
+                                )}
                                 {userProfileRoutes.map((route) => (
                                     <PopoverClose asChild key={route.label}>
                                         <UserProfile
@@ -109,6 +140,7 @@ export const UserActions = ({ isLoading }: Props) => {
                                         />
                                     </PopoverClose>
                                 ))}
+
                                 <Button
                                     onClick={onLogout}
                                     variant="ghost"
@@ -117,6 +149,12 @@ export const UserActions = ({ isLoading }: Props) => {
                                     <LogOut className="size-5" />
                                     <h4 className="text-sm font-medium">Logout</h4>
                                 </Button>
+
+                                {user && (
+                                    <p className="text-xs py-6 pt-3 pl-4">
+                                        {user?.email}
+                                    </p>
+                                )}
                             </PopoverContent>
                         </Popover>
                     </>

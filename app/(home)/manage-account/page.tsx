@@ -1,7 +1,7 @@
 
 const ManageAccount = () => {
     return (
-        <div>ManageAccount</div>
+        <div>My Account</div>
     )
 }
 

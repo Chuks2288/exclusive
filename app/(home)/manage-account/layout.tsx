@@ -20,7 +20,7 @@ const ManageAccountLayout = async ({
             />
             <main className="flex gap-x-2">
                 <Sidebar />
-                <div className="w-full border pl-0">
+                <div className="w-full border pl-0 h-screen">
                     {children}
                 </div>
             </main>

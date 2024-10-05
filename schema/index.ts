@@ -75,3 +75,26 @@ export const ContactFormSchema = z.object({
         message: "Message is required",
     }),
 })
+
+export const ManageAccountFormSchema = z
+    .object({
+        firstName: z.string().optional(),
+        lastName: z.string().optional(),
+        address: z.string().optional(),
+        currentPassword: z.string().optional(), // Mark as optional
+        newPassword: z.string().optional(),
+        confirmNewPassword: z.string().optional(),
+    })
+    .refine(
+        (data) =>
+            (data.currentPassword && data.newPassword && data.confirmNewPassword) ||
+            (!data.currentPassword && !data.newPassword && !data.confirmNewPassword),
+        {
+            message: "All password fields must be filled to change the password.",
+            path: ["currentPassword"],
+        }
+    )
+    .refine((data) => data.newPassword === data.confirmNewPassword, {
+        path: ["confirmNewPassword"],
+        message: "New password and confirm new password must match.",
+    });

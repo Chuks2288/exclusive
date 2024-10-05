@@ -1,7 +1,12 @@
+import { ManageAccountForm } from "./_components/manage-account-form"
 
 const ManageAccount = () => {
     return (
-        <div>My Account</div>
+        <div className="w-full">
+            <div>
+                <ManageAccountForm />
+            </div>
+        </div >
     )
 }
 

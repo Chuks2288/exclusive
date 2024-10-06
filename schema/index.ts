@@ -80,8 +80,13 @@ export const ManageAccountFormSchema = z
     .object({
         firstName: z.string().optional(),
         lastName: z.string().optional(),
-        address: z.string().optional(),
-        currentPassword: z.string().optional(), // Mark as optional
+        address: z.object({
+            street: z.string().optional(),
+            city: z.string().optional(),
+            apartment: z.string().optional(),
+            phoneNumber: z.string().optional(),
+        }).optional(),
+        currentPassword: z.string().optional(),
         newPassword: z.string().optional(),
         confirmNewPassword: z.string().optional(),
     })
@@ -98,3 +103,4 @@ export const ManageAccountFormSchema = z
         path: ["confirmNewPassword"],
         message: "New password and confirm new password must match.",
     });
+

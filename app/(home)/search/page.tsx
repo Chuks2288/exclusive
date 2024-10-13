@@ -23,11 +23,13 @@ const SearchResults = () => {
         )
     }
 
+    const productList = Array.isArray(products) ? products : [];
+
     return (
         <div className="h-[60vh] flex flex-col gap-y-4 pt-4">
             <h1>Search Results for "{searchTerm}"</h1>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {products.map((product: Product) => (
+                {productList.map((product: Product) => (
                     <ProductsCard
                         key={product.id}
                         id={product.id}

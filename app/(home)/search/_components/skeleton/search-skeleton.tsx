@@ -12,12 +12,7 @@ export const SearchSkeleton = ({
 }: Props) => {
 
     return (
-        <div className="py-10 space-y-4">
-            <div className="flex items-center gap-x-3">
-                <Skeleton className="w-3 h-8 rounded-sm" />
-                <Skeleton className="w-20 h-4" />
-            </div>
-            <Skeleton className="w-full h-16" />
+        <div className="py-10">
             <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4`} style={{ height }}>
                 {Array.from({ length }).map((_, index) => (
                     <Skeleton

@@ -128,6 +128,15 @@
 //     );
 // };
 
+
+
+
+
+
+
+
+
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -171,17 +180,26 @@ export const SearchInput = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            if (search) {
-                setOpen(true);
-            } else {
-                setOpen(false);
-            }
+            setOpen(!!search); // Open the suggestions only if there is a search term
         }, 300);
     };
 
+    // Filter products that match the search term
     const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    // If no exact matches, show related products based on categories or tags
+    const relatedProducts = searchTerm && filteredProducts.length === 0
+        ? products.filter((product) => {
+            const searchLower = searchTerm.toLowerCase();
+            return (
+                product.category.toLowerCase().includes(searchLower) || // Match by category
+                product.subcategory.toLowerCase().includes(searchLower) || // Match by category
+                product.description.toLowerCase().includes(searchLower) // Match by description
+            );
+        })
+        : filteredProducts;
 
     const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -198,18 +216,6 @@ export const SearchInput = () => {
         setValue(currentValue);
         setSearchTerm(currentValue);
         const query = { term: currentValue };
-        const url = qs.stringifyUrl({
-            url: "/search",
-            query,
-        });
-        router.push(url);
-        setOpen(false);
-    };
-
-    const handleSuggestionClick = (suggestion: string) => {
-        setSearchTerm(suggestion);
-        setValue(suggestion);
-        const query = { term: suggestion };
         const url = qs.stringifyUrl({
             url: "/search",
             query,
@@ -237,18 +243,17 @@ export const SearchInput = () => {
                                 </div>
                             )}
 
-                            {!loading && searchTerm && filteredProducts.length === 0 && (
+                            {!loading && searchTerm && relatedProducts.length === 0 && (
                                 <CommandEmpty>No products found.</CommandEmpty>
                             )}
 
                             <CommandGroup>
-                                {filteredProducts.map((product) => (
+                                {relatedProducts.map((product) => (
                                     <CommandItem
                                         key={product.id}
                                         value={product.name}
                                         onSelect={() => handleItemSelect(product.name)}
                                         className="cursor-pointer"
-                                        onClick={() => handleSuggestionClick(product.name)}
                                     >
                                         <Check
                                             className={cn(

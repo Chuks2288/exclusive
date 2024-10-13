@@ -36,25 +36,6 @@ export const Navbar = () => {
         bestSellingProductsIsLoading ||
         speakerProductIsLoading
 
-    // if (isLoading) {
-    //     return (
-    //         <div className="border-b-2 navbar">
-    //             <div className="w-full p-3">
-    //                 <div className="max-w-[1170px] mx-auto">
-    //                     <div className="flex flex-row items-center justify-between py-2 gap-x-6"> {/* Reduced py value */}
-    //                         <Skeleton className="w-10 h-10 rounded-full" />
-    //                         <NavItemsSkeleton />
-    //                         <div className="flex items-center gap-x-6">
-    //                             <SearchInputSkeleton />
-    //                             <UserActionsSkeleton />
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // }
-
     return (
         <div className="border-b-2 navbar">
             <div className="w-full px-3">

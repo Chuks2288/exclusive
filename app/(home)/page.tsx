@@ -58,23 +58,31 @@ const HomePage = () => {
         setSelectedWord(newWord);
 
         const queryParams = queryString.stringify({ word: newWord || undefined });
-        router.push(`?${queryParams}`, undefined, { shallow: true });
+        // @ts-ignore
+        router.push(`?${queryParams}`, undefined, { shallow: true, scroll: false });
     };
 
     const filteredProducts = selectedWord
-        ? products.filter(product => product.category.toLowerCase().includes(selectedWord.toLowerCase()))
+        ? products.filter(product => product.category.toLowerCase()
+            .includes(selectedWord.toLowerCase()))
         : products;
 
     const filteredIphoneProducts = selectedWord
-        ? iphoneProducts.filter(product => product.category.toLowerCase().includes(selectedWord.toLowerCase()))
+        ? iphoneProducts
+            .filter(product => product.category.toLowerCase()
+                .includes(selectedWord.toLowerCase()))
         : iphoneProducts;
 
     const filteredBestSellingProducts = selectedWord
-        ? bestSellingProducts.filter(product => product.category.toLowerCase().includes(selectedWord.toLowerCase()))
+        ? bestSellingProducts
+            .filter(product => product.category.toLowerCase()
+                .includes(selectedWord.toLowerCase()))
         : bestSellingProducts;
 
     const filteredSpeakerProduct = selectedWord
-        ? speakerProduct.filter(product => product.category.toLowerCase().includes(selectedWord.toLowerCase()))
+        ? speakerProduct
+            .filter(product => product.category.toLowerCase()
+                .includes(selectedWord.toLowerCase()))
         : speakerProduct;
 
     return (
@@ -101,6 +109,8 @@ const HomePage = () => {
                     products
                 }
                 isLoading={isLoading}
+                onCategoryClick={handleWordClick}
+                selectedCategory={selectedWord}
             />
             <BestSellingProducts
                 bestSellingProducts={filteredBestSellingProducts.length ?

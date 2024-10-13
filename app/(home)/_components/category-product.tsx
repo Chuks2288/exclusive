@@ -6,11 +6,16 @@ import { CategorySkeleton } from "./skeleton/category-skeleton";
 type Props = {
     products: any;
     isLoading: boolean;
+    onCategoryClick: (category: string) => void;
+    selectedCategory: string | null;
 }
+
 
 export const CategoryProducts = ({
     products,
-    isLoading
+    isLoading,
+    onCategoryClick,
+    selectedCategory
 }: Props) => {
 
     if (isLoading) {
@@ -28,7 +33,10 @@ export const CategoryProducts = ({
             <h1 className="font-bold lg:text-2xl text-xl self-end">
                 Browse By Category
             </h1>
-            <CategoryQuery />
+            <CategoryQuery
+                onCategoryClick={onCategoryClick}
+                selectedCategory={selectedCategory}
+            />
         </div>
     )
 }

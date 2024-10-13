@@ -1,16 +1,22 @@
-"use client"
+"use client";
 
+import React from "react";
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-
 import { searchWordItems } from "@/data";
 import { Separator } from "@/components/ui/separator";
 
-export const SidebarWordSearch = () => {
+type SidebarWordSearchProps = {
+    onWordClick: (word: string) => void;
+};
+
+export const SidebarWordSearch = ({
+    onWordClick
+}: SidebarWordSearchProps) => {
     return (
         <div className="flex space-x-2">
             <Accordion type="single" collapsible className="w-full h-full -space-y-4">
@@ -18,21 +24,17 @@ export const SidebarWordSearch = () => {
                     <AccordionItem key={index} value={`item-${index}`}>
                         {item.subCategories ? (
                             <>
-                                <AccordionTrigger
-                                    className="hover:underline"
-                                >
+                                <AccordionTrigger className="hover:underline">
                                     {item.category}
                                 </AccordionTrigger>
                                 <AccordionContent>
                                     <ul className="space-y-2">
                                         {item.subCategories.map(
-                                            (
-                                                subCategory: string,
-                                                subIndex: number
-                                            ) => (
+                                            (subCategory: string, subIndex: number) => (
                                                 <li
                                                     key={subIndex}
                                                     className="font-medium cursor-pointer hover:underline"
+                                                    onClick={() => onWordClick(subCategory)} // Call onWordClick with the subcategory
                                                 >
                                                     {subCategory}
                                                 </li>
@@ -44,7 +46,7 @@ export const SidebarWordSearch = () => {
                         ) : (
                             <button
                                 className="w-full text-left font-medium py-4"
-                                onClick={() => alert(`Clicked on ${item.category}`)}
+                                onClick={() => onWordClick(item.category)} // Call onWordClick with the category
                             >
                                 {item.category}
                             </button>

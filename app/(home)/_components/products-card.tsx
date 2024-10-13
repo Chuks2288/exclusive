@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Eye, Heart, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,7 @@ import { useAddToCart } from "@/features/cart/use-add-to-cart";
 import { useRemoveFromCart } from "@/features/cart/use-remove-from-cart";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { useAddToWishlist } from "@/features/wishlist/api/use-add-to-wishlist"; // Import the useAddToWishlist mutation
+import { useAddToWishlist } from "@/features/wishlist/api/use-add-to-wishlist";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { toast } from "sonner";
 import { useRemoveFromWishlist } from "@/features/wishlist/api/use-remove-from-wishlist";

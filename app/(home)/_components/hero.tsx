@@ -5,15 +5,18 @@ import { SafeIphoneListing } from "@/types";
 import { useGetIphoneProducts } from "@/features/products/api/use-get-iphone-products";
 import { SidebarWordSearchSkeleton } from "./skeleton/side-bar-search-skeleton";
 import { HeroCardSkeleton } from "./skeleton/hero-card-skeleton";
+import { useState } from "react";
 
 type Props = {
     iphoneProducts: any;
     isLoading: boolean;
+    onWordClick: (word: string) => void;
 }
 
 export const Hero = ({
     iphoneProducts,
-    isLoading
+    isLoading,
+    onWordClick
 }: Props) => {
 
     if (isLoading) {
@@ -32,7 +35,9 @@ export const Hero = ({
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4 ">
             <div className="md:col-span-1 md:grid hidden pt-4">
-                <SidebarWordSearch />
+                <SidebarWordSearch
+                    onWordClick={onWordClick}
+                />
             </div>
             <div className="md:col-span-3 pt-4 lg:pl-4 pl-0">
                 <HeroCard

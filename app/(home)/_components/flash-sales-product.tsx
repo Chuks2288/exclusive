@@ -7,25 +7,25 @@ import { Navigation } from 'swiper/modules';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductsCard } from './products-card';
-import { Product } from '@prisma/client';
 
 type Props = {
     products: any;
 }
 
 export const FlashSalesProduct = ({
-    products
+    products,
 }: Props) => {
     const [showAll, setShowAll] = useState(false);
 
     // Determine which products to display based on the `showAll` state
     const displayedProducts = showAll ? products.slice(0, 20) : products.slice(0, 10);
 
-    // Slice the products array to limit to a maximum of 20
+    // Slice the products array to limit to a maximum of 20 for the "show all" view
     const flashSalesProducts = products.slice(0, 20);
 
     return (
         <div className="relative w-full">
+            {/* Display Swiper when `showAll` is false */}
             {!showAll ? (
                 <>
                     <Swiper
@@ -72,14 +72,14 @@ export const FlashSalesProduct = ({
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
-                                    // Add optional chaining to handle cases where discount might be null
-                                    discount={product.discount?.amount || 0}
+                                    discount={product.discount?.amount || 0} // Handle cases where discount might be null
                                     name={product.name}
                                     price={product.price}
                                     initialPrice={product.initialPrice}
                                     rating={product.rating.average}
                                     reviews={product.rating.reviews}
                                     isNew={product.isNew === true}
+                                // onWordClick={onWordClick} // Trigger word click
                                 />
                             </SwiperSlide>
                         ))}
@@ -108,6 +108,7 @@ export const FlashSalesProduct = ({
                 </>
             ) : (
                 <>
+                    {/* Grid layout for showing all products when `showAll` is true */}
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                         {flashSalesProducts.map((product: any) => (
                             <div
@@ -117,19 +118,19 @@ export const FlashSalesProduct = ({
                                 <ProductsCard
                                     id={product.id}
                                     image={product.images}
-                                    // Add optional chaining to handle cases where discount might be null
-                                    discount={product.discount?.amount || 0}
+                                    discount={product.discount?.amount || 0} // Handle cases where discount might be null
                                     name={product.name}
                                     price={product.price}
                                     initialPrice={product.initialPrice}
                                     rating={product.rating.average}
                                     reviews={product.rating.reviews}
+                                // onWordClick={onWordClick} // Trigger word click
                                 />
                             </div>
                         ))}
                     </div>
 
-                    {/* Show Less Button */}
+                    {/* Show Less Products Button */}
                     <div className="flex justify-center mt-4">
                         <Button
                             size="sm"

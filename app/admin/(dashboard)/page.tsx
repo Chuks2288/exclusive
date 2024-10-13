@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useIsAdmin } from "@/hooks/use-isAdmin";
 import { redirect } from "next/navigation";
-import { AdminComponents } from "./_components/admin-components";
+import { AdminComponents } from "../_components/admin-components";
 import { useIsModerator } from "@/hooks/use-isModerator";
 
 const AdminPage = () => {

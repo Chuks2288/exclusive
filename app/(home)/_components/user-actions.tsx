@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ActionTooltip from "@/components/action-tooltip";
 import { useIsAdmin } from "@/hooks/use-isAdmin";
-import { isAdmin } from "@/lib/admin";
+// import { isAdmin } from "@/lib/admin";
 import { useIsModerator } from "@/hooks/use-isModerator";
 
 interface UserActionRoutesProps {
@@ -118,7 +118,7 @@ export const UserActions = ({
                                         className={"w-full rounded-none text-white"}
                                     >
                                         <Link
-                                            href="/admin/dashboard"
+                                            href="/admin"
                                             className="gap-x-4 flex"
                                         >
                                             <LayoutDashboard

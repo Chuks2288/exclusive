@@ -16,6 +16,7 @@ import { Suspense } from "react";
 import { IoCaretForward } from "react-icons/io5";
 import { Loader2 } from "lucide-react";
 import { ManageAccountFormSchema } from "@/schema";
+import { useRouter } from "next/navigation";
 
 type FormValues = z.infer<typeof ManageAccountFormSchema>;
 
@@ -33,6 +34,8 @@ const LogInfo = [
 ];
 
 export const ManageAccountForm = () => {
+    const router = useRouter();
+
     const form = useForm<FormValues>({
         resolver: zodResolver(ManageAccountFormSchema),
         defaultValues: {
@@ -49,6 +52,10 @@ export const ManageAccountForm = () => {
             confirmNewPassword: "",
         },
     });
+
+    const onClick = () => {
+        router.push("/");
+    }
 
     const onSubmit = (values: FormValues) => {
         console.log(values);
@@ -123,7 +130,11 @@ export const ManageAccountForm = () => {
                                     ))}
 
                                     <div className="flex w-full space-x-2 items-center justify-end mt-2">
-                                        <Button variant="outline">
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            onClick={onClick}
+                                        >
                                             Cancel
                                         </Button>
                                         <Button

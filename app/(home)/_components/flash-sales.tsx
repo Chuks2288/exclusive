@@ -7,11 +7,13 @@ import { ProductSkeleton } from "./skeleton/product-skeleton";
 type Props = {
     products: any;
     isLoading: boolean;
+    // onWordClick: (word: string) => void;
 }
 
 export const FlashSales = ({
     products,
-    isLoading
+    isLoading,
+    // onWordClick,
 }: Props) => {
 
     if (isLoading) {

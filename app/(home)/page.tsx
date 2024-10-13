@@ -53,14 +53,30 @@ const HomePage = () => {
         setSelectedWord(word);
     }, []);
 
+    // const handleWordClick = (word: string) => {
+    //     const newWord = selectedWord === word ? null : word;
+    //     setSelectedWord(newWord);
+
+    //     const queryParams = queryString.stringify({ word: newWord || undefined });
+    //     // @ts-ignore
+    //     router.push(`?${queryParams}`, undefined, { shallow: true, scroll: false });
+    // };
     const handleWordClick = (word: string) => {
+        const scrollPosition = window.scrollY;
+
         const newWord = selectedWord === word ? null : word;
         setSelectedWord(newWord);
 
         const queryParams = queryString.stringify({ word: newWord || undefined });
+
         // @ts-ignore
-        router.push(`?${queryParams}`, undefined, { shallow: true, scroll: false });
+        router.push(`?${queryParams}`, { shallow: true, scroll: false });
+
+        setTimeout(() => {
+            window.scrollTo(0, scrollPosition); // Restore scroll position
+        }, 0);
     };
+
 
     const filteredProducts = selectedWord
         ? products.filter(product => product.category.toLowerCase()

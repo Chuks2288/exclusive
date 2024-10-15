@@ -232,7 +232,7 @@ export const SearchInput = () => {
                         placeholder="Search products..."
                         onFocus={() => setOpen(true)}
                         onValueChange={handleInputChange}
-                        className="shadow-none"
+                        className="h-[40px]"
                     />
                     {open && (
                         <CommandList className="absolute top-full left-0 w-full bg-white z-10 rounded-b-lg border-t">

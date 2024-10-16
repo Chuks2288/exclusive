@@ -1,3 +1,5 @@
+"use client";
+
 import { Popover, PopoverClose, PopoverTrigger } from "@/components/ui/popover";
 import { userProfileRoutes } from "@/data";
 import { PopoverContent } from "@radix-ui/react-popover";
@@ -25,7 +27,7 @@ interface UserActionRoutesProps {
 }
 
 type Props = {
-    isLoading: boolean;
+    isLoading?: boolean;
 }
 
 export const UserActions = ({

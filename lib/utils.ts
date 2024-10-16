@@ -11,3 +11,14 @@ export function convertAmountFromiliunits(amount: number) {
 export function convertAmountToMiliunits(amount: number) {
   return Math.round(amount * 100);
 }
+
+export const formatValue = (value: number): string => {
+  if (value >= 1_000_000_000) {
+    return Math.floor(value / 1_000_000_000) + 'B';
+  } else if (value >= 1_000_000) {
+    return Math.floor(value / 1_000_000) + 'M';
+  } else if (value >= 1_000) {
+    return Math.floor(value / 1_000) + 'K';
+  }
+  return value.toString();
+};

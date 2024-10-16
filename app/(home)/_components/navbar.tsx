@@ -1,14 +1,9 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/use-current-user";
 import { Logo } from "./logo";
 import { NavItems } from "./nav-items";
 import { SearchInput } from "./search-input";
 import { UserActions } from "./user-actions";
-import { Skeleton } from "@/components/ui/skeleton";
-import { NavItemsSkeleton } from "./skeleton/nav-items-skeleton";
-import { SearchInputSkeleton } from "./skeleton/search-input-skeleton";
-import { UserActionsSkeleton } from "./skeleton/user-actions-skeleton";
 
 import { useGetAllProducts } from "@/features/products/api/use-get-all-products";
 import { useGetIphoneProducts } from "@/features/products/api/use-get-iphone-products";

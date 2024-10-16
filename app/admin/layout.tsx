@@ -1,29 +1,23 @@
-import { Navbar } from "../(home)/_components/navbar";
-import { Footer } from "../(home)/_components/footer";
-import { UpArrow } from "@/components/up-arrow";
+import { AdminNavbar } from "./_components/admin-navbar";
 import { AdminSidebar } from "./_components/admin-side-bar";
 
 type Props = {
     children: React.ReactNode;
 };
 
-const AdminLayout = ({
-    children
-}: Props) => {
-
+const AdminLayout = ({ children }: Props) => {
     return (
         <>
-            <Navbar />
-            <div className="w-full px-3">
-                <main className="max-w-[1170px] mx-auto">
-                    <main className="flex gap-x-2">
-                        <AdminSidebar />
+            <AdminNavbar />
+            <div className="flex">
+                <AdminSidebar className="lg:flex hidden" />
+
+                <div className="flex-1 lg:pl-[256px] pl-0 h-full pt-[10px] lg:pt-0">
+                    <main className="max-w-[1200px] mx-auto pt-6 mt-[5.2rem] h-full px-4 bg-gray-50 dark:bg-gray-800">
                         {children}
                     </main>
-                </main>
+                </div>
             </div>
-            <Footer />
-            <UpArrow />
         </>
     );
 };

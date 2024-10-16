@@ -1,8 +1,8 @@
 
-const ProductsPage = () => {
+const Userspage = () => {
     return (
-        <div>ProductsPage</div>
+        <div>Userspage</div>
     )
 }
 
-export default ProductsPage
+export default Userspage

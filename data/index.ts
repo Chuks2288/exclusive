@@ -17,11 +17,22 @@ import {
     Watch,
     ChevronRight,
     Mail,
-    MapPin
+    MapPin,
+    LayoutDashboard,
+    Users,
+    Package,
+    CreditCard,
+    Settings,
+    HelpCircle
 } from "lucide-react";
-import { Twitter, Instagram, Linkedin } from 'lucide-react'; // Make sure to import Lucide icons
+import { Twitter, Instagram, Linkedin } from 'lucide-react';
 
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+    FaFacebookF,
+    FaTwitter,
+    FaInstagram,
+    FaLinkedinIn
+} from "react-icons/fa";
 
 
 interface navItemProps {
@@ -63,6 +74,13 @@ type boardMemberProps = {
         url: string;
     }[]
 }
+
+type sidebarItemsProps = {
+    name: string;
+    icon: LucideIcon;
+    path: string;
+}
+
 
 export const routes = [
     {
@@ -582,3 +600,48 @@ export const boardMembers: boardMemberProps[] = [
         ]
     },
 ];
+
+
+
+export const sidebarItems: sidebarItemsProps[] = [
+    {
+        "name": "Dashboard",
+        "icon": LayoutDashboard,
+        "path": "/admin",
+    },
+    {
+        "name": "Users",
+        "icon": Users,
+        "path": "/admin/dashboard/users",
+    },
+    {
+        "name": "Products",
+        "icon": Package,
+        "path": "/admin/dashboard/products",
+    },
+    {
+        "name": "Orders",
+        "icon": ShoppingCart,
+        "path": "/admin/dashboard/orders",
+    },
+    {
+        "name": "Reviews",
+        "icon": Star,
+        "path": "/admin/dashboard/reviews",
+    },
+    {
+        "name": "Payments",
+        "icon": CreditCard,
+        "path": "/admin/dashboard/payments",
+    },
+    {
+        "name": "Settings",
+        "icon": Settings,
+        "path": "/admin/dashboard/settings",
+    },
+    {
+        "name": "Support",
+        "icon": HelpCircle,
+        "path": "/admin/dashboard/support",
+    },
+]

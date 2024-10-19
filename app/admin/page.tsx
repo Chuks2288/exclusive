@@ -11,6 +11,7 @@ import { EarningsBarChart } from "./_components/earnings-bar-chart";
 import { RecentOrders } from "./_components/recent-orders";
 import { PerformanceAreaChart } from "./_components/performance-area-chart";
 import { EarningsPieChart } from "./_components/earnings-pie-chart";
+import { DataCharts } from "./_components/data-charts";
 
 const AdminPage = () => {
     const isAdmin = useIsAdmin();
@@ -25,14 +26,7 @@ const AdminPage = () => {
     return (
         <div className="pb-10  flex flex-col space-y-4">
             <MetricCards />
-            <div className="grid lg:grid-cols-[1.5fr,1fr] gap-6 min-h-[300px]">
-                <PerformanceAreaChart />
-                <EarningsBarChart />
-            </div>
-            <div className="grid lg:grid-cols-[1.5fr,1fr] gap-6 min-h-[300px]">
-                <PerformanceLineChart />
-                <EarningsPieChart />
-            </div>
+            <DataCharts />
             <RecentOrders />
         </div>
     );

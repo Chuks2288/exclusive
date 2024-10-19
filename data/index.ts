@@ -645,3 +645,13 @@ export const sidebarItems: sidebarItemsProps[] = [
         "path": "/admin/dashboard/support",
     },
 ]
+
+export const data = [
+    { date: "Jan", sales: 400, visitors: 240 },
+    { date: "Feb", sales: 300, visitors: 139 },
+    { date: "Mar", sales: 200, visitors: 380 },
+    { date: "Apr", sales: 278, visitors: 390 },
+    { date: "May", sales: 189, visitors: 480 },
+    { date: "Jun", sales: 239, visitors: 380 },
+    { date: "Jul", sales: 349, visitors: 430 }
+];

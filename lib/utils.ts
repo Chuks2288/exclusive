@@ -22,3 +22,18 @@ export const formatValue = (value: number): string => {
   }
   return value.toString();
 };
+
+
+export const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long', // 'short' for abbreviated month (e.g., "Aug")
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short', // Optional
+  };
+
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+};

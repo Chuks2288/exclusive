@@ -1,37 +1,26 @@
 "use client";
 
-
-import { useRouter } from 'next/navigation';
-import {
-    useMutation,
-    QueryClient,
-} from '@tanstack/react-query';
-
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteUser } from '@/actions/user/delete-user';
-
 import { toast } from "sonner";
 
 export const useDeleteUser = () => {
-    const queryClient = new QueryClient();
+    const queryClient = useQueryClient();
 
     const mutation = useMutation({
-        mutationFn: deleteUser,
+        mutationFn: (userId: string) => deleteUser(userId),
         onSuccess: (data) => {
-
             if (data?.success) {
                 toast.success(data.success);
+                queryClient.invalidateQueries({ queryKey: ['users'] });
+            } else if (data?.error) {
+                toast.error(data.error);
             }
-
-            if (data?.error) {
-                toast.error(data.error)
-            }
-
-            queryClient.invalidateQueries({ queryKey: ['user'] });
         },
         onError: () => {
-            toast.error("Something went wrong")
+            toast.error("Something went wrong while deleting the user.");
         }
-    })
+    });
 
     return mutation;
-}
+};

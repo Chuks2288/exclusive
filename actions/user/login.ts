@@ -17,7 +17,7 @@ type FormValues = z.infer<typeof LoginSchema>;
 
 export const login = async (
     values: FormValues,
-    req: any, // Add request object to capture IP
+    req: any,
     callbackUrl?: string | null,
 ) => {
     const validateFields = LoginSchema.safeParse(values);
@@ -32,6 +32,10 @@ export const login = async (
 
     if (!existingUser || !existingUser.email || !existingUser.password) {
         return { error: "Email does not exist" }
+    }
+
+    if (existingUser.isBanned) {
+        return { error: "Your account is banned. Please contact support." };
     }
 
     const passwordMatch = await bcrypt.compare(password, existingUser.password);

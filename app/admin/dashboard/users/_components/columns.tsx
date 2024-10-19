@@ -9,6 +9,7 @@ import { User } from "@prisma/client";
 import { FullName } from "./full-name";
 import { formatDate } from "@/lib/utils";
 import { DeleteButton } from "./delete-button";
+import { Actions } from "./action";
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -43,6 +44,6 @@ export const columns: ColumnDef<User>[] = [
     },
     {
         id: "actions",
-        cell: ({ row }) => <DeleteButton id={row.original.id} />,
+        cell: ({ row }) => <Actions id={row.original.id} />,
     },
 ];

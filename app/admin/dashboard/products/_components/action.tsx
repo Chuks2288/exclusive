@@ -14,11 +14,11 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 
 type Props = {
     id: string;
-    isBanned: boolean;
-    role: "ADMIN" | "MODERATOR" | "CUSTOMER";
+    // isBanned: boolean;
+    // role: "ADMIN" | "MODERATOR" | "CUSTOMER";
 };
 
-export const Actions = ({ id, isBanned, role }: Props) => {
+export const Actions = ({ id }: Props) => {
     const [ConfirmDialog, confirm] = useConfirm();
 
     const user = useCurrentUser();
@@ -73,23 +73,23 @@ export const Actions = ({ id, isBanned, role }: Props) => {
                         align="end"
                         className="bg-white dark:bg-gray-800 dark:text-gray-200"
                     >
-                        {isBanned ? (
-                            <DropdownMenuItem
-                                className="cursor-pointer flex gap-x-2 text-green-600 dark:text-green-400 dark:hover:bg-gray-700"
-                                onClick={handleUnbanUser}
-                            >
-                                <CheckCircle className="size-4 text-green-600" />
-                                Unban
-                            </DropdownMenuItem>
-                        ) : (
-                            <DropdownMenuItem
-                                className="cursor-pointer flex gap-x-2 text-red-600 dark:text-red-400 dark:hover:bg-gray-700"
-                                onClick={handleBanUser}
-                            >
-                                <Ban className="size-4 text-red-600" />
-                                Ban
-                            </DropdownMenuItem>
-                        )}
+                        {/* {isBanned ? ( */}
+                        <DropdownMenuItem
+                            className="cursor-pointer flex gap-x-2 text-green-600 dark:text-green-400 dark:hover:bg-gray-700"
+                            onClick={handleUnbanUser}
+                        >
+                            <CheckCircle className="size-4 text-green-600" />
+                            Unban
+                        </DropdownMenuItem>
+                        {/* ) : ( */}
+                        <DropdownMenuItem
+                            className="cursor-pointer flex gap-x-2 text-red-600 dark:text-red-400 dark:hover:bg-gray-700"
+                            onClick={handleBanUser}
+                        >
+                            <Ban className="size-4 text-red-600" />
+                            Ban
+                        </DropdownMenuItem>
+                        {/* )} */}
 
                         <DropdownMenuItem
                             className="cursor-pointer flex gap-x-2 text-red-600 dark:text-red-400 dark:hover:bg-gray-700"

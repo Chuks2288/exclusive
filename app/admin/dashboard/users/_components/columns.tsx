@@ -19,7 +19,6 @@ export const columns: ColumnDef<User>[] = [
                 isBanned={row.original.isBanned}
             />
         ),
-        filterFn: "includesString",
     },
     {
         accessorKey: "email",
@@ -34,9 +33,6 @@ export const columns: ColumnDef<User>[] = [
         accessorKey: "role",
         header: "Role",
         cell: ({ row }) => (
-            // <p className={row.original.isBanned ? "text-gray-400" : ""}>
-            //     {row.original.role}
-            // </p>
             <UserRole
                 role={row.original.role}
                 isBanned={row.original.isBanned}

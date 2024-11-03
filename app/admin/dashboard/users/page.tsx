@@ -1,33 +1,24 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 import { useGetAllUsers } from "@/features/user/api/use-get-users";
 import { useCurrentUser } from "@/hooks/use-current-user";
-
+import { DataTableSkeleton } from "./_components/skeleton/datatable-skeleton";
 
 
 const UsersPage = () => {
     const { data: users, isLoading } = useGetAllUsers();
-    const user = useCurrentUser();
-    const router = useRouter();
-
-
-    useEffect(() => {
-        if (!user || user.role !== "ADMIN") {
-            router.push("/");
-        }
-    }, [user, router]);
 
     if (isLoading) {
         return (
-            <div className="flex items-center justify-center h-[70vh]">
-                <p className="text-md font-bold">Loading Users...</p>
+            <div className="h-full">
+                <DataTableSkeleton />
             </div>
         );
     }
+
+
 
     if (!users || users.length === 0) {
         return (
@@ -39,7 +30,10 @@ const UsersPage = () => {
 
     return (
         <div className="h-full">
-            <DataTable columns={columns} data={users} />
+            <DataTable
+                columns={columns}
+                data={users}
+            />
         </div>
     );
 };

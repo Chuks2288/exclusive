@@ -2,7 +2,6 @@
 
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
-
 export const unbanUser = async (userId: string) => {
     try {
         const user = await currentUser();
@@ -20,6 +19,13 @@ export const unbanUser = async (userId: string) => {
         }
 
         console.log("Admin unbanning user with ID:", userId);
+
+        // Check if the user exists before trying to update
+        const existingUser = await db.user.findUnique({ where: { id: userId } });
+
+        if (!existingUser) {
+            return { error: "User not found." };
+        }
 
         await db.user.update({
             where: { id: userId },

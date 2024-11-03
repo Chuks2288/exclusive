@@ -7,11 +7,11 @@ export const useGetAllUsers = (): UseQueryResult<User[], Error> => {
     return useQuery<User[], Error>({
         queryKey: ['users'],
         queryFn: async () => {
-            // Adjust this to return the `data` array from the response
+
             const fetchedUsers = await getUsers();
 
             if (fetchedUsers?.success && fetchedUsers.data) {
-                return fetchedUsers.data; // Return only the data field (the users array)
+                return fetchedUsers.data;
             } else {
                 throw new Error("Failed to fetch users");
             }

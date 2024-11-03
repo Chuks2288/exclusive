@@ -1,12 +1,25 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 import { useGetAllUsers } from "@/features/user/api/use-get-users";
+import { useCurrentUser } from "@/hooks/use-current-user";
+
 
 
 const UsersPage = () => {
     const { data: users, isLoading } = useGetAllUsers();
+    const user = useCurrentUser();
+    const router = useRouter();
+
+
+    useEffect(() => {
+        if (!user || user.role !== "ADMIN") {
+            router.push("/");
+        }
+    }, [user, router]);
 
     if (isLoading) {
         return (
@@ -15,8 +28,6 @@ const UsersPage = () => {
             </div>
         );
     }
-
-
 
     if (!users || users.length === 0) {
         return (

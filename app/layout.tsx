@@ -8,6 +8,7 @@ import { ModalProvider } from "@/providers/modal-provider";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react"; // Import SessionProvider
 import QueryProvider from "@/providers/query-provider";
+import { Sheetprovider } from "@/providers/sheet-provider";
 
 import { ReduxProviders } from "@/providers/redux-provider";
 
@@ -45,6 +46,7 @@ export default function RootLayout({
                 disableTransitionOnChange
               >
                 <Toaster />
+                <Sheetprovider />
                 <ModalProvider />
                 {children}
               </ThemeProvider>

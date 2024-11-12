@@ -103,4 +103,55 @@ export const ManageAccountFormSchema = z
         path: ["confirmNewPassword"],
         message: "New password and confirm new password must match.",
     });
+// Main product schema
+export const ProductSchema = z.object({
+    name: z.string().min(1, "Product name is required"),
+    description: z.string().min(1, "Description is required"),
+    price: z.string().min(0, "Price is required"),
+    initialPrice: z.string().min(0, "Initial price is required"),
+    brand: z.string().min(1, "Brand is required"),
+    category: z.string().min(1, "Category is required"),
+    subcategory: z.string().min(1, "Sub category is required"),
+    availability: z.boolean().default(true),
+    stockQuantity: z.number().int().min(0, "Stock quantity must be a positive integer"),
+    images: z.array(z.string().url()).optional(),
+    features: z.array(z.string()).optional(),
+    specifications: z.array(z.string()).optional(),
+    isNew: z.boolean().default(false),
+});
 
+// Warranty schema
+export const WarrantySchema = z.object({
+    duration: z.string().min(1, "Warranty duration is required"),
+    coverage: z.string().min(1, "Coverage details are required"),
+}).optional();
+
+// Shipping schema
+export const ShippingSchema = z.object({
+    weight: z.string().min(1, "Weight is required"),
+    dimensions: z.string().min(1, "Dimensions are required"),
+    cost: z.string().min(0, "Shipping cost is required"),
+    deliveryTime: z.string().min(1, "Delivery time is required"),
+}).optional();
+
+// Return policy schema
+export const ReturnPolicySchema = z.object({
+    returnable: z.boolean(),
+    returnPeriod: z.string().optional(),
+    conditions: z.string().optional(),
+}).optional();
+
+// Discount schema
+export const DiscountSchema = z.object({
+    amount: z.number().int().min(0, "Discount amount must be a positive integer"),
+    type: z.string().min(1, "Discount type is required"),
+    validUntil: z.date(),
+}).optional();
+
+// Full schema including nested entities
+export const AdminProductFormSchema = ProductSchema.extend({
+    warranty: WarrantySchema,
+    shipping: ShippingSchema,
+    returnPolicy: ReturnPolicySchema,
+    discount: DiscountSchema,
+});

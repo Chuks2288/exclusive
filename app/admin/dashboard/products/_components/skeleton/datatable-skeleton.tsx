@@ -7,8 +7,9 @@ const ROW_COUNT = 5;
 export function DataTableSkeleton() {
     return (
         <div>
-            <div className="flex items-center py-4">
+            <div className="flex items-center py-4 justify-between">
                 <Skeleton className="h-10 w-1/4 bg-gray-300 dark:bg-gray-700" />
+                <Skeleton className="h-10 w-40 bg-gray-300 dark:bg-gray-700" />
             </div>
             <div className="rounded-md border border-gray-300 dark:border-gray-600">
                 <Table>

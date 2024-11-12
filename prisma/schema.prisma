@@ -89,11 +89,10 @@ model Product {
   description     String
   price           Float
   initialPrice    Float
-  currency        String
   brand           String
   category        String
   subcategory     String
-  availability    String
+  availability    Boolean          @default(true)
   stockQuantity   Int
   images          String[]
   ratingId        String?          @unique
